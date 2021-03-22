@@ -1,87 +1,75 @@
 <template>
-<div>
-  <div class="structure-container">
-<!--    左侧职务表-->
-    <article class="structure-left">
-<!--      左上-->
-      <section class="department">
-<!--        -->
-        <div><button>+  新增部门</button></div>
-        <div><button>+  编辑部门</button></div>
-<!--        <div><button>+ &nbsp; </button></div>-->
-      </section>
+  <div>
+    <div class="structure-container">
+      <!--    左侧职务表-->
+      <article class="structure-left">
+        <!--      左上-->
+        <section class="department">
+          <!--        -->
+          <div><button>+  新增职务</button></div>
+<!--          <div><button>+  删除职务</button></div>-->
+          <!--        <div><button>+ &nbsp; </button></div>-->
+        </section>
 
-<!--      左下-->
-      <section class="department-detail">
-        <ul>>&nbsp;中南大学
-          <li>计算机学院</li>
-          <li>湘雅医学院</li>
-          <li>自动化学院</li>
-          <li>冶金学院</li>
-        </ul>
+        <!--      左下-->
+        <section class="department-detail">
+          <ul>>&nbsp;中南大学
+            <li>计算机学院</li>
+            <li>湘雅医学院</li>
+            <li>自动化学院</li>
+            <li>冶金学院</li>
+          </ul>
 
-      </section>
+        </section>
 
-    </article>
+      </article>
 
 
-<!--    右侧详情-->
-    <article class="structure-right">
-<!--      右上-->
-      <section class="right-top">
-        <div class="button-container">
-          <button>新增员工</button>
-          <button>邀请员工</button>
-        </div>
-        <div class="search">
-          <input type="text" placeholder="搜索...">
-          <button class="iconfont">&#xe6e6</button>
-        </div>
-      </section>
-<!--      右下-->
-      <section class="right-bottom">
-        <table style="width: 100%">
-          <thead style="width: 100%">
-          <tr class="list-head">
-            <th>姓名</th>
-            <th>性别</th>
-            <th>部门</th>
-            <th>职务</th>
-            <th>账号</th>
-            <th>邮箱</th>
-            <th>手机</th>
-            <th>操作</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr class="list-head">
-            <th>郭江富</th>
-            <th>男</th>
-            <th>销售部</th>
-            <th>部员</th>
-            <th>12345</th>
-            <th>-</th>
-            <th>123434343</th>
-            <th>
-              <div>
-                <button>编辑</button>
-                <button>停用</button>
-                <button>冻结</button>
-              </div>
-
-            </th>
-          </tr>
-          </tbody>
-        </table>
-      </section>
-    </article>
+      <!--    右侧详情-->
+      <article class="structure-right">
+<!--              右上-->
+        <section class="right-top">
+<!--          <div class="button-container">-->
+<!--            <button>新增员工</button>-->
+<!--            <button>邀请员工</button>-->
+<!--          </div>-->
+          <div class="search">
+            <input type="text" placeholder="搜索...">
+            <button class="iconfont">&#xe6e6</button>
+          </div>
+        </section>
+<!--              右下-->
+        <section class="right-bottom">
+          <table style="width: 100%">
+            <thead style="width: 100%">
+            <tr class="list-head">
+              <th>职务名称</th>
+              <th>人数</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="list-head">
+              <th>技术总监</th>
+              <th>2</th>
+              <th>
+                <div>
+                  <button>编辑</button>
+                  <button>删除</button>
+                </div>
+              </th>
+            </tr>
+            </tbody>
+          </table>
+        </section>
+      </article>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
 export default {
-  name: "Structure"
+  name: "PositionManage"
 }
 </script>
 
@@ -118,7 +106,7 @@ export default {
   height: 25%;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   padding: 20px;
   border-bottom: 1px solid #7e8c8d;
@@ -179,7 +167,7 @@ export default {
   height: 50px;
   background-color: pink;
   display: flex;
-  justify-content: start;
+  justify-content: right;
   align-items: center;
 }
 .right-top .button-container{
@@ -202,7 +190,7 @@ export default {
 .search{
   display: flex;
   justify-content: center;
-  margin-left: 20px;
+  margin-left: 900px;
 }
 .search input{
   width: 200px;

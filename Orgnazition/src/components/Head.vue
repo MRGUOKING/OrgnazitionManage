@@ -6,11 +6,11 @@
     </div>
     <!--    中间内容-->
     <div class="head-nav">
-      <router-link to="/home" class="item" active-class="active">组织结构</router-link>
-      <router-link to="/type" class="item" active-class="active"> 我的员工</router-link>
-      <router-link to="/timeline" class="item" active-class="active">职务列表</router-link>
+      <router-link to="/structure" class="item" active-class="active">组织结构</router-link>
+      <router-link to="/myPeople" class="item" active-class="active"> 我的员工</router-link>
+      <router-link to="/position" class="item" active-class="active">职务列表</router-link>
       <!--      <router-link to="/type" class="item" active-class="active"><i class="iconfont">&#xe746</i> 留言板</router-link>-->
-      <router-link to="/photo/type" class="item" active-class="active">照片墙 </router-link>
+      <router-link to="/check" class="item" active-class="active">考核方式 </router-link>
     </div>
     <!--    搜索框-->
     <div class="search">
