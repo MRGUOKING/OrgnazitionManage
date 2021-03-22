@@ -13,11 +13,14 @@ export default new Router({
   routes: [
     {
       path: '/login',
-      component: Login
+      component: Login,
+      meta:{
+        noHead:true
+      }
     },
     {
       path: '',
-      component: Login
+      redirect:'/login'
     },
     {
       path: '/register',

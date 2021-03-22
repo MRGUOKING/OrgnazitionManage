@@ -30,7 +30,7 @@
         <div><p>忘记密码?</p></div>
       </article>
       <section class="login-container">
-        <div><button>登录</button></div>
+        <div><button @click="login">登录</button></div>
       </section>
       <section class="resister-container">
         <div>没有账号?赶快注册</div>
@@ -42,7 +42,12 @@
 
 <script>
 export default {
-  name: "Login"
+  name: "Login",
+  methods:{
+    login(){
+      this.$router.push("/structure")
+    }
+  }
 }
 </script>
 

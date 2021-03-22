@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Head/>
+    <Head v-show="$route.meta.noHead == null"/>
     <router-view/>
   </div>
 </template>
