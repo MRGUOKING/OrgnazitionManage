@@ -45,6 +45,7 @@
             <tr class="list-head">
               <th>职务名称</th>
               <th>人数</th>
+<!--              <th>权力</th>-->
               <th>操作</th>
             </tr>
             </thead>
@@ -52,6 +53,7 @@
             <tr class="list-head">
               <th>技术总监</th>
               <th>2</th>
+<!--              <th>评价部门</th>-->
               <th>
                 <div>
                   <button>编辑</button>

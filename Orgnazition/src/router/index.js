@@ -6,6 +6,8 @@ import Structure from "../pages/Structure";
 import PositionManage from "../pages/PositionManage";
 import MyPeople from "../pages/MyPeople";
 import Check from "../pages/Check";
+import Employ from "../pages/Employ";
+import EmployDetail from "../pages/EmployDetail";
 
 Vue.use(Router)
 
@@ -41,6 +43,14 @@ export default new Router({
     {
       path: '/check',
       component: Check
+    },
+    {
+      path: '/employ',
+      component: Employ
+    },
+    {
+      path: '/detail',
+      component: EmployDetail
     }
 
   ]

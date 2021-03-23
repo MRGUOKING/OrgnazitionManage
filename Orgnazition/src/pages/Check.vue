@@ -41,6 +41,14 @@
         </section>
         <!--              右下-->
         <section class="right-bottom">
+<!--          分类-->
+          <div class="three-types">
+            <ul class="types-container">
+              <li class="active">工作任务指标</li>
+              <li>工作态度指标</li>
+              <li>工作能力指标</li>
+            </ul>
+          </div>
           <table style="width: 100%">
             <thead style="width: 100%">
             <tr class="list-head">
@@ -219,6 +227,10 @@ export default {
 }
 .right-bottom{
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
 }
 .search button{
   border-radius: 0px 5px 5px 0px;
@@ -262,5 +274,33 @@ th button{
   border: none;
   color: #00a8ff;
   cursor: pointer;
+}
+.three-types{
+  width: 100%;
+  height: 80px;
+  /*background-color: purple;*/
+}
+.types-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.types-container li{
+  text-align: center;
+  cursor: pointer;
+  width: 150px;
+  height: 40px;
+  border: 1px solid #ccccce;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 900;
+  margin: 0 20px;
+  line-height: 40px;
+  color: #626364;
+}
+.three-types .types-container .active{
+  border: 1px solid #00b5ad;
 }
 </style>
