@@ -12,15 +12,41 @@
       </section>
 
 <!--      左下-->
-      <section class="department-detail">
-        <ul>>&nbsp;中南大学
-          <li>计算机学院</li>
-          <li>湘雅医学院</li>
-          <li>自动化学院</li>
-          <li>冶金学院</li>
-        </ul>
+<!--      <section class="department-detail">-->
+<!--        <ul>>&nbsp;中南大学-->
+<!--          <li>计算机学院</li>-->
+<!--          <li>湘雅医学院</li>-->
+<!--          <li>自动化学院</li>-->
+<!--          <li>冶金学院</li>-->
+<!--        </ul>-->
 
-      </section>
+<!--      </section>-->
+        <el-col :span="12" style="width: 100%">
+          <el-menu
+            default-active="2"
+            class="el-menu-vertical-demo"
+            @open="handleOpen"
+            @close="handleClose"
+            background-color="#545c64"
+            text-color="#fff"
+            active-text-color="#ffd04b">
+            <el-submenu index="1">
+              <template slot="title">
+                <i class="el-icon-location"></i>
+                <span>今目标</span>
+              </template>
+                <el-menu-item index="1-1">总裁办</el-menu-item>
+                <el-menu-item index="1-2">人事部</el-menu-item>
+                <el-menu-item index="1-3">销售部</el-menu-item>
+              <el-submenu index="1-4">
+                <template slot="title" style="width: 300px">技术部</template>
+                <el-menu-item index="1-4-1">技术1部</el-menu-item>
+              </el-submenu>
+            </el-submenu>
+          </el-menu>
+        </el-col>
+
+
 
     </article>
 
@@ -31,7 +57,6 @@
       <section class="right-top">
         <div class="button-container">
           <button>新增员工</button>
-          <button>邀请员工</button>
         </div>
         <div class="search">
           <input type="text" placeholder="搜索...">
@@ -76,12 +101,36 @@
       </section>
     </article>
   </div>
+  <div class="add-department" v-if="showModal">
+    <div class="modal-container">
+      <div class="modal-item"><p>上级部门</p> <input type="text" placeholder="上级部门" readonly></div>
+      <div class="modal-item"><p>部门名称</p> <input type="text" placeholder="请输入部门名称"></div>
+      <div class="modal-item"><p  class="department-descript">部门描述</p> <textarea  style="margin-left: 15px" class="department-textarea" placeholder="请输入部门描述"></textarea></div>
+      <div class="delete" @click="showModal=false">x</div>
+      <div class="modal-buttons"> <button>取消</button> <button>登录</button></div>
+    </div>
+  </div>
+  <div class="add-department" v-if="showAddModel">
+    <div class="modal-container">
+      <div class="modal-item"><p>账号</p> <input type="text" placeholder="请输入账号" ></div>
+      <div class="modal-item"><p>部门</p> <input type="text" readonly value="人事部"></div>
+      <div class="modal-item"><p  class="department-descript">部门描述</p> <textarea  style="margin-left: 15px" class="department-textarea" placeholder="请输入部门描述"></textarea></div>
+      <div class="delete" @click="showAddModel=false">x</div>
+      <div class="modal-buttons"> <button>取消</button> <button>登录</button></div>
+    </div>
+  </div>
 </div>
 </template>
 
 <script>
 export default {
-  name: "Structure"
+  name: "Structure",
+  data(){
+    return{
+      showModal:false,
+      showAddModel:true
+    }
+  }
 }
 </script>
 
@@ -258,5 +307,84 @@ th button{
   border: none;
   color: #00a8ff;
   cursor: pointer;
+}
+
+.add-department{
+  position: fixed;
+  top: 60px;
+  left: 0;
+  z-index: 10000;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-container{
+  margin: 100px 40%;
+  background-color: #fff;
+  outline: none;
+  border: 1px solid #7e8c8d;
+  width: 500px;
+  position: relative;
+}
+.modal-container input{
+  outline: none;
+  border: 1px solid #7e8c8d;
+  margin-left: 20px;
+}
+.modal-item{
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.department-textarea{
+  box-sizing: border-box;
+  width: 200px;
+  height: 70px;
+  padding: 10px;
+  outline: none;
+  font-size: 15px;
+  font-weight: 300;
+}
+.delete{
+  cursor: pointer;
+  position: absolute;
+  left: 100%;
+  top: 5px;
+  font-size: 20px;
+  font-weight: 900;
+  transform: translateX(-200%);
+
+}
+.modal-buttons{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.modal-buttons button:nth-child(1){
+  margin: 15px;
+  width: 70px;
+  height: 40px;
+  background-color: #f2f4f5;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #7e8c8d;
+  border-radius: 5px;
+  font-size: 20px;
+}
+.modal-buttons button:nth-child(2){
+  margin: 15px;
+  width: 70px;
+  height: 40px;
+  background-color: #2299ee;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #7e8c8d;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+
 }
 </style>

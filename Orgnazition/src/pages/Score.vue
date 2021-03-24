@@ -1,42 +1,25 @@
-<script src="../router/index.js"></script>
 <template>
   <div>
     <div class="structure-container">
       <!--    左侧职务表-->
       <article class="structure-left">
         <!--      左上-->
-        <section class="department">
-          <!--        -->
-          <div><button>+  新增考核项</button></div>
-<!--          <div><button>+  删除职务</button></div>-->
-          <!--        <div><button>+ &nbsp; </button></div>-->
-        </section>
+        <!--        <section class="department">-->
+        <!--          &lt;!&ndash;        &ndash;&gt;-->
+        <!--          <div><button>+  新增职务</button></div>-->
+        <!--          <div><button>+  删除职务</button></div>-->
+        <!--          &lt;!&ndash;        <div><button>+ &nbsp; </button></div>&ndash;&gt;-->
+        <!--        </section>-->
 
         <!--      左下-->
-        <el-col :span="12" style="width: 100%">
-          <el-menu
-            default-active="2"
-            class="el-menu-vertical-demo"
-            @open="handleOpen"
-            @close="handleClose"
-            background-color="#545c64"
-            text-color="#fff"
-            active-text-color="#ffd04b">
-            <el-submenu index="1">
-              <template slot="title">
-                <i class="el-icon-location"></i>
-                <span>今目标</span>
-              </template>
-              <el-menu-item index="1-1">总裁办</el-menu-item>
-              <el-menu-item index="1-2">人事部</el-menu-item>
-              <el-menu-item index="1-3">销售部</el-menu-item>
-              <el-submenu index="1-4">
-                <template slot="title" style="width: 300px">技术部</template>
-                <el-menu-item index="1-4-1">技术1部</el-menu-item>
-              </el-submenu>
-            </el-submenu>
-          </el-menu>
-        </el-col>
+        <section class="department-detail">
+          <li class="avatar"><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=544201226,318312874&fm=26&gp=0.jpg" alt=""></li>
+          <div class="message-item"><p>姓名:</p> <p>郭江富</p></div>
+          <div class="message-item"><p>性别:</p> <p>男</p></div>
+          <div class="message-item"><p>职位:</p> <p>技术总监</p></div>
+          <div class="message-item"><p>入职时长:</p> <p>42天</p></div>
+
+        </section>
 
       </article>
 
@@ -56,7 +39,6 @@
         </section>
         <!--              右下-->
         <section class="right-bottom">
-<!--          分类-->
           <div class="three-types">
             <ul class="types-container">
               <li class="active">工作任务指标</li>
@@ -71,7 +53,7 @@
               <th>考核方式</th>
               <th>考核频率</th>
               <th>考核占比</th>
-              <th>操作</th>
+              <th>考核</th>
             </tr>
             </thead>
             <tbody>
@@ -82,8 +64,7 @@
               <th>50%</th>
               <th>
                 <div>
-                  <button>编辑</button>
-                  <button>删除</button>
+                  <el-input-number v-model="num" :step="1"  max="100" min="0"></el-input-number>
                 </div>
               </th>
             </tr>
@@ -94,11 +75,21 @@
               <th>20%</th>
               <th>
                 <div>
-                  <button>编辑</button>
-                  <button>删除</button>
+                  <el-rate v-model="value1"></el-rate>
                 </div>
               </th>
             </tr>
+              <div class="comment-container">
+                <div>
+                  <p style="margin-bottom: 10px">评语:</p>
+                  <textarea name="" id="" cols="30" rows="10">评语</textarea>
+                </div>
+                <div class="score-button-container">
+                  <button>取消</button>
+                  <button>提交</button>
+                </div>
+            </div>
+
             </tbody>
           </table>
         </section>
@@ -109,7 +100,18 @@
 
 <script>
 export default {
-  name: "Check"
+  name: "Score",
+  data(){
+    return{
+      value1:1,
+      num: 60
+    }
+  },
+  methods:{
+    goScore(){
+      this.$router.push('/scsore')
+    }
+  }
 }
 </script>
 
@@ -146,7 +148,7 @@ export default {
   height: 25%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   padding: 20px;
   border-bottom: 1px solid #7e8c8d;
@@ -163,43 +165,24 @@ export default {
   font-size: 20px;
   color: #ffffff;
 }
-.department button:hover{
-  cursor: pointer;
-  background-color: #85888f;
-}
 .department-detail{
+  margin-top: 30px;
   width: 80%;
   height: 75%;
   /*background-color: purple;*/
 }
-.department-detail ul{
-  padding: 7px;
-  cursor: pointer;
-  outline: none;
-  /*border-radius: 5px;*/
+.avatar{
+  margin-bottom: 20px;
   width: 100%;
-  height: 10px;
-  /*background-color: #62656e;*/
-  opacity: 0.8;
-  font-size: 15px;
-  color: #ffffff;
-  background-color: #313135;;
+  height: 150px;
+  /*background-color: pink;*/
 }
-/*.department-detail ul:hover{*/
-/*  background-color: #73767e;*/
-/*}*/
-.department-detail ul li{
-  padding: 10px;
-  cursor: pointer;
+.department-detail li img{
   width: 100%;
-  height: 10px;
-  opacity: 0.85;
-  font-size: 15px;
-  color: #ffffff;
+  height: 100%;
 }
-.department-detail ul li:hover{
-  background-color: #73767e;
-}
+
+
 
 .right-top{
   width: 100%;
@@ -242,10 +225,6 @@ export default {
 }
 .right-bottom{
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
 }
 .search button{
   border-radius: 0px 5px 5px 0px;
@@ -290,6 +269,17 @@ th button{
   color: #00a8ff;
   cursor: pointer;
 }
+.message-item{
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding:10px;
+}
+.message-item p{
+  color: #d9d9d9;
+}
+
 .three-types{
   width: 100%;
   height: 80px;
@@ -317,5 +307,64 @@ th button{
 }
 .three-types .types-container .active{
   border: 1px solid #00b5ad;
+}
+.input-number{
+  border-radius: 5px;
+  width: 80px;
+  height: 30px;
+  text-indent: 10px;
+  border: 1px solid #50545e;
+  background-color: pink;
+  outline: none;
+}
+.start{
+  cursor: pointer;
+}
+.start-active{
+  color: #fad32d;
+}
+.comment-container{
+  padding: 0 70px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.comment-container textarea{
+  width: 400px;
+  height:130px;
+  box-sizing: border-box;
+  padding: 15px;
+  font-size: 15px;
+
+}
+
+.score-button-container{
+  transform: translateY(50px);
+}
+
+.score-button-container button:nth-child(1){
+  margin: 15px;
+  width: 70px;
+  height: 40px;
+  background-color: #f2f4f5;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #7e8c8d;
+  border-radius: 5px;
+  font-size: 20px;
+}
+.score-button-container button:nth-child(2){
+  margin: 15px;
+  width: 70px;
+  height: 40px;
+  background-color: #2299ee;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #7e8c8d;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+
 }
 </style>

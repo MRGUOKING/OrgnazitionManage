@@ -12,15 +12,30 @@
         </section>
 
         <!--      左下-->
-        <section class="department-detail">
-          <ul>>&nbsp;中南大学
-            <li>计算机学院</li>
-            <li>湘雅医学院</li>
-            <li>自动化学院</li>
-            <li>冶金学院</li>
-          </ul>
-
-        </section>
+        <el-col :span="12" style="width: 100%">
+          <el-menu
+            default-active="2"
+            class="el-menu-vertical-demo"
+            @open="handleOpen"
+            @close="handleClose"
+            background-color="#545c64"
+            text-color="#fff"
+            active-text-color="#ffd04b">
+            <el-submenu index="1">
+              <template slot="title">
+                <i class="el-icon-location"></i>
+                <span>今目标</span>
+              </template>
+              <el-menu-item index="1-1">总裁办</el-menu-item>
+              <el-menu-item index="1-2">人事部</el-menu-item>
+              <el-menu-item index="1-3">销售部</el-menu-item>
+              <el-submenu index="1-4">
+                <template slot="title" style="width: 300px">技术部</template>
+                <el-menu-item index="1-4-1">技术1部</el-menu-item>
+              </el-submenu>
+            </el-submenu>
+          </el-menu>
+        </el-col>
 
       </article>
 

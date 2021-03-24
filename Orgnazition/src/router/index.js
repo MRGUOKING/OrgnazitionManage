@@ -8,6 +8,8 @@ import MyPeople from "../pages/MyPeople";
 import Check from "../pages/Check";
 import Employ from "../pages/Employ";
 import EmployDetail from "../pages/EmployDetail";
+import Score from "../pages/Score";
+import PeopleDetail from "../pages/PeopleDetail";
 
 Vue.use(Router)
 
@@ -51,6 +53,14 @@ export default new Router({
     {
       path: '/detail',
       component: EmployDetail
+    },
+    {
+      path: '/score',
+      component: Score
+    },
+    {
+      path:'/peopleDetail',
+      component: PeopleDetail
     }
 
   ]
