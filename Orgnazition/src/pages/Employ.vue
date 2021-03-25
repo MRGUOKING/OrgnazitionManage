@@ -2,10 +2,32 @@
 <template>
   <div class="employ-container">
     <article class="employ-head">
-      <div class="head-item">智能排序<icon>=</icon></div>
-      <div class="head-item">工作岗位</div>
-      <div class="head-item">综合评分</div>
-      <div class="head-item">筛选</div>
+      <el-menu
+        :default-active="activeIndex2"
+        class="el-menu-demo"
+        mode="horizontal"
+        @select="handleSelect"
+        background-color="#545c64"
+        text-color="#fff"
+        active-text-color="#ffd04b">
+        <el-menu-item index="1">综合评分</el-menu-item>
+        <el-submenu index="2">
+          <template slot="title">单项评分</template>
+          <el-menu-item index="2-1">工作任务</el-menu-item>
+          <el-menu-item index="2-2">工作态度</el-menu-item>
+          <el-menu-item index="2-3">工作能力</el-menu-item>
+        </el-submenu>
+        <el-submenu index="3">
+          <template slot="title">自定义评分</template>
+          <el-menu-item index="3-1">工作任务</el-menu-item>
+          <el-menu-item index="3-2">工作态度</el-menu-item>
+          <el-menu-item index="3-3">工作能力</el-menu-item>
+        </el-submenu>
+      </el-menu>
+<!--      <div class="head-item">智能排序<icon>=</icon></div>-->
+<!--      <div class="head-item">工作岗位</div>-->
+<!--      <div class="head-item">综合评分</div>-->
+<!--      <div class="head-item">筛选</div>-->
       <div class="search">
         <input type="text" placeholder="搜索...">
         <button class="iconfont">&#xe6e6</button>

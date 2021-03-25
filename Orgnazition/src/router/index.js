@@ -10,6 +10,10 @@ import Employ from "../pages/Employ";
 import EmployDetail from "../pages/EmployDetail";
 import Score from "../pages/Score";
 import PeopleDetail from "../pages/PeopleDetail";
+import Message from "../pages/employee/Message"
+import Work from "../pages/employee/Work";
+import MyScore from "../pages/employee/MyScore";
+import MyMessage from "../pages/employee/MyMessage";
 
 Vue.use(Router)
 
@@ -61,6 +65,22 @@ export default new Router({
     {
       path:'/peopleDetail',
       component: PeopleDetail
+    },
+    {
+      path: '/message',
+      component: Message
+    },
+    {
+      path: '/work',
+      component: Work
+    },
+    {
+      path: '/myscore',
+      component: MyScore
+    },
+    {
+      path: '/myMessage',
+      component: MyMessage
     }
 
   ]
