@@ -15,7 +15,7 @@
         <!--      左下-->
         <el-col :span="12" style="width: 100%">
           <el-menu
-            default-active="2"
+            default-active="1-1"
             class="el-menu-vertical-demo"
             @open="handleOpen"
             @close="handleClose"
@@ -59,9 +59,20 @@
 <!--          分类-->
           <div class="three-types">
             <ul class="types-container">
-              <li class="active">工作任务指标</li>
-              <li>工作态度指标</li>
-              <li>工作能力指标</li>
+              <div class="types-item">
+                <li class="active">工作任务指标</li>
+                <p>占比:</p><el-input-number style="width: 100px;" size="mini" v-model="num_1" :step="1" step-strictly></el-input-number>
+              </div>
+              <div class="types-item">
+                <li class="active">工作态度指标</li>
+                <p>占比:</p>
+                <el-input-number style="width: 100px;" size="mini" v-model="num_1" :step="1" step-strictly></el-input-number>
+              </div>
+              <div class="types-item">
+                <li class="active">工作能力指标</li>
+                <p>占比:</p><el-input-number style="width: 100px;" size="mini" v-model="num_1" :step="1" step-strictly></el-input-number>
+              </div>
+
             </ul>
           </div>
           <table style="width: 100%">
@@ -77,9 +88,31 @@
             <tbody>
             <tr class="list-head">
               <th>每月出货量完成度</th>
-              <th>打分/评级</th>
-              <th>每月考核一次</th>
-              <th>50%</th>
+              <th>
+                <template>
+                <el-select v-model="value" placeholder="请选择" style="width: 180px">
+                  <el-option
+                    v-for="item in  checkType"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
+              </template>
+              </th>
+              <th>
+                <template>
+                  <el-select v-model="rate" placeholder="请选择" style="width: 180px">
+                    <el-option
+                      v-for="item in rates"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
+                </template>
+              </th>
+              <th><el-input-number style="width: 100px;" size="small" v-model="num_1" :step="1" step-strictly></el-input-number></th>
               <th>
                 <div>
                   <button>编辑</button>
@@ -89,8 +122,30 @@
             </tr>
             <tr class="list-head">
               <th>工作态度</th>
-              <th>评级</th>
-              <th>每月考核一次</th>
+              <th>
+                <template>
+                  <el-select v-model="value" placeholder="请选择" style="width: 180px">
+                    <el-option
+                      v-for="item in  checkType"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
+                </template>
+              </th>
+              <th>
+                <template>
+                  <el-select v-model="rate" placeholder="请选择" style="width: 180px">
+                    <el-option
+                      v-for="item in rates"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
+                </template>
+              </th>
               <th>20%</th>
               <th>
                 <div>
@@ -109,7 +164,33 @@
 
 <script>
 export default {
-  name: "Check"
+  name: "Check",
+  data(){
+    return{
+      checkType: [{
+        value: '打分',
+        label: '打分'
+      }, {
+        value: '评级',
+        label: '评级'
+      }],
+      value:'打分',
+      rates:[{
+        value: '1',
+        label: '每天一次'
+      },{
+        value: '2',
+        label: "每周一次"
+      },{
+        value: '3',
+        label: '每月一次'
+      }],
+      rate:'2',
+      num_1: 30,
+      num_2: 40,
+      num_3: 30
+    }
+  }
 }
 </script>
 
@@ -167,11 +248,6 @@ export default {
   cursor: pointer;
   background-color: #85888f;
 }
-.department-detail{
-  width: 80%;
-  height: 75%;
-  /*background-color: purple;*/
-}
 .department-detail ul{
   padding: 7px;
   cursor: pointer;
@@ -185,9 +261,6 @@ export default {
   color: #ffffff;
   background-color: #313135;;
 }
-/*.department-detail ul:hover{*/
-/*  background-color: #73767e;*/
-/*}*/
 .department-detail ul li{
   padding: 10px;
   cursor: pointer;
@@ -302,20 +375,31 @@ th button{
   justify-content: center;
   align-items: center;
 }
+.types-container .types-item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  border: 1px solid #ccccce;
+  padding: 5px;
+}
+.types-item p{
+  margin-right: 10px;
+}
 .types-container li{
+  margin-right: 10px;
   text-align: center;
   cursor: pointer;
-  width: 150px;
+  width: 100px;
   height: 40px;
-  border: 1px solid #ccccce;
+  /*border: 1px solid #ccccce;*/
   border-radius: 5px;
-  font-size: 20px;
-  font-weight: 900;
-  margin: 0 20px;
+  font-size: 15px;
+  font-weight: 600;
   line-height: 40px;
   color: #626364;
 }
 .three-types .types-container .active{
-  border: 1px solid #00b5ad;
+  /*border: 1px solid #00b5ad;*/
 }
 </style>

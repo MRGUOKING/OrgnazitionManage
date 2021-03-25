@@ -90,18 +90,31 @@
     <div class="check-container">
 <!--      左侧评价栏-->
       <article class="check-left">
-        <section class="department-detail">
-          <ul>>&nbsp;公司1
-            <li>工作时效</li>
-            <li>工作态度</li>
-            <li>工作能力</li>
-          </ul>
-
-        </section>
+        <el-col :span="12" style="width: 100%">
+          <el-menu
+            default-active="1-1"
+            class="el-menu-vertical-demo"
+            background-color="#545c64"
+            text-color="#fff"
+            active-text-color="#ffd04b">
+            <el-submenu index="1">
+              <template slot="title">
+                <i class="el-icon-location"></i>
+                <span>今目标</span>
+              </template>
+              <el-menu-item index="1-1">工作时效</el-menu-item>
+              <el-menu-item index="1-2">工作态度</el-menu-item>
+              <el-submenu index="2">
+                <template slot="title" style="width: 300px">工作能力</template>
+                <el-menu-item index="1-4-1">解决问题能力</el-menu-item>
+              </el-submenu>
+            </el-submenu>
+          </el-menu>
+        </el-col>
       </article>
 <!--      右侧图标-->
       <article class="check-right">
-        图表
+        <div id="test" style="width: 600px;height: 400px"></div>
       </article>
     </div>
   </section>
@@ -110,7 +123,41 @@
 
 <script>
 export default {
-  name: "EmployDetail"
+  name: "EmployDetail",
+  methods:{
+    initChar(){
+      console.log("进入echarts测试");
+      // 基于准备好的dom，初始化echarts实例
+      let myChart = this.$echarts.init(document.getElementById("test"));
+
+// 指定图表的配置项和数据
+      let option = {
+        title: {
+          text: "ECharts 入门示例",
+        },
+        tooltip: {},
+        legend: {
+          data: ["销量"],
+        },
+        xAxis: {
+          data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
+        },
+        yAxis: {},
+        series: [
+          {
+            name: "销量",
+            type: "bar",
+            data: [5, 20, 36, 10, 10, 20],
+          },
+        ],
+      };
+// 使用刚指定的配置项和数据显示图表。
+      myChart.setOption(option);
+    }
+  },
+  mounted() {
+    this.initChar()
+  }
 }
 </script>
 

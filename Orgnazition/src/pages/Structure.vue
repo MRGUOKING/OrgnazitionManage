@@ -23,10 +23,8 @@
 <!--      </section>-->
         <el-col :span="12" style="width: 100%">
           <el-menu
-            default-active="2"
+            default-active="1-1"
             class="el-menu-vertical-demo"
-            @open="handleOpen"
-            @close="handleClose"
             background-color="#545c64"
             text-color="#fff"
             active-text-color="#ffd04b">
@@ -38,7 +36,7 @@
                 <el-menu-item index="1-1">总裁办</el-menu-item>
                 <el-menu-item index="1-2">人事部</el-menu-item>
                 <el-menu-item index="1-3">销售部</el-menu-item>
-              <el-submenu index="1-4">
+              <el-submenu index="2">
                 <template slot="title" style="width: 300px">技术部</template>
                 <el-menu-item index="1-4-1">技术1部</el-menu-item>
               </el-submenu>
@@ -114,7 +112,17 @@
     <div class="modal-container">
       <div class="modal-item"><p>账号</p> <input type="text" placeholder="请输入账号" ></div>
       <div class="modal-item"><p>部门</p> <input type="text" readonly value="人事部"></div>
-      <div class="modal-item"><p  class="department-descript">部门描述</p> <textarea  style="margin-left: 15px" class="department-textarea" placeholder="请输入部门描述"></textarea></div>
+      <div class="modal-item"><p style="margin-right: 30px">职位</p>  <template>
+        <el-select v-model="value" placeholder="请选择" style="width: 180px">
+          <el-option
+            v-for="item in  checkType"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </template></div>
+<!--      <div class="modal-item"><p  class="department-descript">成员描述</p> <textarea  style="margin-left: 15px" class="department-textarea" placeholder="请输入部门描述"></textarea></div>-->
       <div class="delete" @click="showAddModel=false">x</div>
       <div class="modal-buttons"> <button>取消</button> <button>登录</button></div>
     </div>
