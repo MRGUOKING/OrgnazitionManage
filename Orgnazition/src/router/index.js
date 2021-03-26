@@ -14,7 +14,6 @@ import Message from "../pages/employee/Message"
 import Work from "../pages/employee/Work";
 import MyScore from "../pages/employee/MyScore";
 import MyMessage from "../pages/employee/MyMessage";
-
 Vue.use(Router)
 
 export default new Router({
@@ -81,7 +80,7 @@ export default new Router({
     {
       path: '/myMessage',
       component: MyMessage
-    }
+    },
 
   ]
 })

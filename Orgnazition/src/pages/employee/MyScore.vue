@@ -33,7 +33,7 @@
               <el-menu-item index="1-2">工作态度</el-menu-item>
               <el-submenu index="2">
                 <template slot="title" style="width: 300px">工作能力</template>
-                <el-menu-item index="1-4-1">解决问题能力</el-menu-item>
+                <el-menu-item index="1-4-1" @click="changeAbility">解决问题能力</el-menu-item>
               </el-submenu>
               <el-menu-item index="1-3">工作评价</el-menu-item>
               <el-menu-item index="1-4">重大过失</el-menu-item>
@@ -42,8 +42,9 @@
         </el-col>
       </article>
 <!--      右侧图标-->
-      <article class="check-right" v-if="!comment">
-        <div id="test" style="width: 600px;height: 400px"></div>
+      <article class="check-right" v-if="comment">
+
+        <div id="test" style="width: 600px;height: 400px" ></div>
         <div class="conlusion">
          <div class="conlusion-head"><p>总结</p></div>
           <div class="conlusion-item">
@@ -64,55 +65,10 @@
             </li>
           </div>
         </div>
-      </article>
-      <article class="check-right-2" v-if="comment">
-        <div class="comment-list">
-          <el-input
-            style="margin-bottom: 20px"
-            type="textarea"
-            :rows="2"
-            placeholder="请输入内容"
-            readonly
-            v-model="textarea"
-          >
-          </el-input>
-          <el-input
-            style="margin-bottom: 20px"
-            type="textarea"
-            :rows="2"
-            placeholder="请输入内容"
-            readonly
-            v-model="textarea"
-          >
-          </el-input>
-          <el-input
-            style="margin-bottom: 20px"
-            type="textarea"
-            :rows="2"
-            placeholder="请输入内容"
-            readonly
-            v-model="textarea"
-          >
-          </el-input>
-          <el-input
-            style="margin-bottom: 20px"
-            type="textarea"
-            :rows="2"
-            placeholder="请输入内容"
-            readonly
-            v-model="textarea"
-          >
-          </el-input>
-          <el-input
-            style="margin-bottom: 20px"
-            type="textarea"
-            :rows="2"
-            placeholder="请输入内容"
-            readonly
-            v-model="textarea"
-          >
-          </el-input>
-        </div>
+      </article >
+      <article class="check-right" v-if="ability">
+        <div id="ability" style="width: 600px;height: 400px"></div>
+        <p>111</p>
       </article>
     </div>
   </section>
@@ -125,10 +81,10 @@ export default {
   methods:{
     initChar(){
       // 基于准备好的dom，初始化echarts实例
-      let myChart = this.$echarts.init(document.getElementById("test"));
+      let totalGradeChar = this.$echarts.init(document.getElementById("test"));
 
 // 指定图表的配置项和数据
-      let option = {
+      let totalGrade = {
         title: {
           text: "评分详情",
         },
@@ -159,17 +115,94 @@ export default {
         ],
       };
 // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option);
+      totalGradeChar.setOption(totalGrade);
+      let monthGradechar=this.$echarts.init(document.getElementById("ability"))
+      let monthGrade={
+        title:{
+          text: "每月评分"
+        },
+        legend: {
+          data: ["2019","2020","2021"],
+        },
+        grid:{
+          show:true,
+          backgroundColor :'transparent'
+        },
+        xAxis: {
+          type: "category",
+          data: ["1","2","3","4","5","6","7","8","9","10","11","12"],
+          name:"月份",
+          nameLocation:"end"
+        },
+        yAxis: {
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross'
+          },
+        },
+        dataZoom:[
+          {
+            id: 'dataZoomX',
+            type: 'inside',
+            xAxisIndex: [0],
+            filterMode: 'filter',
+            start:0,
+            end:100
+          },
+          {
+            id: 'dataZoomY',
+            type: 'slider',
+            yAxisIndex: [0],
+            filterMode: 'empty',
+            start:50,
+            end: 100
+          }
+        ],
+        series: [
+          {
+            type: "line",
+            name:"2019",
+            // stack: '总量',
+            data: [90,80,85,70,85,90,87,76,88,95,85,95],
+
+          },
+          {
+            type: "line",
+            name:"2020",
+            // stack: '总量',
+            data: [80,90,85,80,75,95,74,95,80,90,75,90],
+
+          },
+          {
+            type: "line",
+            name:"2021",
+            // stack: '总量',
+            data: [85,75,95,88,70,90,95,90,85,75,85,80],
+
+          },
+        ]
+      }
+      monthGradechar.setOption(monthGrade)
+    },
+    changeAbility(){
+      // this.$echarts.dispose(document.getElementById("test"))
+      this.$data.comment=false
+      this.$data.ability=true
+
     }
   },
   data(){
     return{
-      comment: false,
+      comment: true,
+      ability:false,
       textarea:"你好你好你好"
     }
   },
   mounted() {
     this.initChar()
+
   }
 }
 </script>

@@ -5,5 +5,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="HYMall-master" />
+    <orderEntry type="module" module-name="Vue3" />
+    <orderEntry type="module" module-name="vueProject" />
+    <orderEntry type="module" module-name="webpackProject" />
   </component>
 </module>

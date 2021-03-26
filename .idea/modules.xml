@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../HYMall-master/.idea/HYMall-master.iml" filepath="$PROJECT_DIR$/../HYMall-master/.idea/HYMall-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/OrgnazitionManage.iml" filepath="$PROJECT_DIR$/.idea/OrgnazitionManage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Vue3/.idea/Vue3.iml" filepath="$PROJECT_DIR$/../Vue3/.idea/Vue3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../vueProject/.idea/vueProject.iml" filepath="$PROJECT_DIR$/../vueProject/.idea/vueProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../webpackProject/.idea/webpackProject.iml" filepath="$PROJECT_DIR$/../webpackProject/.idea/webpackProject.iml" />
     </modules>
   </component>
 </project>
