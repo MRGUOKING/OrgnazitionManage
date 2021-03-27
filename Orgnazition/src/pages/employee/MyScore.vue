@@ -42,7 +42,7 @@
         </el-col>
       </article>
 <!--      右侧图标-->
-      <article class="check-right" v-if="comment">
+      <article class="check-right" v-show="comment">
 
         <div id="test" style="width: 600px;height: 400px" ></div>
         <div class="conlusion">
@@ -66,7 +66,7 @@
           </div>
         </div>
       </article >
-      <article class="check-right" v-if="ability">
+      <article class="check-right" v-show="ability">
         <div id="ability" style="width: 600px;height: 400px"></div>
         <p>111</p>
       </article>
@@ -188,8 +188,8 @@ export default {
     },
     changeAbility(){
       // this.$echarts.dispose(document.getElementById("test"))
-      this.$data.comment=false
-      this.$data.ability=true
+      this.comment=false
+      this.ability=true
 
     }
   },

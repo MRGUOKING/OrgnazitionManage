@@ -82,12 +82,32 @@
               <div class="comment-container">
                 <div>
                   <p style="margin-bottom: 10px">评语:</p>
-                  <textarea name="" id="" cols="30" rows="10">评语</textarea>
+                  <textarea name="" id="" cols="10" rows="5">评语</textarea>
                 </div>
                 <div class="score-button-container">
                   <button>取消</button>
                   <button>提交</button>
                 </div>
+            </div>
+            <div class="comment-container">
+              <div>
+                <p style="margin-bottom: 10px">建议:</p>
+                <textarea name="" id="" cols="10" rows="5">建议</textarea>
+              </div>
+              <div class="score-button-container">
+                <button>取消</button>
+                <button>提交</button>
+              </div>
+            </div>
+            <div class="comment-container">
+              <div>
+                <p style="margin-bottom: 10px">重大过失:</p>
+                <textarea name="" id="" cols="10" rows="5">重大过失</textarea>
+              </div>
+              <div class="score-button-container">
+                <button>取消</button>
+                <button>提交</button>
+              </div>
             </div>
 
             </tbody>
@@ -116,6 +136,9 @@ export default {
 </script>
 
 <style scoped>
+textarea{
+  resize: none;
+}
 .structure-container{
   margin-top: 60px;
   display: flex;
@@ -332,7 +355,7 @@ th button{
 }
 .comment-container textarea{
   width: 400px;
-  height:130px;
+  height:90px;
   box-sizing: border-box;
   padding: 15px;
   font-size: 15px;

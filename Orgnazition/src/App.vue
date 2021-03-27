@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <EmplyoeeHead/>
-<!--    <Head v-show="$route.meta.noHead == null"/>-->
+<!--    <EmplyoeeHead/>-->
+    <Head v-show="$route.meta.noHead == null"/>
     <router-view/>
   </div>
 </template>
