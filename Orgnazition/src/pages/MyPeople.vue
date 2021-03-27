@@ -16,8 +16,6 @@
           <el-menu
             default-active="1-1"
             class="el-menu-vertical-demo"
-            @open="handleOpen"
-            @close="handleClose"
             background-color="#545c64"
             text-color="#fff"
             active-text-color="#ffd04b">
@@ -26,13 +24,13 @@
                 <i class="el-icon-location"></i>
                 <span>今目标</span>
               </template>
-              <el-menu-item index="1-1">总裁办</el-menu-item>
-              <el-menu-item index="1-2">人事部</el-menu-item>
-              <el-menu-item index="1-3">销售部</el-menu-item>
+              <el-menu-item index="1-1" @click="changeDepartment(0)">总裁办</el-menu-item>
+              <el-menu-item index="1-2" @click="changeDepartment(1)">人事部</el-menu-item>
               <el-submenu index="1-4">
                 <template slot="title" style="width: 300px">技术部</template>
-                <el-menu-item index="1-4-1">技术1部</el-menu-item>
+                <el-menu-item index="1-4-1" @click="changeDepartment(3)">技术1部</el-menu-item>
               </el-submenu>
+              <el-menu-item index="1-3" @click="changeDepartment(2)">销售部</el-menu-item>
             </el-submenu>
           </el-menu>
         </el-col>
@@ -44,10 +42,10 @@
       <article class="structure-right">
         <!--              右上-->
         <section class="right-top">
-          <!--          <div class="button-container">-->
-          <!--            <button>新增员工</button>-->
-          <!--            <button>邀请员工</button>-->
-          <!--          </div>-->
+                    <div class="button-container">
+                      <button @click="addEmployee">新增员工</button>
+<!--                      <button>邀请员工</button>-->
+                    </div>
           <div class="search">
             <input type="text" placeholder="搜索...">
             <button class="iconfont">&#xe6e6</button>
@@ -71,16 +69,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="list-head">
-              <th>郭江富</th>
-              <th>Guo1323</th>
-              <th>技术总监</th>
-              <th>97</th>
+            <tr class="list-head" v-for="(item,i) in curPeople">
+              <th>{{item.name}}</th>
+              <th>{{item.account}}</th>
+              <th>{{item.position}}</th>
+              <th>{{item.comScore}}</th>
 <!--              <th>99%</th>-->
-              <th>96</th>
+              <th>{{item.workScore}}</th>
 <!--              <th>110%</th>-->
-              <th>95</th>
-              <th>无</th>
+              <th>{{item.attitudeScore}}</th>
+              <th>{{item.ablityScore}}</th>
               <th>
                 <div>
                   <button @click="goScore">去评分</button>
@@ -93,13 +91,72 @@
         </section>
       </article>
     </div>
+    <!--  增加员工-->
+    <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+      <el-form :model="form">
+        <el-form-item label="账号" :label-width="formLabelWidth">
+          <el-input v-model="form.name" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="部门" :label-width="formLabelWidth">
+          <el-input v-model="form.department" autocomplete="off" ></el-input>
+        </el-form-item>
+        <el-form-item label="职位" :label-width="formLabelWidth">
+          <el-select v-model="form.region" placeholder="请选择员工职位">
+            <el-option label="普通员工" value="shanghai"></el-option>
+            <el-option label="总经理" value="beijing"></el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 export default {
   name: "MyPeople",
+  data(){
+    return{
+      form:{
+        name:'',
+        department: '销售部'
+      },
+      showAddModel:false,
+      curPeople:[],
+      curDepartment:0,
+      dialogFormVisible:false,
+      people:[
+        [{name:'郭江富',department:'总裁办',position:'ceo',account:'zn8209190310',email:'-',phone:'15112349876',comScore:94,workScore:94,attitudeScore:84,ablityScore:98},
+          {name:'张三',department:'总裁办',position:'cfo',account:'zn8202412310',email:'-',phone:'151827490274',comScore:94,workScore:94,attitudeScore:84,ablityScore:98},
+        ],
+        [{name:'李四',department:'总裁办',position:'ceo',account:'zn8209190310',email:'-',phone:'15112349876',comScore:94,workScore:94,attitudeScore:84,ablityScore:98},
+          {name:'张三',department:'总裁办',position:'cfo',account:'zn8202412310',email:'-',phone:'151827490274',comScore:94,workScore:94,attitudeScore:84,ablityScore:98},
+        ],
+        [],
+        [{name:'郭江富',department:'总裁办',position:'ceo',account:'zn8209190310',email:'-',phone:'15112349876',comScore:94,workScore:94,attitudeScore:84,ablityScore:98},
+          {name:'张三',department:'总裁办',position:'cfo',account:'zn8202412310',email:'-',phone:'151827490274',comScore:94,workScore:94,attitudeScore:84,ablityScore:98},
+        ]
+      ]
+    }
+  },
+  mounted() {
+    this.getPeople();
+  },
   methods:{
+    addEmployee(){
+      this.dialogFormVisible = true;
+    },
+    changeDepartment(id){
+      console.log("进入changgeDepartment"+id);
+      this.curDepartment = id;
+      this.getPeople();
+    },
+    getPeople(){
+      this.curPeople = this.people[this.curDepartment];
+    },
     goScore(){
       this.$router.push('/score')
     },
@@ -279,5 +336,84 @@ th button{
   border: none;
   color: #00a8ff;
   cursor: pointer;
+}
+
+.add-department{
+  position: fixed;
+  top: 60px;
+  left: 0;
+  z-index: 10000;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-container{
+  margin: 100px 40%;
+  background-color: #fff;
+  outline: none;
+  border: 1px solid #7e8c8d;
+  width: 500px;
+  position: relative;
+}
+.modal-container input{
+  outline: none;
+  border: 1px solid #7e8c8d;
+  margin-left: 20px;
+}
+.modal-item{
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.department-textarea{
+  box-sizing: border-box;
+  width: 200px;
+  height: 70px;
+  padding: 10px;
+  outline: none;
+  font-size: 15px;
+  font-weight: 300;
+}
+.delete{
+  cursor: pointer;
+  position: absolute;
+  left: 100%;
+  top: 5px;
+  font-size: 20px;
+  font-weight: 900;
+  transform: translateX(-200%);
+
+}
+.modal-buttons{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.modal-buttons button:nth-child(1){
+  margin: 15px;
+  width: 70px;
+  height: 40px;
+  background-color: #f2f4f5;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #7e8c8d;
+  border-radius: 5px;
+  font-size: 20px;
+}
+.modal-buttons button:nth-child(2){
+  margin: 15px;
+  width: 70px;
+  height: 40px;
+  background-color: #2299ee;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #7e8c8d;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+
 }
 </style>

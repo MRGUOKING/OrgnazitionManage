@@ -6,7 +6,7 @@
 <!--      左上-->
       <section class="department">
 <!--        -->
-        <div><button>+  新增部门</button></div>
+        <div><button @click="addDepartment">+  新增部门</button></div>
         <div><button>+  编辑部门</button></div>
 <!--        <div><button>+ &nbsp; </button></div>-->
       </section>
@@ -31,15 +31,15 @@
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location"></i>
-                <span>今目标</span>
+                <span>代码里找方向</span>
               </template>
-                <el-menu-item index="1-1">总裁办</el-menu-item>
-                <el-menu-item index="1-2">人事部</el-menu-item>
-                <el-menu-item index="1-3">销售部</el-menu-item>
+                <el-menu-item index="1-1" @click="changeDepartment(0)">总裁办</el-menu-item>
+                <el-menu-item index="1-2"  @click="changeDepartment(1)">人事部</el-menu-item>
               <el-submenu index="2">
                 <template slot="title" style="width: 300px">技术部</template>
                 <el-menu-item index="1-4-1">技术1部</el-menu-item>
               </el-submenu>
+              <el-menu-item index="1-3" v-show="technology" @click="changeDepartment(2)">销售部</el-menu-item>
             </el-submenu>
           </el-menu>
         </el-col>
@@ -54,7 +54,8 @@
 <!--      右上-->
       <section class="right-top">
         <div class="button-container">
-          <button>新增员工</button>
+          <button @click="addEmployee">新增员工</button>
+<!--          <button>新增部门主管</button>-->
         </div>
         <div class="search">
           <input type="text" placeholder="搜索...">
@@ -77,17 +78,17 @@
           </tr>
           </thead>
           <tbody>
-          <tr class="list-head">
-            <th>郭江富</th>
-            <th>男</th>
-            <th>销售部</th>
-            <th>部员</th>
-            <th>12345</th>
-            <th>-</th>
-            <th>123434343</th>
+          <tr class="list-head" v-for="(item,i) in curPeople">
+            <th>{{item.name}}</th>
+            <th>{{item.sex}}</th>
+            <th>{{item.department}}</th>
+            <th>{{item.position}}</th>
+            <th>{{item.account}}</th>
+            <th>{{item.email}}</th>
+            <th>{{item.phone}}</th>
             <th>
               <div>
-                <button>编辑</button>
+<!--                <button>编辑</button>-->
                 <button>停用</button>
                 <button>冻结</button>
               </div>
@@ -99,34 +100,58 @@
       </section>
     </article>
   </div>
+<!--  增加部门-->
   <div class="add-department" v-if="showModal">
     <div class="modal-container">
-      <div class="modal-item"><p>上级部门</p> <input type="text" placeholder="上级部门" readonly></div>
-      <div class="modal-item"><p>部门名称</p> <input type="text" placeholder="请输入部门名称"></div>
+      <div class="modal-item"><p>上级部门</p> <input type="text" v-model="department[index]" style="text-indent: 5px" readonly></div>
+      <div class="modal-item"><p>部门名称</p> <input type="text" style="text-indent: 5px" placeholder="请输入部门名称"></div>
       <div class="modal-item"><p  class="department-descript">部门描述</p> <textarea  style="margin-left: 15px" class="department-textarea" placeholder="请输入部门描述"></textarea></div>
       <div class="delete" @click="showModal=false">x</div>
-      <div class="modal-buttons"> <button>取消</button> <button>登录</button></div>
+      <div class="modal-buttons"> <button>取消</button> <el-button :plain="true" @click="addDepartmentSure" style="text-align: center;">确定</el-button></div>
     </div>
   </div>
-  <div class="add-department" v-if="showAddModel">
-    <div class="modal-container">
-      <div class="modal-item"><p>账号</p> <input type="text" placeholder="请输入账号" ></div>
-      <div class="modal-item"><p>部门</p> <input type="text" readonly value="人事部"></div>
-      <div class="modal-item"><p style="margin-right: 30px">职位</p>  <template>
-        <el-select v-model="value" placeholder="请选择" style="width: 180px">
-          <el-option
-            v-for="item in  checkType"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
+<!--  增加员工-->
+<!--  <div class="add-department" v-if="showAddModel">-->
+<!--    <div class="modal-container">-->
+<!--      <div class="modal-item"><p>账号</p> <input type="text" placeholder="请输入账号" ></div>-->
+<!--      <div class="modal-item"><p>部门</p> <input type="text" readonly value="技术部1"></div>-->
+<!--      <div class="modal-item"><p style="margin-right: 30px">职位</p>-->
+<!--        <template>-->
+<!--        <el-select v-model="value" placeholder="请选择" style="width: 180px">-->
+<!--          <el-option-->
+<!--            v-for="item in  checkType"-->
+<!--            :key="item.value"-->
+<!--            :label="item.label"-->
+<!--            :value="item.value">-->
+<!--          </el-option>-->
+<!--        </el-select>-->
+<!--      </template>-->
+<!--      </div>-->
+<!--&lt;!&ndash;      <div class="modal-item"><p  class="department-descript">成员描述</p> <textarea  style="margin-left: 15px" class="department-textarea" placeholder="请输入部门描述"></textarea></div>&ndash;&gt;-->
+<!--      <div class="delete" @click="showAddModel=false">x</div>-->
+<!--      <div class="modal-buttons"> <button>取消</button> <button>登录</button></div>-->
+<!--    </div>-->
+<!--  </div>-->
+  <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+    <el-form :model="form">
+      <el-form-item label="账号" :label-width="formLabelWidth">
+        <el-input v-model="form.name" autocomplete="off"></el-input>
+      </el-form-item>
+      <el-form-item label="部门" :label-width="formLabelWidth">
+        <el-input v-model="form.department" autocomplete="off" ></el-input>
+      </el-form-item>
+      <el-form-item label="职位" :label-width="formLabelWidth">
+        <el-select v-model="form.region" placeholder="请选择员工职位">
+          <el-option label="普通员工" value="shanghai"></el-option>
+          <el-option label="总经理" value="beijing"></el-option>
         </el-select>
-      </template></div>
-<!--      <div class="modal-item"><p  class="department-descript">成员描述</p> <textarea  style="margin-left: 15px" class="department-textarea" placeholder="请输入部门描述"></textarea></div>-->
-      <div class="delete" @click="showAddModel=false">x</div>
-      <div class="modal-buttons"> <button>取消</button> <button>登录</button></div>
+      </el-form-item>
+    </el-form>
+    <div slot="footer" class="dialog-footer">
+      <el-button @click="dialogFormVisible = false">取 消</el-button>
+      <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
     </div>
-  </div>
+  </el-dialog>
 </div>
 </template>
 
@@ -136,8 +161,65 @@ export default {
   data(){
     return{
       showModal:false,
-      showAddModel:true
+      dialogFormVisible:false,
+      technology:false,
+      technology_1:false,
+      form:{
+        name:'',
+        department: '销售部'
+      },
+      formLabelWidth: '120px',
+      index:0,
+      department:['代码里找方向','技术部'],
+      curPeople:[],
+      curDepartment:0,
+      people:[
+        [{name:'郭江富',sex:'男',department:'总裁办',position:'ceo',account:'zn8209190310',email:'-',phone:'15112349876'},
+          {name:'张三',sex:'男',department:'总裁办',position:'cfo',account:'zn8202412310',email:'-',phone:'151827490274'},
+          ],
+        [{name:'李四',sex:'男',department:'总裁办',position:'ceo',account:'zn8209190310',email:'-',phone:'15112349876'},
+          {name:'张三',sex:'男',department:'总裁办',position:'cfo',account:'zn8202412310',email:'-',phone:'151827490274'},
+        ],
+        [],
+        [{name:'郭江富',sex:'男',department:'总裁办',position:'ceo',account:'zn8209190310',email:'-',phone:'15112349876'},
+          {name:'张三',sex:'男',department:'总裁办',position:'cfo',account:'zn8202412310',email:'-',phone:'151827490274'},
+        ]
+      ]
     }
+  },
+  mounted() {
+    this.getPeople()
+  },
+  methods:{
+    changeDepartment(id){
+      console.log("进入changgeDepartment"+id);
+      this.curDepartment = id;
+      this.getPeople();
+    },
+    getPeople(){
+      this.curPeople = this.people[this.curDepartment];
+    },
+    addDepartment(){
+      this.showModal = true;
+    },
+    addDepartmentSure(){
+      this.showModal = false;
+      if (this.index == 0)
+        this.technology=true;
+      if (this.index == 1){
+        this.technology = false;
+        this.technology_1 = true;
+      }
+      this.index++;
+      this.$message({
+        message: '添加成功!',
+        type: 'success'
+      });
+    },
+    addEmployee(){
+      this.dialogFormVisible = true;
+    }
+
   }
 }
 </script>

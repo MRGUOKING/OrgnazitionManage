@@ -1,7 +1,8 @@
 <template>
 <div class="work-container">
-  <div style="width: 100%;background-color:pink;text-align: center">
-    <el-calendar style="width: 600px;margin: 0 auto;">
+  <div class="company-message"><p style="margin-right: 20px">当前入职公司: </p> 今目标</div>
+  <div style="width: 100%;background-color:#545f66;text-align: center">
+    <el-calendar style="margin: 0 auto;">
       <!-- 这里使用的是 2.5 slot 语法，对于新项目请使用 2.6 slot 语法-->
       <template
         slot="dateCell"
@@ -49,6 +50,8 @@
       </div>
     </el-card>
   </div>
+  <div style="width: 100%;text-align: right;margin-top: 10px">  <el-button type="danger">退出该公司</el-button></div>
+
 </div>
 </template>
 
@@ -130,5 +133,15 @@ export default {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+.company-message{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  align-items: center;
+  /*background-color: pink;*/
+  font-size: 20px;
+  font-weight: 900;
 }
 </style>

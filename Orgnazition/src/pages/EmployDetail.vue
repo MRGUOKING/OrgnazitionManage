@@ -115,7 +115,7 @@
         </el-col>
       </article>
 <!--      右侧图标-->
-      <article class="check-right" v-if="!comment">
+      <article class="check-right" v-show="!comment">
         <div id="test" style="width: 600px;height: 400px"></div>
         <div class="conlusion">
          <div class="conlusion-head"><p>总结</p></div>
@@ -138,7 +138,7 @@
           </div>
         </div>
       </article>
-      <article class="check-right-2" v-if="comment">
+      <article class="check-right-2" v-show="comment">
         <div class="comment-list">
           <el-input
             style="margin-bottom: 20px"

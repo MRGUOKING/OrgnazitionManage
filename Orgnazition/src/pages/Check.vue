@@ -7,7 +7,7 @@
         <!--      左上-->
         <section class="department">
           <!--        -->
-          <div><button>+  新增考核项</button></div>
+          <div><button @click="addCheck">+  新增考核项</button></div>
 <!--          <div><button>+  删除职务</button></div>-->
           <!--        <div><button>+ &nbsp; </button></div>-->
         </section>
@@ -17,8 +17,6 @@
           <el-menu
             default-active="1-1"
             class="el-menu-vertical-demo"
-            @open="handleOpen"
-            @close="handleClose"
             background-color="#545c64"
             text-color="#fff"
             active-text-color="#ffd04b">
@@ -27,13 +25,13 @@
                 <i class="el-icon-location"></i>
                 <span>今目标</span>
               </template>
-              <el-menu-item index="1-1">总裁办</el-menu-item>
-              <el-menu-item index="1-2">人事部</el-menu-item>
-              <el-menu-item index="1-3">销售部</el-menu-item>
+              <el-menu-item index="1-1" @click="changeDepartment(0)">总裁办</el-menu-item>
+              <el-menu-item index="1-2" @click="changeDepartment(1)">人事部</el-menu-item>
               <el-submenu index="1-4">
                 <template slot="title" style="width: 300px">技术部</template>
                 <el-menu-item index="1-4-1">技术1部</el-menu-item>
               </el-submenu>
+              <el-menu-item index="1-3" @click="changeDepartment(2)">销售部</el-menu-item>
             </el-submenu>
           </el-menu>
         </el-col>
@@ -59,18 +57,18 @@
 <!--          分类-->
           <div class="three-types">
             <ul class="types-container">
-              <div class="types-item">
+              <div :class="curType == 0 ? 'types-item-active' :'types-item' " @click="changeType(0)">
                 <li class="active">工作任务指标</li>
-                <p>占比:</p><el-input-number style="width: 100px;" size="mini" v-model="num_1" :step="1" step-strictly></el-input-number>
+                <p>权重分:</p><el-input-number style="width: 100px;" size="mini" v-model="num_1" :step="1" step-strictly></el-input-number>
               </div>
-              <div class="types-item">
+              <div :class="curType == 1 ? 'types-item-active' :'types-item' " @click="changeType(1)">
                 <li class="active">工作态度指标</li>
-                <p>占比:</p>
-                <el-input-number style="width: 100px;" size="mini" v-model="num_1" :step="1" step-strictly></el-input-number>
+                <p>权重分:</p>
+                <el-input-number style="width: 100px;" size="mini" v-model="num_2" :step="1" step-strictly></el-input-number>
               </div>
-              <div class="types-item">
+              <div :class="curType == 2 ? 'types-item-active' :'types-item' " @click="changeType(2)">
                 <li class="active">工作能力指标</li>
-                <p>占比:</p><el-input-number style="width: 100px;" size="mini" v-model="num_1" :step="1" step-strictly></el-input-number>
+                <p>权重分:</p><el-input-number style="width: 100px;" size="mini" v-model="num_3" :step="1" step-strictly></el-input-number>
               </div>
 
             </ul>
@@ -81,16 +79,16 @@
               <th>考核名称</th>
               <th>考核方式</th>
               <th>考核频率</th>
-              <th>考核占比</th>
+              <th>权重分</th>
               <th>操作</th>
             </tr>
             </thead>
             <tbody>
-            <tr class="list-head">
-              <th>每月出货量完成度</th>
+            <tr class="list-head" v-for="(item,i) in curItem">
+              <th v-text="item.name">每月出货量完成度</th>
               <th>
                 <template>
-                <el-select v-model="value" placeholder="请选择" style="width: 180px">
+                <el-select v-model="item.label" placeholder="请选择" style="width: 180px">
                   <el-option
                     v-for="item in  checkType"
                     :key="item.value"
@@ -102,7 +100,7 @@
               </th>
               <th>
                 <template>
-                  <el-select v-model="rate" placeholder="请选择" style="width: 180px">
+                  <el-select v-model="item.rate" placeholder="请选择" style="width: 180px">
                     <el-option
                       v-for="item in rates"
                       :key="item.value"
@@ -112,41 +110,7 @@
                   </el-select>
                 </template>
               </th>
-              <th><el-input-number style="width: 100px;" size="small" v-model="num_1" :step="1" step-strictly></el-input-number></th>
-              <th>
-                <div>
-                  <button>编辑</button>
-                  <button>删除</button>
-                </div>
-              </th>
-            </tr>
-            <tr class="list-head">
-              <th>工作态度</th>
-              <th>
-                <template>
-                  <el-select v-model="value" placeholder="请选择" style="width: 180px">
-                    <el-option
-                      v-for="item in  checkType"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value">
-                    </el-option>
-                  </el-select>
-                </template>
-              </th>
-              <th>
-                <template>
-                  <el-select v-model="rate" placeholder="请选择" style="width: 180px">
-                    <el-option
-                      v-for="item in rates"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value">
-                    </el-option>
-                  </el-select>
-                </template>
-              </th>
-              <th>20%</th>
+              <th><el-input-number style="width: 100px;" size="small" v-model="item.score" :step="1" step-strictly></el-input-number></th>
               <th>
                 <div>
                   <button>编辑</button>
@@ -159,6 +123,37 @@
         </section>
       </article>
     </div>
+<!--    增加考核方式-->
+    <el-dialog title="新增考核项" :visible.sync="dialogFormVisible">
+      <el-form :model="form">
+        <el-form-item label="所在部门" :label-width="formLabelWidth">
+          <el-input v-model="form.department" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="考核名称" :label-width="formLabelWidth">
+          <el-input v-model="form.name" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="考核方式" :label-width="formLabelWidth">
+          <el-select v-model="form.label" placeholder="请选择考核方式">
+            <el-option label="打分" value="打分"></el-option>
+            <el-option label="评级" value="评级"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="考核频率" :label-width="formLabelWidth">
+          <el-select v-model="form.rate" placeholder="请选择考核频率">
+            <el-option label="每天一次" value="每天一次"></el-option>
+            <el-option label="每周一次" value="每周一次"></el-option>
+            <el-option label="每月一次" value="每月一次"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="权重给分" :label-width="formLabelWidth">
+          <el-input-number v-model="form.score" :min="1" :max="10" label="描述文字" size="min"></el-input-number>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="addCheckSure">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -167,14 +162,17 @@ export default {
   name: "Check",
   data(){
     return{
-      checkType: [{
+      test:'测试',
+      departmentName:'技术1部',
+      curDepartment:0,
+      curType:0,
+      checkType:[{
         value: '打分',
         label: '打分'
       }, {
         value: '评级',
         label: '评级'
       }],
-      value:'打分',
       rates:[{
         value: '1',
         label: '每天一次'
@@ -188,8 +186,87 @@ export default {
       rate:'2',
       num_1: 30,
       num_2: 40,
-      num_3: 30
+      num_3: 30,
+      showModal:false,
+      curItem:[],
+      department:[
+       [
+          [{name:'每月出货完成度',label:'打分',rate:'每周一次',score:25},{name:'工作质量',label:'评级',rate:'每周一次',score:25}],
+          [{name:'工作责任心',label:'评级',rate:'每月一次',score:25},{name:'工作积极性',label:'评级',rate:'每月一次',score:32}],
+          [{name:'执行能力',label:'评级',rate:'每月一次',score:25},{name:'解决问题能力',label:'评级',rate:'每月一次',score:40}]
+        ],
+        [
+          [{name:'销售量',label:'打分',rate:'每周一次',score:25},{name:'工作质量',label:'评级',rate:'每周一次',score:25}],
+          [{name:'工作责任心',label:'评级',rate:'每月一次',score:25},{name:'工作积极性',label:'评级',rate:'每月一次',score:32}],
+          [{name:'执行能力',label:'评级',rate:'每月一次',score:25},{name:'解决问题能力',label:'评级',rate:'每月一次',score:40}]
+        ],
+        [
+          [],
+          [{name:'工作责任心',label:'评级',rate:'每月一次',score:25},{name:'工作积极性',label:'评级',rate:'每月一次',score:32}],
+          [{name:'执行能力',label:'评级',rate:'每月一次',score:25},{name:'解决问题能力',label:'评级',rate:'每月一次',score:40}]
+        ],
+        [
+          [{name:'每月出货完成度',label:'打分',rate:'每周一次',score:25},{name:'工作质量',label:'评级',rate:'每周一次',score:25}],
+          [{name:'工作责任心',label:'评级',rate:'每月一次',score:25},{name:'工作积极性',label:'评级',rate:'每月一次',score:32}],
+          [{name:'执行能力',label:'评级',rate:'每月一次',score:25},{name:'解决问题能力',label:'评级',rate:'每月一次',score:40}]
+        ]
+      ],
+      dialogFormVisible: false,
+      form: {
+        department: '销售部',
+        name: '',
+        label: '',
+        rate: '',
+        score: '',
+      },
+      formLabelWidth: '120px',
+      value: ''
     }
+  },
+  methods:{
+    changeType(typeId){
+      this.curType = typeId;
+      this.getCheckItems(this.curDepartment,this.curType);
+    },
+    changeDepartment(departmentId){
+      this.curDepartment = departmentId;
+      this.getCheckItems(this.curDepartment,this.curType);
+    },
+    addCheck(){
+      this.dialogFormVisible = true;
+    },
+    addCheckSure(){
+      this.dialogFormVisible = false;
+      let check = new Object();
+      console.log("进入addCheck");
+      console.log(this.form)
+      console.log(this.curType+this.curDepartment);
+      check.name = this.form.name;
+      check.label = this.form.label;
+      check.name = this.form.name;
+      check.rate = this.form.rate;
+      check.score = this.form.score;
+      console.log("check");
+      console.log(check);
+      this.department[this.curDepartment][this.curType].push(check);
+      this.clearForm()
+      this.$message({
+        message: '添加成功!',
+        type: 'success'
+      });
+    },
+    getCheckItems(department,type){
+      this.curItem = this.department[department][type];
+    },
+    clearForm(){
+      this.form.name ='';
+      this.form.label = '';
+      this.form.rate='';
+      this.form.score = '';
+    }
+  },
+  mounted() {
+    this.getCheckItems(this.curDepartment,this.curType)
   }
 }
 </script>
@@ -381,6 +458,16 @@ th button{
   align-items: center;
   margin-right: 10px;
   border: 1px solid #ccccce;
+  /*border: 2px solid #00b5ad;*/
+  padding: 5px;
+}
+.types-container .types-item-active{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  /*border: 1px solid #ccccce;*/
+  border: 2px solid #00b5ad;
   padding: 5px;
 }
 .types-item p{
@@ -401,5 +488,84 @@ th button{
 }
 .three-types .types-container .active{
   /*border: 1px solid #00b5ad;*/
+}
+
+.add-department{
+  position: fixed;
+  top: 60px;
+  left: 0;
+  z-index: 10000;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-container{
+  margin: 100px 40%;
+  background-color: #fff;
+  outline: none;
+  border: 1px solid #7e8c8d;
+  width: 500px;
+  position: relative;
+}
+.modal-container input{
+  outline: none;
+  border: 1px solid #7e8c8d;
+  margin-left: 20px;
+}
+.modal-item{
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.department-textarea{
+  box-sizing: border-box;
+  width: 200px;
+  height: 70px;
+  padding: 10px;
+  outline: none;
+  font-size: 15px;
+  font-weight: 300;
+}
+.delete{
+  cursor: pointer;
+  position: absolute;
+  left: 100%;
+  top: 5px;
+  font-size: 20px;
+  font-weight: 900;
+  transform: translateX(-200%);
+
+}
+.modal-buttons{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.modal-buttons button:nth-child(1){
+  margin: 15px;
+  width: 70px;
+  height: 40px;
+  background-color: #f2f4f5;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #7e8c8d;
+  border-radius: 5px;
+  font-size: 20px;
+}
+.modal-buttons button:nth-child(2){
+  margin: 15px;
+  width: 70px;
+  height: 40px;
+  background-color: #2299ee;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #7e8c8d;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+
 }
 </style>

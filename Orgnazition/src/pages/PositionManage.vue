@@ -6,7 +6,7 @@
         <!--      左上-->
         <section class="department">
           <!--        -->
-          <div><button>+  新增职务</button></div>
+          <div><button @click="addPosition">+  新增职务</button></div>
 <!--          <div><button>+  删除职务</button></div>-->
           <!--        <div><button>+ &nbsp; </button></div>-->
         </section>
@@ -16,8 +16,6 @@
           <el-menu
             default-active="1-1"
             class="el-menu-vertical-demo"
-            @open="handleOpen"
-            @close="handleClose"
             background-color="#545c64"
             text-color="#fff"
             active-text-color="#ffd04b">
@@ -26,13 +24,13 @@
                 <i class="el-icon-location"></i>
                 <span>今目标</span>
               </template>
-              <el-menu-item index="1-1">总裁办</el-menu-item>
-              <el-menu-item index="1-2">人事部</el-menu-item>
-              <el-menu-item index="1-3">销售部</el-menu-item>
+              <el-menu-item index="1-1" @click="changeDepartment(0)">总裁办</el-menu-item>
+              <el-menu-item index="1-2" @click="changeDepartment(1)">人事部</el-menu-item>
               <el-submenu index="1-4">
-                <template slot="title" style="width: 300px">技术部</template>
-                <el-menu-item index="1-4-1">技术1部</el-menu-item>
+                <template slot="title" style="width: 300px" @click="changeDepartment(3)">技术部</template>
+                <el-menu-item index="1-4-1"  @click="changeDepartment(3)">技术1部</el-menu-item>
               </el-submenu>
+              <el-menu-item index="1-3" @click="changeDepartment(2)">销售部</el-menu-item>
             </el-submenu>
           </el-menu>
         </el-col>
@@ -65,9 +63,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="list-head">
-              <th>技术总监</th>
-              <th>2</th>
+            <tr class="list-head" v-for="(item,i) in curPosition">
+              <th>{{item.name}}</th>
+              <th>{{item.num}}</th>
 <!--              <th>评价部门</th>-->
               <th>
                 <div>
@@ -81,12 +79,69 @@
         </section>
       </article>
     </div>
+    <!--  增加部门-->
+    <div class="add-department" v-if="showModal">
+      <div class="modal-container">
+        <div class="modal-item"><p>所在部门</p> <input type="text" style="text-indent: 5px" readonly value="销售部"></div>
+        <div class="modal-item"><p>职位名称</p> <input type="text" style="text-indent: 5px" placeholder="请输入职务名称" v-model="newPosition.name"></div>
+        <div class="modal-item"><p  class="department-descript">职位描述</p> <textarea  style="margin-left: 15px" class="department-textarea" placeholder="请输入员工描述"></textarea></div>
+        <div class="delete" @click="showModal=false">x</div>
+        <div class="modal-buttons"> <button>取消</button> <el-button :plain="true" style="text-align: center;" @click="addPositionSure">确定</el-button></div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "PositionManage"
+  name: "PositionManage",
+  data(){
+    return{
+      curDepartment:0,
+      showModal:false,
+      curPosition:[],
+      newPosition:{
+        name:'',
+        num:0
+      },
+      positions:[
+        [{name:'ceo',num:2},{name:'总经理',num:1}],
+        [{name:'总经理',num:1}],
+        [],
+        [{name:'架构师',num:2}]
+      ],
+    }
+  },
+  mounted() {
+    this.getCurPosition();
+  },
+  methods:{
+    changeDepartment(id){
+      this.curDepartment = id;
+      this.getCurPosition();
+      console.log(this.curPosition)
+    },
+    getCurPosition(){
+      console.log("进入getCurpositon"+this.curDepartment);
+      console.log(this.positions[this.curDepartment])
+      this.curPosition = this.positions[this.curDepartment];
+    },
+    addPosition(){
+      this.showModal = true;
+    },
+    addPositionSure(){
+      this.showModal = false;
+      let new_position = new Object();
+      new_position.name = this.newPosition.name;
+      new_position.num = 0;
+      this.positions[this.curDepartment].push(new_position);
+      this.newPosition.name = '';
+      this.$message({
+        message: '添加成功!',
+        type: 'success'
+      });
+    }
+  }
 }
 </script>
 
@@ -263,5 +318,84 @@ th button{
   border: none;
   color: #00a8ff;
   cursor: pointer;
+}
+
+.add-department{
+  position: fixed;
+  top: 60px;
+  left: 0;
+  z-index: 10000;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-container{
+  margin: 100px 40%;
+  background-color: #fff;
+  outline: none;
+  border: 1px solid #7e8c8d;
+  width: 500px;
+  position: relative;
+}
+.modal-container input{
+  outline: none;
+  border: 1px solid #7e8c8d;
+  margin-left: 20px;
+}
+.modal-item{
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.department-textarea{
+  box-sizing: border-box;
+  width: 200px;
+  height: 70px;
+  padding: 10px;
+  outline: none;
+  font-size: 15px;
+  font-weight: 300;
+}
+.delete{
+  cursor: pointer;
+  position: absolute;
+  left: 100%;
+  top: 5px;
+  font-size: 20px;
+  font-weight: 900;
+  transform: translateX(-200%);
+
+}
+.modal-buttons{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.modal-buttons button:nth-child(1){
+  margin: 15px;
+  width: 70px;
+  height: 40px;
+  background-color: #f2f4f5;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #7e8c8d;
+  border-radius: 5px;
+  font-size: 20px;
+}
+.modal-buttons button:nth-child(2){
+  margin: 15px;
+  width: 70px;
+  height: 40px;
+  background-color: #2299ee;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #7e8c8d;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+
 }
 </style>

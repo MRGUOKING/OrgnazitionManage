@@ -92,14 +92,28 @@
     <div class="check-container">
 <!--      左侧评价栏-->
       <article class="check-left">
-        <section class="department-detail">
-          <ul>>&nbsp;公司1
-            <li>工作时效</li>
-            <li>工作态度</li>
-            <li>工作能力</li>
-          </ul>
-
-        </section>
+        <el-col :span="12" style="width: 100%">
+          <el-menu
+            default-active="1-1"
+            class="el-menu-vertical-demo"
+            background-color="#545c64"
+            text-color="#fff"
+            active-text-color="#ffd04b">
+            <el-submenu index="1">
+              <template slot="title">
+                <i class="el-icon-location"></i>
+                <span>今目标</span>
+              </template>
+              <el-menu-item index="1-1" @click="changeDepartment(0)">总裁办</el-menu-item>
+              <el-menu-item index="1-2" @click="changeDepartment(1)">人事部</el-menu-item>
+              <el-submenu index="1-4">
+                <template slot="title" style="width: 300px">技术部</template>
+                <el-menu-item index="1-4-1" @click="changeDepartment(3)">技术1部</el-menu-item>
+              </el-submenu>
+              <el-menu-item index="1-3" @click="changeDepartment(2)">销售部</el-menu-item>
+            </el-submenu>
+          </el-menu>
+        </el-col>
       </article>
 <!--      右侧图标-->
       <article class="check-right">

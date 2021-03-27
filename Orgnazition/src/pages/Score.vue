@@ -28,10 +28,9 @@
       <article class="structure-right">
         <!--              右上-->
         <section class="right-top">
-          <!--          <div class="button-container">-->
-          <!--            <button>新增员工</button>-->
-          <!--            <button>邀请员工</button>-->
-          <!--          </div>-->
+<!--                    <div class="button-container">-->
+<!--                      <button>新增员工</button>-->
+<!--                    </div>-->
           <div class="search">
             <input type="text" placeholder="搜索...">
             <button class="iconfont">&#xe6e6</button>
@@ -52,7 +51,7 @@
               <th>考核名称</th>
               <th>考核方式</th>
               <th>考核频率</th>
-              <th>考核占比</th>
+              <th>权重分</th>
               <th>考核</th>
             </tr>
             </thead>
@@ -61,7 +60,7 @@
               <th>每月出货量完成度</th>
               <th>打分/评级</th>
               <th>每月考核一次</th>
-              <th>50%</th>
+              <th>7</th>
               <th>
                 <div>
                   <el-input-number v-model="num" :step="1"  max="100" min="0"></el-input-number>
@@ -72,47 +71,67 @@
               <th>工作态度</th>
               <th>评级</th>
               <th>每月考核一次</th>
-              <th>20%</th>
+              <th>10</th>
               <th>
                 <div>
                   <el-rate v-model="value1"></el-rate>
                 </div>
               </th>
             </tr>
-              <div class="comment-container">
-                <div>
-                  <p style="margin-bottom: 10px">评语:</p>
-                  <textarea name="" id="" cols="10" rows="5">评语</textarea>
-                </div>
+            <div class="comment-container">
                 <div class="score-button-container">
                   <button>取消</button>
-                  <button>提交</button>
+                  <button @click="hasCommited">提交</button>
                 </div>
             </div>
-            <div class="comment-container">
-              <div>
-                <p style="margin-bottom: 10px">建议:</p>
-                <textarea name="" id="" cols="10" rows="5">建议</textarea>
-              </div>
-              <div class="score-button-container">
-                <button>取消</button>
-                <button>提交</button>
-              </div>
-            </div>
-            <div class="comment-container">
-              <div>
-                <p style="margin-bottom: 10px">重大过失:</p>
-                <textarea name="" id="" cols="10" rows="5">重大过失</textarea>
-              </div>
-              <div class="score-button-container">
-                <button>取消</button>
-                <button>提交</button>
-              </div>
-            </div>
-
             </tbody>
           </table>
         </section>
+<!--        评价，建议，重大过失-->
+        <div class="three-area">
+          <div style="width: 100%;border-bottom: 1px solid #e6e6e6;margin-bottom: 15px">
+            <p style="font-size: 20px;margin-bottom: 10px;margin-left: 20px">对员工的评价:</p>
+            <div style="width: 100%;display: flex;justify-content: start">
+              <el-input
+                style="width: 40%;font-size: 18px;margin-left: 20px;margin-bottom: 5px"
+                type="textarea"
+                :autosize="{ minRows: 3, maxRows: 6}"
+                placeholder="请输入内容"
+                v-model="textarea_comment">
+              </el-input>
+              <el-button type="info" plain style="height: 50px;margin-top: 40px;margin-left: 15px" @click="textarea_comment=''">清空</el-button>
+              <el-button type="primary" style="height: 50px;margin-top: 40px;" @click="comment">提交</el-button>
+            </div>
+          </div>
+          <div style="width: 100%;border-bottom: 1px solid #e6e6e6;margin-bottom: 15px;margin-bottom: 5px">
+            <p style="font-size: 20px;margin-bottom: 10px;margin-left: 20px">给员工的建议:</p>
+            <div style="width: 100%;display: flex;justify-content: start">
+              <el-input
+                style="width: 40%;font-size: 18px;margin-left: 20px;margin-bottom: 5px"
+                type="textarea"
+                :autosize="{ minRows: 3, maxRows: 6}"
+                placeholder="请输入内容"
+                v-model="textarea_advice">
+              </el-input>
+              <el-button type="info" plain style="height: 50px;margin-top: 40px;margin-left: 15px" @click="textarea_advice=''">取消</el-button>
+              <el-button type="primary" style="height: 50px;margin-top: 40px;" @click="advice">提交</el-button>
+            </div>
+          </div>
+          <div style="width: 100%;border-bottom: 1px solid #e6e6e6;margin-bottom: 15px">
+            <p style="font-size: 20px;margin-bottom: 10px;margin-left: 20px">重大过失:</p>
+            <div style="width: 100%;display: flex;justify-content: start">
+              <el-input
+                style="width: 40%;font-size: 18px;margin-left: 20px;margin-bottom: 5px"
+                type="textarea"
+                :autosize="{ minRows: 3, maxRows: 6}"
+                placeholder="请输入内容"
+                v-model="textarea_error">
+              </el-input>
+              <el-button type="info" plain style="height: 50px;margin-top: 40px;margin-left: 15px" @click="textarea_error=''">取消</el-button>
+              <el-button type="primary" style="height: 50px;margin-top: 40px;" @click="error">提交</el-button>
+            </div>
+          </div>
+        </div>
       </article>
     </div>
   </div>
@@ -123,13 +142,60 @@ export default {
   name: "Score",
   data(){
     return{
-      value1:1,
-      num: 60
+      value1:4,
+      num: 60,
+      textarea_comment:'',
+      textarea_advice:'',
+      textarea_error: '',
     }
   },
   methods:{
+    error(){
+      if(this.textarea_error == ''){
+        this.$message({
+          message: '请输入内容',
+          type: 'warning'
+        });
+        return;
+      }
+      this.$message({
+        message: '记录成功!',
+        type: 'success'
+      });
+    },
+    comment(){
+      if(this.textarea_comment == ''){
+        this.$message({
+          message: '请输入内容',
+          type: 'warning'
+        });
+        return;
+      }
+      this.$message({
+        message: '评价成功!',
+        type: 'success'
+      });
+    },
+    advice(){
+      if(this.textarea_advice == ''){
+        this.$message({
+          message: '请输入内容',
+          type: 'warning'
+        });
+        return;
+      }
+      this.$message({
+        message: '成功发送建议给员工',
+        type: 'success'
+      })
+    },
     goScore(){
       this.$router.push('/scsore')
+    },
+    hasCommited(){
+      this.$alert('已经给该员工评过分!', '提交失败', {
+        confirmButtonText: '确定',
+      });
     }
   }
 }
@@ -347,11 +413,8 @@ th button{
   color: #fad32d;
 }
 .comment-container{
-  padding: 0 70px;
-  margin-top: 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color: #fafafa;
+  text-align: right;
 }
 .comment-container textarea{
   width: 400px;
@@ -362,9 +425,6 @@ th button{
 
 }
 
-.score-button-container{
-  transform: translateY(50px);
-}
 
 .score-button-container button:nth-child(1){
   margin: 15px;
@@ -389,5 +449,10 @@ th button{
   color: white;
   font-size: 20px;
 
+}
+
+.three-area{
+  width: 100%;
+  /*background-color: pink;*/
 }
 </style>
