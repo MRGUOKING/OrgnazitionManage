@@ -55,26 +55,7 @@
           </div>
         </li>
         <li class="employee-score">
-          <div class="score-column">
-            <p class="super-message">超过同岗位90%</p>
-            <img src="./images/header.jpg" alt="">
-            <p class="message-text">综合评分</p>
-          </div>
-          <div class="score-column">
-            <p class="super-message">超过同岗位90%</p>
-            <img src="./images/header.jpg" alt="">
-            <p class="message-text">工作任务</p>
-          </div>
-          <div class="score-column">
-            <p class="super-message">超过同岗位90%</p>
-            <img src="./images/header.jpg" alt="">
-            <p class="message-text">工作态度</p>
-          </div>
-          <div class="score-column">
-            <p class="super-message">超过同岗位90%</p>
-            <img src="./images/header.jpg" alt="">
-            <p class="message-text">工作能力</p>
-          </div>
+          <div id="test1" style="width: 400px;height: 300px"></div>
         </li>
       </ul>
       <ul class="employee-item">
@@ -98,26 +79,7 @@
           </div>
         </li>
         <li class="employee-score">
-          <div class="score-column">
-            <p class="super-message">超过同岗位90%</p>
-            <img src="./images/header.jpg" alt="">
-            <p class="message-text">综合评分</p>
-          </div>
-          <div class="score-column">
-            <p class="super-message">超过同岗位90%</p>
-            <img src="./images/header.jpg" alt="">
-            <p class="message-text">工作任务</p>
-          </div>
-          <div class="score-column">
-            <p class="super-message">超过同岗位90%</p>
-            <img src="./images/header.jpg" alt="">
-            <p class="message-text">工作态度</p>
-          </div>
-          <div class="score-column">
-            <p class="super-message">超过同岗位90%</p>
-            <img src="./images/header.jpg" alt="">
-            <p class="message-text">工作能力</p>
-          </div>
+          <div id="test2" style="width: 400px;height: 300px"></div>
         </li>
       </ul>
       <ul class="employee-item">
@@ -141,26 +103,7 @@
           </div>
         </li>
         <li class="employee-score">
-          <div class="score-column">
-            <p class="super-message">超过同岗位90%</p>
-            <img src="./images/header.jpg" alt="">
-            <p class="message-text">综合评分</p>
-          </div>
-          <div class="score-column">
-            <p class="super-message">超过同岗位90%</p>
-            <img src="./images/header.jpg" alt="">
-            <p class="message-text">工作任务</p>
-          </div>
-          <div class="score-column">
-            <p class="super-message">超过同岗位90%</p>
-            <img src="./images/header.jpg" alt="">
-            <p class="message-text">工作态度</p>
-          </div>
-          <div class="score-column">
-            <p class="super-message">超过同岗位90%</p>
-            <img src="./images/header.jpg" alt="">
-            <p class="message-text">工作能力</p>
-          </div>
+          <div id="test3" style="width: 400px;height: 300px"></div>
         </li>
       </ul>
       <ul class="employee-item">
@@ -184,26 +127,7 @@
           </div>
         </li>
         <li class="employee-score">
-          <div class="score-column">
-            <p class="super-message">超过同岗位90%</p>
-            <img src="./images/header.jpg" alt="">
-            <p class="message-text">综合评分</p>
-          </div>
-          <div class="score-column">
-            <p class="super-message">超过同岗位90%</p>
-            <img src="./images/header.jpg" alt="">
-            <p class="message-text">工作任务</p>
-          </div>
-          <div class="score-column">
-            <p class="super-message">超过同岗位90%</p>
-            <img src="./images/header.jpg" alt="">
-            <p class="message-text">工作态度</p>
-          </div>
-          <div class="score-column">
-            <p class="super-message">超过同岗位90%</p>
-            <img src="./images/header.jpg" alt="">
-            <p class="message-text">工作能力</p>
-          </div>
+          <div id="test4" style="width: 400px;height: 300px"></div>
         </li>
       </ul>
 
@@ -217,7 +141,186 @@ export default {
   methods:{
     detail(){
       this.$router.push('/detail');
+    },
+    initChar(){
+      // 基于准备好的dom，初始化echarts实例
+      let gradeChar1 = this.$echarts.init(document.getElementById("test1"));
+      let gradeChar2 = this.$echarts.init(document.getElementById("test2"));
+      let gradeChar3 = this.$echarts.init(document.getElementById("test3"));
+      let gradeChar4 = this.$echarts.init(document.getElementById("test4"));
+// 指定图表的配置项和数据
+      let grade1 = {
+        title: {
+          text: "综合评分",
+        },
+        grid:{
+          top:"10%",
+          bottom:30,
+          height:"65%"
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "shadow"
+          }
+        },
+        legend: {},
+        xAxis: {
+          data: ["综合评分","工作任务", "工作态度","工作能力"],
+        },
+        yAxis: [
+          {
+            type: 'value',
+            axisLabel: {
+              show: true,
+              interval: 'auto',
+              formatter: '{value} %'
+            },
+            show: true
+          }
+        ],
+
+        series: [
+          {
+            name: "与同岗位员工相比",
+            type: "bar",
+            barWidth:"40",
+            showBackground: true,
+            data: [90, 80,95,85],
+          },
+        ],
+      };
+      let grade2 = {
+        title: {
+          text: "综合评分",
+        },
+        grid:{
+          top:30,
+          bottom:30,
+          height:"65%"
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "shadow"
+          }
+        },
+        legend: {},
+        xAxis: {
+          data: ["综合评分","工作任务", "工作态度","工作能力"],
+        },
+        yAxis: [
+          {
+            type: 'value',
+            axisLabel: {
+              show: true,
+              interval: 'auto',
+              formatter: '{value} %'
+            },
+            show: true
+          }
+        ],
+        series: [
+          {
+            name: "与同岗位员工相比",
+            type: "bar",
+            barWidth:"40",
+            showBackground: true,
+            data: [95, 88,99,80],
+          },
+        ],
+      };
+      let grade3 = {
+        title: {
+          text: "综合评分",
+        },
+        grid:{
+          top:30,
+          bottom:30,
+          height:"65%"
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "shadow"
+          }
+        },
+        legend: {},
+        xAxis: {
+          data: ["综合评分","工作任务", "工作态度","工作能力"],
+        },
+        yAxis: [
+          {
+            type: 'value',
+            axisLabel: {
+              show: true,
+              interval: 'auto',
+              formatter: '{value} %'
+            },
+            show: true
+          }
+        ],
+        series: [
+          {
+            name: "与同岗位员工相比",
+            type: "bar",
+            barWidth:"40",
+            showBackground: true,
+            data: [92, 85,90,95],
+          },
+        ],
+      };
+      let grade4 = {
+        title: {
+          text: "综合评分",
+        },
+        grid:{
+          top:30,
+          bottom:30,
+          height:"65%"
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "shadow"
+          }
+        },
+        legend: {},
+        xAxis: {
+          data: ["综合评分","工作任务", "工作态度","工作能力"],
+        },
+        yAxis: [
+          {
+            type: 'value',
+            axisLabel: {
+              show: true,
+              interval: 'auto',
+              formatter: '{value} %'
+            },
+            show: true
+          }
+        ],
+        series: [
+          {
+            name: "与同岗位员工相比",
+            type: "bar",
+            barWidth:"40",
+            showBackground: true,
+            data: [82, 83,99,85],
+          },
+        ],
+      };
+// 使用刚指定的配置项和数据显示图表。
+      gradeChar1.setOption(grade1);
+      gradeChar2.setOption(grade2);
+      gradeChar3.setOption(grade3);
+      gradeChar4.setOption(grade4);
+
     }
+
+  },
+  mounted() {
+    this.initChar()
 
   }
 }
@@ -333,6 +436,7 @@ export default {
   align-items: center;
   width: 100%;
   transform: translateY(-30px);
+  margin-top: 28px;
 }
 
 .message-left div{

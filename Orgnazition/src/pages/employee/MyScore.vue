@@ -68,7 +68,6 @@
       </article >
       <article class="check-right" v-show="ability">
         <div id="ability" style="width: 600px;height: 400px"></div>
-        <p>111</p>
       </article>
     </div>
   </section>
