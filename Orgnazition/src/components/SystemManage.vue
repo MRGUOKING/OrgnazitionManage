@@ -2,7 +2,7 @@
   <div class="header">
     <!--    nickName-->
     <div class="head-nickname">
-      <p>King</p>
+      <p>系统管理员</p>
     </div>
     <!--    中间内容-->
     <div class="head-nav">

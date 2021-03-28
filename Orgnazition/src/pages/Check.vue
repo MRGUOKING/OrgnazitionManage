@@ -29,7 +29,7 @@
               <el-menu-item index="1-2" @click="changeDepartment(1)">人事部</el-menu-item>
               <el-submenu index="1-4">
                 <template slot="title" style="width: 300px">技术部</template>
-                <el-menu-item index="1-4-1">技术1部</el-menu-item>
+                <el-menu-item index="1-4-1"  @click="changeDepartment(3)">技术1部</el-menu-item>
               </el-submenu>
               <el-menu-item index="1-3" @click="changeDepartment(2)">销售部</el-menu-item>
             </el-submenu>
@@ -80,12 +80,13 @@
               <th>考核方式</th>
               <th>考核频率</th>
               <th>权重分</th>
+              <th>是否公开</th>
               <th>操作</th>
             </tr>
             </thead>
             <tbody>
             <tr class="list-head" v-for="(item,i) in curItem">
-              <th v-text="item.name">每月出货量完成度</th>
+              <th v-text="item.name">{{ item.name }}</th>
               <th>
                 <template>
                 <el-select v-model="item.label" placeholder="请选择" style="width: 180px">
@@ -111,6 +112,13 @@
                 </template>
               </th>
               <th><el-input-number style="width: 100px;" size="small" v-model="item.score" :step="1" step-strictly></el-input-number></th>
+              <th>
+                <el-switch
+                v-model="item.is_public"
+                active-text="公开"
+                inactive-text="不公开">
+                </el-switch>
+              </th>
               <th>
                 <div>
                   <button>编辑</button>
@@ -143,11 +151,18 @@
             <el-option label="每天一次" value="每天一次"></el-option>
             <el-option label="每周一次" value="每周一次"></el-option>
             <el-option label="每月一次" value="每月一次"></el-option>
+            <el-option label="每季度一次" value="每季度一次"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="权重给分" :label-width="formLabelWidth">
           <el-input-number v-model="form.score" :min="1" :max="10" label="描述文字" size="min"></el-input-number>
         </el-form-item>
+        <el-switch
+          style="margin-left: 50px"
+          v-model="form.is_public"
+          active-text="公开"
+          inactive-text="不公开">
+        </el-switch>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -162,6 +177,7 @@ export default {
   name: "Check",
   data(){
     return{
+      is_public:false,
       test:'测试',
       departmentName:'技术1部',
       curDepartment:0,
@@ -182,6 +198,9 @@ export default {
       },{
         value: '3',
         label: '每月一次'
+      },{
+        value: '4',
+        label: '每季度一次'
       }],
       rate:'2',
       num_1: 30,
@@ -191,24 +210,20 @@ export default {
       curItem:[],
       department:[
        [
-          [{name:'每月出货完成度',label:'打分',rate:'每周一次',score:25},{name:'工作质量',label:'评级',rate:'每周一次',score:25}],
-          [{name:'工作责任心',label:'评级',rate:'每月一次',score:25},{name:'工作积极性',label:'评级',rate:'每月一次',score:32}],
-          [{name:'执行能力',label:'评级',rate:'每月一次',score:25},{name:'解决问题能力',label:'评级',rate:'每月一次',score:40}]
         ],
         [
-          [{name:'销售量',label:'打分',rate:'每周一次',score:25},{name:'工作质量',label:'评级',rate:'每周一次',score:25}],
-          [{name:'工作责任心',label:'评级',rate:'每月一次',score:25},{name:'工作积极性',label:'评级',rate:'每月一次',score:32}],
-          [{name:'执行能力',label:'评级',rate:'每月一次',score:25},{name:'解决问题能力',label:'评级',rate:'每月一次',score:40}]
+          [{name:'员工招聘情况',label:'打分',rate:'每周一次',score:25,is_public:false},{name:'人才发展情况',label:'评级',rate:'每周一次',score:25,is_public:true}],
+          [{name:'工作责任心',label:'评级',rate:'每月一次',score:25,is_public:false},{name:'遵守公司纪律',label:'评级',rate:'每月一次',score:32,is_public:true}],
         ],
         [
           [],
-          [{name:'工作责任心',label:'评级',rate:'每月一次',score:25},{name:'工作积极性',label:'评级',rate:'每月一次',score:32}],
-          [{name:'执行能力',label:'评级',rate:'每月一次',score:25},{name:'解决问题能力',label:'评级',rate:'每月一次',score:40}]
+          [],
+          []
         ],
         [
-          [{name:'每月出货完成度',label:'打分',rate:'每周一次',score:25},{name:'工作质量',label:'评级',rate:'每周一次',score:25}],
-          [{name:'工作责任心',label:'评级',rate:'每月一次',score:25},{name:'工作积极性',label:'评级',rate:'每月一次',score:32}],
-          [{name:'执行能力',label:'评级',rate:'每月一次',score:25},{name:'解决问题能力',label:'评级',rate:'每月一次',score:40}]
+          [{name:'工作完成度',label:'打分',rate:'每周一次',score:25,is_public:false},{name:'工作质量',label:'评级',rate:'每周一次',score:25,is_public:true},{name:'代码质量',label:'评级',rate:'每月一次',score:25,is_public:true}],
+          [{name:'工作责任心',label:'评级',rate:'每月一次',score:25,is_public:false},{name:'工作积极性',label:'评级',rate:'每月一次',score:32,is_public:true}],
+          [{name:'执行能力',label:'评级',rate:'每月一次',score:25,is_public:false},{name:'解决问题能力',label:'评级',rate:'每月一次',score:40,is_public:true}]
         ]
       ],
       dialogFormVisible: false,
@@ -218,6 +233,7 @@ export default {
         label: '',
         rate: '',
         score: '',
+        is_public: true,
       },
       formLabelWidth: '120px',
       value: ''
@@ -246,6 +262,7 @@ export default {
       check.name = this.form.name;
       check.rate = this.form.rate;
       check.score = this.form.score;
+      check.is_public = this.form.is_public;
       console.log("check");
       console.log(check);
       this.department[this.curDepartment][this.curType].push(check);
@@ -354,7 +371,7 @@ export default {
 .right-top{
   width: 100%;
   height: 50px;
-  background-color: pink;
+  background-color: #73767e;
   display: flex;
   justify-content: right;
   align-items: center;

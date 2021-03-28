@@ -127,6 +127,12 @@
                 placeholder="请输入内容"
                 v-model="textarea_error">
               </el-input>
+              <el-switch
+                style="margin-top: 60px;margin-left: 20px "
+                v-model="is_public"
+                active-text="公开"
+                inactive-text="不公开">
+              </el-switch>
               <el-button type="info" plain style="height: 50px;margin-top: 40px;margin-left: 15px" @click="textarea_error=''">取消</el-button>
               <el-button type="primary" style="height: 50px;margin-top: 40px;" @click="error">提交</el-button>
             </div>
@@ -142,6 +148,7 @@ export default {
   name: "Score",
   data(){
     return{
+      is_public:true,
       value1:4,
       num: 60,
       textarea_comment:'',

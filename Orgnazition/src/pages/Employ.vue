@@ -3,7 +3,7 @@
   <div class="employ-container">
     <article class="employ-head">
       <el-menu
-        :default-active="activeIndex2"
+        :default-active="'1'"
         class="el-menu-demo"
         mode="horizontal"
         @select="handleSelect"
@@ -19,9 +19,24 @@
         </el-submenu>
         <el-submenu index="3">
           <template slot="title">自定义评分</template>
-          <el-menu-item index="3-1">工作任务</el-menu-item>
-          <el-menu-item index="3-2">工作态度</el-menu-item>
-          <el-menu-item index="3-3">工作能力</el-menu-item>
+          <el-menu-item index="3-1">
+            工作任务
+            <template>
+              <el-input-number v-model="this.$data.num1" @change="handleChange" :min="1" :max="100" label="描述文字" size="mini"></el-input-number>
+            </template>
+          </el-menu-item>
+          <el-menu-item index="3-2">
+            工作态度
+            <template>
+              <el-input-number v-model="this.$data.num2" @change="handleChange" :min="1" :max="100" label="描述文字" size="mini"></el-input-number>
+            </template>
+          </el-menu-item>
+          <el-menu-item index="3-3">
+            工作能力
+            <template>
+              <el-input-number v-model="this.$data.num3" @change="handleChange" :min="1" :max="100" label="描述文字" size="mini"></el-input-number>
+            </template>
+          </el-menu-item>
         </el-submenu>
       </el-menu>
 <!--      <div class="head-item">智能排序<icon>=</icon></div>-->
@@ -30,104 +45,32 @@
 <!--      <div class="head-item">筛选</div>-->
       <div class="search">
         <input type="text" placeholder="搜索...">
-        <button class="iconfont">&#xe6e6</button>
+        <button class="iconfont" @click="search">&#xe6e6</button>
       </div>
     </article>
     <article class="employee-list">
-      <ul class="employee-item" @click="detail">
+      <ul class="employee-item" @click="detail" v-for="(item,i) in this.$data.people">
         <li class="employee-avatar">
-          <img src="./images/header.jpg" alt="">
+          <img :src="item.img" alt="">
         </li>
         <li class="employee-message">
 <!--          左侧-->
           <div class="message-left">
-            <div>姓名: &nbsp;郭江富</div>
-            <div>性别: &nbsp;男</div>
-            <div>年龄: &nbsp;28</div>
-            <div>工作年龄: &nbsp;3年</div>
+            <div>姓名: &nbsp;{{item.name}}</div>
+            <div>性别: &nbsp;{{item.sex}}</div>
+            <div>年龄: &nbsp;{{item.age}}</div>
+            <div>工作年龄: &nbsp;{{item.work_age}}</div>
           </div>
 <!--右侧-->
           <div class="message-right">
-            <div>学历: &nbsp;本科</div>
-            <div>毕业院校:&nbsp; 中南大学</div>
-            <div>熟悉技能:&nbsp; java,mysql,分布式</div>
-            <div>意向岗位: &nbsp;后端开发4t4e43534</div>
+            <div>学历: &nbsp;{{item.education}}</div>
+            <div>毕业院校:&nbsp; {{item.school}}</div>
+            <div>熟悉技能:&nbsp; {{ item.skill }}</div>
+            <div>意向岗位: &nbsp;{{ item.position }}</div>
           </div>
         </li>
         <li class="employee-score">
-          <div id="test1" style="width: 400px;height: 300px"></div>
-        </li>
-      </ul>
-      <ul class="employee-item">
-        <li class="employee-avatar">
-          <img src="./images/header.jpg" alt="">
-        </li>
-        <li class="employee-message">
-          <!--          左侧-->
-          <div class="message-left">
-            <div>姓名: &nbsp;郭江富</div>
-            <div>性别: &nbsp;男</div>
-            <div>年龄: &nbsp;28</div>
-            <div>工作年龄: &nbsp;3年</div>
-          </div>
-          <!--右侧-->
-          <div class="message-right">
-            <div>学历: &nbsp;本科</div>
-            <div>毕业院校:&nbsp; 中南大学</div>
-            <div>熟悉技能:&nbsp; java,mysql,分布式</div>
-            <div>意向岗位: &nbsp;后端开发4t4e43534</div>
-          </div>
-        </li>
-        <li class="employee-score">
-          <div id="test2" style="width: 400px;height: 300px"></div>
-        </li>
-      </ul>
-      <ul class="employee-item">
-        <li class="employee-avatar">
-          <img src="./images/header.jpg" alt="">
-        </li>
-        <li class="employee-message">
-          <!--          左侧-->
-          <div class="message-left">
-            <div>姓名: &nbsp;郭江富</div>
-            <div>性别: &nbsp;男</div>
-            <div>年龄: &nbsp;28</div>
-            <div>工作年龄: &nbsp;3年</div>
-          </div>
-          <!--右侧-->
-          <div class="message-right">
-            <div>学历: &nbsp;本科</div>
-            <div>毕业院校:&nbsp; 中南大学</div>
-            <div>熟悉技能:&nbsp; java,mysql,分布式</div>
-            <div>意向岗位: &nbsp;后端开发4t4e43534</div>
-          </div>
-        </li>
-        <li class="employee-score">
-          <div id="test3" style="width: 400px;height: 300px"></div>
-        </li>
-      </ul>
-      <ul class="employee-item">
-        <li class="employee-avatar">
-          <img src="./images/header.jpg" alt="">
-        </li>
-        <li class="employee-message">
-          <!--          左侧-->
-          <div class="message-left">
-            <div>姓名: &nbsp;郭江富</div>
-            <div>性别: &nbsp;男</div>
-            <div>年龄: &nbsp;28</div>
-            <div>工作年龄: &nbsp;3年</div>
-          </div>
-          <!--右侧-->
-          <div class="message-right">
-            <div>学历: &nbsp;本科</div>
-            <div>毕业院校:&nbsp; 中南大学</div>
-            <div>熟悉技能:&nbsp; java,mysql,分布式</div>
-            <div>意向岗位: &nbsp;后端开发4t4e43534</div>
-          </div>
-        </li>
-        <li class="employee-score">
-          <div id="test4" style="width: 400px;height: 300px"></div>
+          <div class="graph"></div>
         </li>
       </ul>
 
@@ -138,17 +81,318 @@
 <script>
 export default {
   name: "Employ",
+  data(){
+    return{
+        chars:[],
+        state2: '',
+        num1:40,
+        num2:30,
+        num3:30,
+        people:[
+          {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江富',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
+          {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
+          {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江富',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
+          {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江富',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
+          {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江富',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
+          {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江富',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
+        ],
+        grades:[
+          {
+            title: {
+              text: "综合评分",
+            },
+            grid:{
+              top:"10%",
+              bottom:30,
+              height:"65%"
+            },
+            tooltip: {
+              trigger: "axis",
+              axisPointer: {
+                type: "shadow"
+              }
+            },
+            legend: {},
+            xAxis: {
+              data: ["综合评分","工作任务", "工作态度","工作能力"],
+            },
+            yAxis: [
+              {
+                type: 'value',
+                axisLabel: {
+                  show: true,
+                  interval: 'auto',
+                  formatter: '{value} %'
+                },
+                show: true
+              }
+            ],
+
+            series: [
+              {
+                name: "与同岗位员工相比",
+                type: "bar",
+                barWidth:"40",
+                showBackground: true,
+                data: [90, 80,95,85],
+              },
+            ],
+          },
+          {
+            title: {
+              text: "综合评分",
+            },
+            grid:{
+              top:30,
+              bottom:30,
+              height:"65%"
+            },
+            tooltip: {
+              trigger: "axis",
+              axisPointer: {
+                type: "shadow"
+              }
+            },
+            legend: {},
+            xAxis: {
+              data: ["综合评分","工作任务", "工作态度","工作能力"],
+            },
+            yAxis: [
+              {
+                type: 'value',
+                axisLabel: {
+                  show: true,
+                  interval: 'auto',
+                  formatter: '{value} %'
+                },
+                show: true
+              }
+            ],
+            series: [
+              {
+                name: "与同岗位员工相比",
+                type: "bar",
+                barWidth:"40",
+                showBackground: true,
+                data: [95, 88,99,80],
+              },
+            ],
+          },
+          {
+            title: {
+              text: "综合评分",
+            },
+            grid:{
+              top:30,
+              bottom:30,
+              height:"65%"
+            },
+            tooltip: {
+              trigger: "axis",
+              axisPointer: {
+                type: "shadow"
+              }
+            },
+            legend: {},
+            xAxis: {
+              data: ["综合评分","工作任务", "工作态度","工作能力"],
+            },
+            yAxis: [
+              {
+                type: 'value',
+                axisLabel: {
+                  show: true,
+                  interval: 'auto',
+                  formatter: '{value} %'
+                },
+                show: true
+              }
+            ],
+            series: [
+              {
+                name: "与同岗位员工相比",
+                type: "bar",
+                barWidth:"40",
+                showBackground: true,
+                data: [92, 85,90,95],
+              },
+            ],
+          },
+          {
+            title: {
+              text: "综合评分",
+            },
+            grid:{
+              top:30,
+              bottom:30,
+              height:"65%"
+            },
+            tooltip: {
+              trigger: "axis",
+              axisPointer: {
+                type: "shadow"
+              }
+            },
+            legend: {},
+            xAxis: {
+              data: ["综合评分","工作任务", "工作态度","工作能力"],
+            },
+            yAxis: [
+              {
+                type: 'value',
+                axisLabel: {
+                  show: true,
+                  interval: 'auto',
+                  formatter: '{value} %'
+                },
+                show: true
+              }
+            ],
+            series: [
+              {
+                name: "与同岗位员工相比",
+                type: "bar",
+                barWidth:"40",
+                showBackground: true,
+                data: [82, 83,99,85],
+              },
+            ],
+          },
+          {
+            title: {
+              text: "综合评分",
+            },
+            grid:{
+              top:30,
+              bottom:30,
+              height:"65%"
+            },
+            tooltip: {
+              trigger: "axis",
+              axisPointer: {
+                type: "shadow"
+              }
+            },
+            legend: {},
+            xAxis: {
+              data: ["综合评分","工作任务", "工作态度","工作能力"],
+            },
+            yAxis: [
+              {
+                type: 'value',
+                axisLabel: {
+                  show: true,
+                  interval: 'auto',
+                  formatter: '{value} %'
+                },
+                show: true
+              }
+            ],
+            series: [
+              {
+                name: "与同岗位员工相比",
+                type: "bar",
+                barWidth:"40",
+                showBackground: true,
+                data: [82, 83,99,85],
+              },
+            ],
+          },
+          {
+            title: {
+              text: "综合评分",
+            },
+            grid:{
+              top:30,
+              bottom:30,
+              height:"65%"
+            },
+            tooltip: {
+              trigger: "axis",
+              axisPointer: {
+                type: "shadow"
+              }
+            },
+            legend: {},
+            xAxis: {
+              data: ["综合评分","工作任务", "工作态度","工作能力"],
+            },
+            yAxis: [
+              {
+                type: 'value',
+                axisLabel: {
+                  show: true,
+                  interval: 'auto',
+                  formatter: '{value} %'
+                },
+                show: true
+              }
+            ],
+            series: [
+              {
+                name: "与同岗位员工相比",
+                type: "bar",
+                barWidth:"40",
+                showBackground: true,
+                data: [82, 83,99,85],
+              },
+            ],
+          }
+        ]
+
+    }
+  },
   methods:{
+    search(){
+
+      this.people = [{img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江富',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'}];
+      this.grades = [{
+        title: {
+          text: "综合评分",
+        },
+        grid:{
+          top:"10%",
+          bottom:30,
+          height:"65%"
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "shadow"
+          }
+        },
+        legend: {},
+        xAxis: {
+          data: ["综合评分","工作任务", "工作态度","工作能力"],
+        },
+        yAxis: [
+          {
+            type: 'value',
+            axisLabel: {
+              show: true,
+              interval: 'auto',
+              formatter: '{value} %'
+            },
+            show: true
+          }
+        ],
+
+        series: [
+          {
+            name: "与同岗位员工相比",
+            type: "bar",
+            barWidth:"40",
+            showBackground: true,
+            data: [90, 80,95,85],
+          },
+        ],
+      }];
+    },
     detail(){
       this.$router.push('/detail');
     },
     initChar(){
-      // 基于准备好的dom，初始化echarts实例
-      let gradeChar1 = this.$echarts.init(document.getElementById("test1"));
-      let gradeChar2 = this.$echarts.init(document.getElementById("test2"));
-      let gradeChar3 = this.$echarts.init(document.getElementById("test3"));
-      let gradeChar4 = this.$echarts.init(document.getElementById("test4"));
-// 指定图表的配置项和数据
+      // 指定图表的配置项和数据
       let grade1 = {
         title: {
           text: "综合评分",
@@ -310,18 +554,35 @@ export default {
           },
         ],
       };
-// 使用刚指定的配置项和数据显示图表。
+      // // 基于准备好的dom，初始化echarts实例
+      // let gradeChar1 = this.$echarts.init(document.getElementById("test1"));
+      // let gradeChar2 = this.$echarts.init(document.getElementById("test2"));
+      // let gradeChar3 = this.$echarts.init(document.getElementById("test3"));
+      // let gradeChar4 = this.$echarts.init(document.getElementById("test4"));
+      let Nodes = document.querySelectorAll(".graph");
+      console.log("nodes");
+      console.log(Nodes)
+
+      for(let i =0;i< Nodes.length;i++){
+        let gradeChar = this.$echarts.init(Nodes[i]);
+        gradeChar.setOption(this.grades[i]);
+        this.chars.push(gradeChar);
+      }
+//      给图片渲染数据
+// // 使用刚指定的配置项和数据显示图表。
       gradeChar1.setOption(grade1);
       gradeChar2.setOption(grade2);
       gradeChar3.setOption(grade3);
       gradeChar4.setOption(grade4);
 
+    },
+    handleSelect(key, keyPath) {
+      this.people.splice(0,3);
+      this.grades.splice(0,3);
     }
-
   },
   mounted() {
-    this.initChar()
-
+    this.initChar();
   }
 }
 </script>
@@ -368,7 +629,8 @@ export default {
   display: flex;
   justify-content: center;
   /*margin-left: 900px;*/
-  transform: translateX(100px);
+  transform: translateX(80px);
+
 }
 .search input{
   width: 200px;
@@ -399,7 +661,7 @@ export default {
   margin: 20px;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   flex-wrap: wrap;
   /*padding: 20px ;*/
@@ -487,6 +749,10 @@ export default {
   margin-top: 5px;
   font-size: 20px;
   color: #3a3a3a;
+}
+
+.graph{
+  width: 400px;height: 300px
 }
 
 </style>

@@ -14,7 +14,7 @@
         <!--      左下-->
         <el-col :span="12" style="width: 100%">
           <el-menu
-            default-active="1-1"
+            default-active="1-4-1"
             class="el-menu-vertical-demo"
             background-color="#545c64"
             text-color="#fff"
@@ -24,13 +24,14 @@
                 <i class="el-icon-location"></i>
                 <span>今目标</span>
               </template>
-              <el-menu-item index="1-1" @click="changeDepartment(0)">总裁办</el-menu-item>
-              <el-menu-item index="1-2" @click="changeDepartment(1)">人事部</el-menu-item>
+<!--              <el-menu-item index="1-1" @click="changeDepartment(0)">总裁办</el-menu-item>-->
+<!--              <el-menu-item index="1-2" @click="changeDepartment(1)">人事部</el-menu-item>-->
               <el-submenu index="1-4">
                 <template slot="title" style="width: 300px">技术部</template>
                 <el-menu-item index="1-4-1" @click="changeDepartment(3)">技术1部</el-menu-item>
+                <el-menu-item index="1-4-2" @click="changeDepartment(2)">技术2部</el-menu-item>
               </el-submenu>
-              <el-menu-item index="1-3" @click="changeDepartment(2)">销售部</el-menu-item>
+<!--              <el-menu-item index="1-3" @click="changeDepartment(2)">销售部</el-menu-item>-->
             </el-submenu>
           </el-menu>
         </el-col>
@@ -86,6 +87,23 @@
                 </div>
               </th>
             </tr>
+            <tr class="list-head-2" v-show="ready">
+              <th>郭五</th>
+              <th>zn1234567</th>
+              <th>前端部员</th>
+              <th>--</th>
+              <!--              <th>99%</th>-->
+              <th>--</th>
+              <!--              <th>110%</th>-->
+              <th>--</th>
+              <th>--</th>
+              <th>
+                <div>
+                  <button @click="goScore" style="color:grey; font-weight: 900">等待确认</button>
+                  <button @click="goDetail" style="font-weight: 900;font-size: 15px">删除</button>
+                </div>
+              </th>
+            </tr>
             </tbody>
           </table>
         </section>
@@ -94,22 +112,28 @@
     <!--  增加员工-->
     <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
       <el-form :model="form">
-        <el-form-item label="账号" :label-width="formLabelWidth">
-          <el-input v-model="form.name" autocomplete="off"></el-input>
+        <el-form-item label="账号">
+          <el-input v-model="form.name" autocomplete="off" @blur="this.search"></el-input>
         </el-form-item>
-        <el-form-item label="部门" :label-width="formLabelWidth">
+
+        <el-form-item label="搜索成功!" v-if="searchSuccess">
+          <p style="color: #67c23a">&nbsp;&nbsp;&nbsp;&nbsp;姓名:</p><el-input v-model="newName"></el-input>
+        </el-form-item>
+
+        <el-form-item label="部门" >
           <el-input v-model="form.department" autocomplete="off" ></el-input>
         </el-form-item>
-        <el-form-item label="职位" :label-width="formLabelWidth">
+        <el-form-item label="职位">
           <el-select v-model="form.region" placeholder="请选择员工职位">
-            <el-option label="普通员工" value="shanghai"></el-option>
-            <el-option label="总经理" value="beijing"></el-option>
+            <el-option label="架构师" value="shanghai"></el-option>
+            <el-option label="前端部员" value="beijing"></el-option>
+            <el-option label="后端部员" value="beijing"></el-option>
           </el-select>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+        <el-button type="primary" @click="addPeople" >确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -120,24 +144,33 @@ export default {
   name: "MyPeople",
   data(){
     return{
+      newName:'郭五',
+      searchSuccess:false,
       form:{
         name:'',
-        department: '销售部'
+        department: '技术2部'
       },
+      ready:false,
       showAddModel:false,
       curPeople:[],
-      curDepartment:0,
+      curDepartment:3,
       dialogFormVisible:false,
       people:[
-        [{name:'郭江富',department:'总裁办',position:'ceo',account:'zn8209190310',email:'-',phone:'15112349876',comScore:94,workScore:94,attitudeScore:84,ablityScore:98},
+        [{name:'张三',department:'总裁办',position:'总裁',account:'zn8209190310',email:'-',phone:'15112349876',comScore:94,workScore:94,attitudeScore:84,ablityScore:98},
           {name:'张三',department:'总裁办',position:'cfo',account:'zn8202412310',email:'-',phone:'151827490274',comScore:94,workScore:94,attitudeScore:84,ablityScore:98},
         ],
         [{name:'李四',department:'总裁办',position:'ceo',account:'zn8209190310',email:'-',phone:'15112349876',comScore:94,workScore:94,attitudeScore:84,ablityScore:98},
           {name:'张三',department:'总裁办',position:'cfo',account:'zn8202412310',email:'-',phone:'151827490274',comScore:94,workScore:94,attitudeScore:84,ablityScore:98},
         ],
-        [],
-        [{name:'郭江富',department:'总裁办',position:'ceo',account:'zn8209190310',email:'-',phone:'15112349876',comScore:94,workScore:94,attitudeScore:84,ablityScore:98},
-          {name:'张三',department:'总裁办',position:'cfo',account:'zn8202412310',email:'-',phone:'151827490274',comScore:94,workScore:94,attitudeScore:84,ablityScore:98},
+        [{name:'马一',department:'技术2部',position:'架构师',account:'jd43432093245',email:'-',phone:'154134  349876',comScore:94,workScore:94,attitudeScore:84,ablityScore:98}],
+        [{name:'张一',department:'技术1部',position:'架构师',account:'zn8203442',email:'-',phone:'1312349456',comScore:94,workScore:94,attitudeScore:84,ablityScore:98},
+          {name:'张二',department:'技术1部',position:'前端部员',account:'zn820255454',email:'-',phone:'152827490274',comScore:94,workScore:94,attitudeScore:84,ablityScore:98},
+          {name:'张三',department:'技术1部',position:'前端部员',account:'zn820255454',email:'-',phone:'152827490274',comScore:94,workScore:94,attitudeScore:84,ablityScore:98},
+          {name:'张四',department:'技术1部',position:'前端部员',account:'zn820255454',email:'-',phone:'152827490274',comScore:94,workScore:94,attitudeScore:84,ablityScore:98},
+          {name:'张五',department:'技术1部',position:'后端部员',account:'zn820255454',email:'-',phone:'152827490274',comScore:94,workScore:94,attitudeScore:84,ablityScore:98},
+          {name:'张六',department:'技术1部',position:'后端部员',account:'zn820255454',email:'-',phone:'152827490274',comScore:94,workScore:94,attitudeScore:84,ablityScore:98},
+          {name:'王一',department:'技术1部',position:'后端部员',account:'zn820255454',email:'-',phone:'152827490274',comScore:94,workScore:94,attitudeScore:84,ablityScore:98},
+          {name:'王二',department:'技术1部',position:'后端部员',account:'zn820255454',email:'-',phone:'152827490274',comScore:94,workScore:94,attitudeScore:84,ablityScore:98},
         ]
       ]
     }
@@ -146,11 +179,14 @@ export default {
     this.getPeople();
   },
   methods:{
+    addPeople(){
+      this.ready = true;
+      this.dialogFormVisible = false
+    },
     addEmployee(){
       this.dialogFormVisible = true;
     },
     changeDepartment(id){
-      console.log("进入changgeDepartment"+id);
       this.curDepartment = id;
       this.getPeople();
     },
@@ -162,6 +198,12 @@ export default {
     },
     goDetail(){
       this.$router.push("/peopleDetail")
+    },
+    search(){
+      console.log("进入search函数")
+      if (this.form.name == 'zn1234567')
+        this.searchSuccess = true;
+
     }
   }
 }
@@ -255,7 +297,7 @@ export default {
 .right-top{
   width: 100%;
   height: 50px;
-  background-color: pink;
+  background-color: #73767e;
   display: flex;
   justify-content: right;
   align-items: center;
@@ -280,7 +322,8 @@ export default {
 .search{
   display: flex;
   justify-content: center;
-  margin-left: 900px;
+  margin-left: 400px;
+  margin-right: 50px;
 }
 .search input{
   width: 200px;
@@ -415,5 +458,20 @@ th button{
   color: white;
   font-size: 20px;
 
+}
+.list-head-2{
+
+  background-color: #fff;
+  opacity: 0.5;
+  padding: 0 20px;
+  /*width: 800px;*/
+  width: 1220px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.list-head-2 th{
+  flex: 1;
 }
 </style>

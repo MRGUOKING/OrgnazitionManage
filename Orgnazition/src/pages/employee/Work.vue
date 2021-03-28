@@ -1,15 +1,16 @@
 <template>
 <div class="work-container">
-  <div class="company-message"><p style="margin-right: 20px">当前入职公司: </p> 今目标</div>
+  <div class="company-message"><p style="margin-right: 20px">当前入职公司: </p> 代码里找方向</div>
   <div style="width: 100%;background-color:#545f66;text-align: center">
     <el-calendar style="margin: 0 auto;">
       <!-- 这里使用的是 2.5 slot 语法，对于新项目请使用 2.6 slot 语法-->
       <template
         slot="dateCell"
         slot-scope="{date, data}">
-        <p :class="data.isSelected ? 'is-selected' : ''">
-          {{ data.day.split('-').slice(1).join('-') }} {{ data.isSelected ? '✔️' : ''}}
-        </p>
+        <div :class="isSelected(data.day.split('-').slice(1).join('-')) ? 'is-selected' : ''">
+          {{ data.day.split('-').slice(1).join('-') }}
+          <div style="margin-top: 20px">{{ isSelected(data.day.split('-').slice(1).join('-')) ? '✔️' : ''}}</div>
+        </div>
       </template>
     </el-calendar>
   </div>
@@ -37,7 +38,7 @@
         <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
       </div>
     </el-dialog>
-    <el-button type="primary" style="margin-right: 180px">打卡</el-button>
+    <el-button type="primary" style="margin-right: 180px" @click="daka">打卡</el-button>
   </div>
   <div class="things-container">
     <el-card class="box-card">
@@ -50,7 +51,9 @@
       </div>
     </el-card>
   </div>
-  <div style="width: 100%;text-align: right;margin-top: 10px">  <el-button type="danger">退出该公司</el-button></div>
+  <div style="width: 100%;text-align: right;margin-top: 10px">  <template>
+    <el-button type="danger" @click="open">退出该公司</el-button>
+  </template></div>
 
 </div>
 </template>
@@ -117,7 +120,42 @@ export default {
       },
       value1: '',
       value2: '',
+      selected:['03-01','03-02','03-03','03-04','03-05','03-08','03-09','03-10','03-11','03-12','03-14','03-15','03-16',
+        '03-17','03-18','03-19','03-22','03-23','03-24','03-25','03-26','03-29']
     };
+  },
+  methods:{
+    daka(){
+      this.selected.push('03-30');
+      this.$message({
+        message: '打卡成功!',
+        type: 'success'
+      });
+    },
+    isSelected(value){
+      for(let i =0;i<this.selected.length;i++){
+        if (this.selected[i] == value)
+          return true;
+      }
+      return false;
+    },
+    open() {
+      this.$confirm('确定退出该公司？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$message({
+          type: 'success',
+          message: '退出成功!该公司无法继续对您进行评价'
+        });
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消退出'
+        });
+      });
+    }
   }
 }
 </script>
@@ -143,5 +181,12 @@ export default {
   /*background-color: pink;*/
   font-size: 20px;
   font-weight: 900;
+}
+.is-selected {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #1989FA;
 }
 </style>

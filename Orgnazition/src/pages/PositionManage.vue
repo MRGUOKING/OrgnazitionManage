@@ -105,10 +105,10 @@ export default {
         num:0
       },
       positions:[
-        [{name:'ceo',num:2},{name:'总经理',num:1}],
-        [{name:'总经理',num:1}],
+        [{name:'总裁',num:1},{name:'总裁秘书',num:1}],
+        [{name:'人事总监',num:1},{name:'人事经理',num:1},{name:'人事总管',num:1},],
         [],
-        [{name:'架构师',num:2}]
+        [{name:'架构师',num:2},{name:'前端开发员工',num:8},{name:'后端开发员工',num:10}]
       ],
     }
   },
@@ -237,7 +237,7 @@ export default {
 .right-top{
   width: 100%;
   height: 50px;
-  background-color: pink;
+  background-color: #73767e;
   display: flex;
   justify-content: right;
   align-items: center;

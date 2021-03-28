@@ -2,6 +2,20 @@
 <div class="message-container">
   <div class="avatar-container">
     <img src="../images/header.jpg" alt="" class="avatar">
+    <el-upload
+      style="transform: translateY(90px);margin-left: 20px"
+      class="upload-demo"
+      action="https://jsonplaceholder.typicode.com/posts/"
+      :on-preview="handlePreview"
+      :on-remove="handleRemove"
+      :before-remove="beforeRemove"
+      multiple
+      :limit="3"
+      :on-exceed="handleExceed"
+      :file-list="fileList">
+      <el-button size="small" type="primary">更换头像</el-button>
+      <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+    </el-upload>
   </div>
   <div class="message-detail">
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" style="padding-bottom: 50px">
@@ -9,19 +23,19 @@
         <el-input v-model="ruleForm.name"></el-input>
       </el-form-item>
       <el-form-item label="年龄" prop="age">
-        <el-input v-model="ruleForm.name"></el-input>
+        <el-input v-model="ruleForm.age"></el-input>
       </el-form-item>
       <el-form-item label="性别" prop="sex">
-        <el-radio-group v-model="ruleForm.resource">
+        <el-radio-group v-model="ruleForm.sex">
           <el-radio label="男"></el-radio>
           <el-radio label="女"></el-radio>
         </el-radio-group>
       </el-form-item>
       <el-form-item label="号码" prop="photo">
-        <el-input v-model="ruleForm.name"></el-input>
+        <el-input v-model="ruleForm.photo"></el-input>
       </el-form-item>
       <el-form-item label="邮箱" prop="email">
-        <el-input v-model="ruleForm.name"></el-input>
+        <el-input v-model="ruleForm.email"></el-input>
       </el-form-item>
 
 <!--      <el-form-item label="活动区域" prop="region">-->
@@ -30,7 +44,7 @@
 <!--          <el-option label="区域二" value="beijing"></el-option>-->
 <!--        </el-select>-->
 <!--      </el-form-item>-->
-      <el-form-item label="出生日期" required>
+      <el-form-item label="出生日期">
         <el-col :span="11">
           <el-form-item prop="date1">
             <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;"></el-date-picker>
@@ -38,7 +52,12 @@
         </el-col>
       </el-form-item>
       <el-form-item label="个人简介" prop="jianjie">
-        <el-input type="textarea" v-model="ruleForm.desc"></el-input>
+        <el-input
+          type="textarea"
+          :rows="4"
+          placeholder="请输入内容"
+          v-model="ruleForm.jianjie">
+        </el-input>
       </el-form-item>
       <el-form-item label="公开" prop="delivery" style="margin-left: 500px;width: 100px">
         <el-switch v-model="ruleForm.delivery"></el-switch>
@@ -58,38 +77,19 @@ export default {
   data() {
     return {
       ruleForm: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
+        jianjie:'我是发挥杜甫',
+        name: '郭江富',
+        age:26,
+        sex:'女',
+        photo:13144738973,
+        email:'4273284237@qq.com',
+        date1:'2021-03-09',
         delivery: false,
         type: [],
         resource: '',
         desc: ''
       },
       rules: {
-        name: [
-          { required: true, message: '请输入活动名称', trigger: 'blur' },
-          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-        ],
-        region: [
-          { required: true, message: '请选择活动区域', trigger: 'change' }
-        ],
-        date1: [
-          { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
-        ],
-        date2: [
-          { type: 'date', required: true, message: '请选择时间', trigger: 'change' }
-        ],
-        type: [
-          { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
-        ],
-        resource: [
-          { required: true, message: '请选择活动资源', trigger: 'change' }
-        ],
-        desc: [
-          { required: true, message: '请填写活动形式', trigger: 'blur' }
-        ]
       }
     };
   },

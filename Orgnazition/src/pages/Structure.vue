@@ -174,15 +174,16 @@ export default {
       curPeople:[],
       curDepartment:0,
       people:[
-        [{name:'郭江富',sex:'男',department:'总裁办',position:'ceo',account:'zn8209190310',email:'-',phone:'15112349876'},
-          {name:'张三',sex:'男',department:'总裁办',position:'cfo',account:'zn8202412310',email:'-',phone:'151827490274'},
+        [{name:'张三',sex:'男',department:'总裁办',position:'总裁',account:'zn8209190310',email:'4934834@123.com',phone:'15112349876'},
+          {name:'李四',sex:'男',department:'总裁办',position:'总裁办秘书',account:'zn834348394',email:'34434438@qq.com',phone:'12345290274'},
           ],
-        [{name:'李四',sex:'男',department:'总裁办',position:'ceo',account:'zn8209190310',email:'-',phone:'15112349876'},
-          {name:'张三',sex:'男',department:'总裁办',position:'cfo',account:'zn8202412310',email:'-',phone:'151827490274'},
+        [{name:'郭江富',sex:'男',department:'人事部',position:'人事总监',account:'zn48394834',email:'48344834@qq.com',phone:'13812349876'},
+          {name:'马慧',sex:'女',department:'人事部',position:'人事经理',account:'zn4258032534',email:'43443438@123.com',phone:'194582990274'},
+          {name:'马俊龙',sex:'男',department:'人事部',position:'人事总管',account:'zn4253892432',email:'4434u343@123.com',phone:'191827490274'},
         ],
         [],
-        [{name:'郭江富',sex:'男',department:'总裁办',position:'ceo',account:'zn8209190310',email:'-',phone:'15112349876'},
-          {name:'张三',sex:'男',department:'总裁办',position:'cfo',account:'zn8202412310',email:'-',phone:'151827490274'},
+        [{name:'郭江富',sex:'男',department:'总裁办',position:'ceo',account:'zn8209190310',email:'2387473473@qq.com',phone:'1232512349876'},
+          {name:'张三',sex:'男',department:'总裁办',position:'cfo',account:'zn8202412310',email:'-',phone:'1892327490274'},
         ]
       ]
     }
@@ -316,7 +317,7 @@ export default {
 .right-top{
   width: 100%;
   height: 50px;
-  background-color: pink;
+  background-color: #73767e;
   display: flex;
   justify-content: start;
   align-items: center;

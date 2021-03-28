@@ -3,23 +3,23 @@
   <section class="person-message">
 
 
-<!--工作经历-->
+    <!--工作经历-->
     <article class="person-title">
       <p>工作评价</p>
     </article>
     <div class="three-types">
       <ul class="types-container">
-        <li class="active">公司1</li>
-        <li>公司2</li>
+        <li :class="company_1 ? 'active' : ''" @click="changeCompany(1)">公司1</li>
+        <li :class="!company_1 ? 'active' : ''" @click="changeCompany(2)">公司2</li>
         <li>公司3</li>
       </ul>
     </div>
     <div class="check-container">
-<!--      左侧评价栏-->
-      <article class="check-left">
+      <!--      左侧评价栏-->
+      <article class="check-left" v-show="company_1">
         <el-col :span="12" style="width: 100%">
           <el-menu
-            default-active="1-1"
+            default-active="1"
             class="el-menu-vertical-demo"
             background-color="#545c64"
             text-color="#fff"
@@ -29,24 +29,49 @@
                 <i class="el-icon-location"></i>
                 <span>今目标</span>
               </template>
-              <el-menu-item index="1-1">工作时效</el-menu-item>
-              <el-menu-item index="1-2">工作态度</el-menu-item>
+              <el-menu-item index="1-1" @click="change('work')">工作任务</el-menu-item>
+              <el-menu-item index="1-2" @click="change('attitude')">工作态度</el-menu-item>
               <el-submenu index="2">
-                <template slot="title" style="width: 300px">工作能力</template>
-                <el-menu-item index="1-4-1" @click="changeAbility">解决问题能力</el-menu-item>
+                <template slot="title" style="width: 300px" @click="changeAbility" >工作能力</template>
+                <el-menu-item index="1-4-1" @click="change('ability')"  >解决问题能力</el-menu-item>
               </el-submenu>
-              <el-menu-item index="1-3">工作评价</el-menu-item>
-              <el-menu-item index="1-4">重大过失</el-menu-item>
+              <el-menu-item index="1-3" @click="change('work_comment')">工作评价</el-menu-item>
+              <el-menu-item index="1-4" @click="change('comment_error')">重大过失</el-menu-item>
             </el-submenu>
           </el-menu>
         </el-col>
       </article>
-<!--      右侧图标-->
-      <article class="check-right" v-show="comment">
+      <article class="check-left" v-show = "!company_1">
+        <el-col :span="12" style="width: 100%">
+          <el-menu
+            default-active="1"
+            class="el-menu-vertical-demo"
+            background-color="#545c64"
+            text-color="#fff"
+            active-text-color="#ffd04b">
+            <el-submenu index="1">
+              <template slot="title">
+                <i class="el-icon-location"></i>
+                <span>今目标</span>
+              </template>
+              <el-menu-item index="1-1" @click="change('work')">工作任务</el-menu-item>
+              <el-menu-item index="1-2" @click="change('attitude')">工作态度</el-menu-item>
+              <el-submenu index="2">
+                <template slot="title" style="width: 300px" @click="changeAbility" >工作能力</template>
+                <el-menu-item index="1-4-1" @click="change('ability')"  >个人能力</el-menu-item>
+              </el-submenu>
+              <el-menu-item index="1-3" @click="change('work_comment')">工作评价</el-menu-item>
+              <el-menu-item index="1-4" @click="change('comment_error')">重大过失</el-menu-item>
+            </el-submenu>
+          </el-menu>
+        </el-col>
+      </article>
+      <!--      右侧图标-->
+      <article  class="check-right" v-show="comment">
 
         <div id="test" style="width: 600px;height: 400px" ></div>
         <div class="conlusion">
-         <div class="conlusion-head"><p>总结</p></div>
+          <div class="conlusion-head"><p>总结</p></div>
           <div class="conlusion-item">
             <li class="conlusion-item-container">
               <p>工作任务:</p>
@@ -66,9 +91,118 @@
           </div>
         </div>
       </article >
-      <article class="check-right" v-show="ability">
-        <div id="ability" style="width: 600px;height: 400px"></div>
+      <article  class="check-right" v-show="work">
+        <div id="work" style="width: 600px;height: 400px"></div>
+        <div class="conlusion">
+          <div class="conlusion-head"><p>总结</p></div>
+          <div class="conlusion-item">
+            <li class="conlusion-item-container">
+              <p>横向比较:</p>
+              <p>在19年到21年入职的三年中，每月的工作任务得分都在一个较高的水平，比较稳定</p>
+            </li>
+            <li class="conlusion-item-container">
+              <p>纵向比较:</p>
+              <p>该员工从19年到21年,工作任务每年的平均得分都在稳定增长，处于较高水平</p>
+            </li>
+            <li class="conlusion-item-container">
+              <p>结论:</p>
+              <p>改员工在本公司近三年的工作任务得分都较高且稳定，高于绝大部分员工</p>
+            </li>
+          </div>
+        </div>
       </article>
+      <article  class="check-right" v-show="attitude">
+        <div id="attitude" style="width: 600px;height: 400px"></div>
+        <div class="conlusion">
+          <div class="conlusion-head"><p>总结</p></div>
+          <div class="conlusion-item">
+            <li class="conlusion-item-container">
+              <p>横向比较:</p>
+              <p>在19年到21年入职的三年中，每月的工作任务得分都在一个较高的水平，比较稳定</p>
+            </li>
+            <li class="conlusion-item-container">
+              <p>纵向比较:</p>
+              <p>该员工从19年到21年,工作任务每年的平均得分都在稳定增长，处于较高水平</p>
+            </li>
+            <li class="conlusion-item-container">
+              <p>结论:</p>
+              <p>改员工在本公司近三年的工作任务得分都较高且稳定，高于绝大部分员工</p>
+            </li>
+          </div>
+        </div>
+      </article>
+      <article  class="check-right" v-show="ability">
+        <div id="ability" style="width: 600px;height: 400px"></div>
+        <div class="conlusion">
+          <div class="conlusion-head"><p>总结</p></div>
+          <div class="conlusion-item">
+            <li class="conlusion-item-container">
+              <p>横向比较:</p>
+              <p>在19年到21年入职的三年中，每月的工作任务得分都在一个较高的水平，比较稳定</p>
+            </li>
+            <li class="conlusion-item-container">
+              <p>纵向比较:</p>
+              <p>该员工从19年到21年,工作任务每年的平均得分都在稳定增长，处于较高水平</p>
+            </li>
+            <li class="conlusion-item-container">
+              <p>结论:</p>
+              <p>改员工在本公司近三年的工作任务得分都较高且稳定，高于绝大部分员工</p>
+            </li>
+          </div>
+        </div>
+      </article>
+      <article  class="comment-error" v-show="work_comment">
+        <div style="width: 600px;height: 400px;margin-left: 30px;padding: 10px;background-color:#fff;">
+          <el-collapse v-model="activeName" accordion>
+            <el-collapse-item title="2019-2-7" name="1">
+              <div>好人一生平安；</div>
+            </el-collapse-item>
+            <el-collapse-item title="2019-8-19" name="2">
+              <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
+              <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
+            </el-collapse-item>
+            <el-collapse-item title="2020-12-7" name="3">
+              <div style="color: #f56c6c">涉及公司敏感信息，详细内容未公开</div>
+            </el-collapse-item>
+          </el-collapse>
+        </div>
+
+        <div class="conlusion">
+          <div class="conlusion-head"><p>总结</p></div>
+          <div class="conlusion-item">
+            <li class="conlusion-item-container">
+              <p>在19年到21年，共犯了三个重大错误，平均每年犯一个错误，高于平均水平</p>
+            </li>
+          </div>
+        </div>
+      </article>
+      <article  class="comment-error" v-show="comment_error">
+        <div style="width: 600px;height: 400px;margin-left: 30px;padding: 10px;background-color:#fff;">
+          <el-collapse v-model="activeName" accordion>
+            <el-collapse-item title="2019-2-7" name="1">
+              <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
+              <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+            </el-collapse-item>
+            <el-collapse-item title="2019-8-19" name="2">
+              <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
+              <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
+            </el-collapse-item>
+            <el-collapse-item title="2020-12-7" name="3">
+              <div style="color: #f56c6c">涉及公司敏感信息，详细内容未公开</div>
+            </el-collapse-item>
+          </el-collapse>
+        </div>
+
+        <div class="conlusion">
+          <div class="conlusion-head"><p>总结</p></div>
+          <div class="conlusion-item">
+            <li class="conlusion-item-container">
+              <p>在19年到21年，共犯了三个重大错误，平均每年犯一个错误，高于平均水平</p>
+            </li>
+          </div>
+        </div>
+      </article>
+
     </div>
   </section>
 </div>
@@ -115,7 +249,9 @@ export default {
       };
 // 使用刚指定的配置项和数据显示图表。
       totalGradeChar.setOption(totalGrade);
-      let monthGradechar=this.$echarts.init(document.getElementById("ability"))
+      let monthGradechar=this.$echarts.init(document.getElementById("ability"));
+      let monthGradechar_1=this.$echarts.init(document.getElementById("work"));
+      let monthGradechar_2=this.$echarts.init(document.getElementById("attitude"));
       let monthGrade={
         title:{
           text: "每月评分"
@@ -184,18 +320,80 @@ export default {
         ]
       }
       monthGradechar.setOption(monthGrade)
+      monthGradechar_1.setOption(monthGrade)
+      monthGradechar_2.setOption(monthGrade)
+
+
     },
     changeAbility(){
       // this.$echarts.dispose(document.getElementById("test"))
       this.comment=false
       this.ability=true
 
+    },
+    change(type){
+      if(type == 'comment_error'){
+        this.comment_error = true;
+        this.comment = false;
+        this.work_comment = false;
+        this.ability = false;
+        this.attitude = false;
+        this.work = false;
+      }
+      else if(type == 'ability'){
+        this.comment_error = false;
+        this.comment = false;
+        this.work_comment = false;
+        this.ability = true;
+        this.attitude = false;
+        this.work = false;
+      }
+      else if(type == 'attitude'){
+        this.comment_error = false;
+        this.comment = false;
+        this.work_comment = false;
+        this.ability = false;
+        this.attitude = true;
+        this.work = false;
+      }
+      else if(type == 'work'){
+        this.comment_error = false;
+        this.comment = false;
+        this.work_comment = false;
+        this.ability = false;
+        this.attitude = false;
+        this.work = true;
+      }
+      if(type == 'work_comment'){
+        this.comment_error = false;
+        this.comment = false;
+        this.work_comment = true;
+        this.ability = false;
+        this.attitude = false;
+        this.work = false;
+      }
+    },
+    changeCompany(num){
+      if (num == 1){
+        this.company_1 = true;
+        this.company_2 = false;
+      }else{
+        this.company_1 = false;
+        this.company_2 = true;
+      }
     }
   },
   data(){
     return{
-      comment: true,
-      ability:false,
+      company_1:true,
+      company_2:false,
+      activeName: '1',
+      comment: true,  //总体
+      ability:false,  //能力
+      attitude: false,  //态度
+      work: false,  //任务
+      work_comment: false, //工作评价
+      comment_error:false,  //重大过失
       textarea:"你好你好你好"
     }
   },
@@ -392,5 +590,14 @@ th button{
   width: 100%;
   background-color: purple;
 
+}
+
+.comment-error{
+  width: 75%;
+  height: 100%;
+  background-color: pink;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>
