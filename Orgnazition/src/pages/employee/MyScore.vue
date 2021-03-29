@@ -27,7 +27,7 @@
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location"></i>
-                <span>今目标</span>
+                <span>代码里找方向</span>
               </template>
               <el-menu-item index="1-1" @click="change('work')">工作任务</el-menu-item>
               <el-menu-item index="1-2" @click="change('attitude')">工作态度</el-menu-item>
@@ -41,7 +41,8 @@
           </el-menu>
         </el-col>
       </article>
-      <article class="check-left" v-show = "!company_1">
+<!--      公司2的评价栏-->
+      <article class="check-left" v-if = "!company_1">
         <el-col :span="12" style="width: 100%">
           <el-menu
             default-active="1"
@@ -247,11 +248,6 @@ export default {
           },
         ],
       };
-// 使用刚指定的配置项和数据显示图表。
-      totalGradeChar.setOption(totalGrade);
-      let monthGradechar=this.$echarts.init(document.getElementById("ability"));
-      let monthGradechar_1=this.$echarts.init(document.getElementById("work"));
-      let monthGradechar_2=this.$echarts.init(document.getElementById("attitude"));
       let monthGrade={
         title:{
           text: "每月评分"
@@ -318,9 +314,148 @@ export default {
 
           },
         ]
-      }
+      };
+      let monthGrade2={
+        title:{
+          text: "每月评分"
+        },
+        legend: {
+          data: ["2019","2020","2021"],
+        },
+        grid:{
+          show:true,
+          backgroundColor :'transparent'
+        },
+        xAxis: {
+          type: "category",
+          data: ["1","2","3","4","5","6","7","8","9","10","11","12"],
+          name:"月份",
+          nameLocation:"end"
+        },
+        yAxis: {
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross'
+          },
+        },
+        dataZoom:[
+          {
+            id: 'dataZoomX',
+            type: 'inside',
+            xAxisIndex: [0],
+            filterMode: 'filter',
+            start:0,
+            end:100
+          },
+          {
+            id: 'dataZoomY',
+            type: 'slider',
+            yAxisIndex: [0],
+            filterMode: 'empty',
+            start:50,
+            end: 100
+          }
+        ],
+        series: [
+          {
+            type: "line",
+            name:"2019",
+            // stack: '总量',
+            data: [90,64,86,86,45,84,93,74,63,95,94,83],
+
+          },
+          {
+            type: "line",
+            name:"2020",
+            // stack: '总量',
+            data: [76,86,79,69,89,79,70,69,80,79,69,90],
+
+          },
+          {
+            type: "line",
+            name:"2021",
+            // stack: '总量',
+            data: [85,75,95,88,70,90,95,90,85,75,85,80],
+
+          },
+        ]
+      };
+      let monthGrade3={
+        title:{
+          text: "每月评分"
+        },
+        legend: {
+          data: ["2019","2020","2021"],
+        },
+        grid:{
+          show:true,
+          backgroundColor :'transparent'
+        },
+        xAxis: {
+          type: "category",
+          data: ["1","2","3","4","5","6","7","8","9","10","11","12"],
+          name:"月份",
+          nameLocation:"end"
+        },
+        yAxis: {
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross'
+          },
+        },
+        dataZoom:[
+          {
+            id: 'dataZoomX',
+            type: 'inside',
+            xAxisIndex: [0],
+            filterMode: 'filter',
+            start:0,
+            end:100
+          },
+          {
+            id: 'dataZoomY',
+            type: 'slider',
+            yAxisIndex: [0],
+            filterMode: 'empty',
+            start:50,
+            end: 100
+          }
+        ],
+        series: [
+          {
+            type: "line",
+            name:"2019",
+            // stack: '总量',
+            data: [90,80,85,70,85,90,87,76,88,95,85,95],
+
+          },
+          {
+            type: "line",
+            name:"2020",
+            // stack: '总量',
+            data: [80,90,85,80,75,95,74,95,80,90,75,90],
+
+          },
+          {
+            type: "line",
+            name:"2021",
+            // stack: '总量',
+            data: [85,75,95,88,70,90,95,90,85,75,85,80],
+
+          },
+        ]
+      };
+// 使用刚指定的配置项和数据显示图表。
+      let monthGradechar=this.$echarts.init(document.getElementById("ability"));
+      let monthGradechar_1=this.$echarts.init(document.getElementById("work"));
+      let monthGradechar_2=this.$echarts.init(document.getElementById("attitude"));
+      totalGradeChar.setOption(totalGrade);
       monthGradechar.setOption(monthGrade)
-      monthGradechar_1.setOption(monthGrade)
+      monthGradechar_1.setOption(monthGrade2)
       monthGradechar_2.setOption(monthGrade)
 
 
@@ -375,11 +510,129 @@ export default {
     },
     changeCompany(num){
       if (num == 1){
+        this.comment_error = false;
+        this.comment = true;
+        this.work_comment = false;
+        this.ability = false;
+        this.attitude = false;
+        this.work = false;
         this.company_1 = true;
         this.company_2 = false;
+        this.initChar();
       }else{
+        this.comment_error = false;
+        this.comment = true;
+        this.work_comment = false;
+        this.ability = false;
+        this.attitude = false;
+        this.work = false;
+        this.company_1 = true;
+        this.company_2 = false;
         this.company_1 = false;
         this.company_2 = true;
+        // 基于准备好的dom，初始化echarts实例
+        let totalGradeChar = this.$echarts.init(document.getElementById("test"));
+
+// 指定图表的配置项和数据
+        let totalGrade = {
+          title: {
+            text: "评分详情",
+          },
+          tooltip: {},
+          legend: {
+            data: ["该员工的分数","该公司的平均分","相关职位的平均分"],
+          },
+          xAxis: {
+            data: ["工作任务", "工作态度","工作能力"],
+          },
+          yAxis: {},
+          series: [
+            {
+              name: "该员工的分数",
+              type: "bar",
+              data: [53, 84,96],
+            },
+            {
+              name: "该公司的平均分",
+              type: "bar",
+              data: [75, 67,75],
+            },
+            {
+              name: "相关职位的平均分",
+              type: "bar",
+              data: [98, 56,87],
+            },
+          ],
+        };
+        //每月的数据
+        let monthGrade={
+          title:{
+            text: "每月评分"
+          },
+          legend: {
+            data: ["2020","2021"],
+          },
+          grid:{
+            show:true,
+            backgroundColor :'transparent'
+          },
+          xAxis: {
+            type: "category",
+            data: ["1","2","3","4","5","6","7","8","9","10","11","12"],
+            name:"月份",
+            nameLocation:"end"
+          },
+          yAxis: {
+          },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross'
+            },
+          },
+          dataZoom:[
+            {
+              id: 'dataZoomX',
+              type: 'inside',
+              xAxisIndex: [0],
+              filterMode: 'filter',
+              start:0,
+              end:100
+            },
+            {
+              id: 'dataZoomY',
+              type: 'slider',
+              yAxisIndex: [0],
+              filterMode: 'empty',
+              start:50,
+              end: 100
+            }
+          ],
+          series: [
+            {
+              type: "line",
+              name:"2020",
+              // stack: '总量',
+              data: [76,46,87,96,74,87,97,57,85,56,76,87],
+
+            },
+            {
+              type: "line",
+              name:"2021",
+              // stack: '总量',
+              data: [85,75,95,88,70,90,95,90,85,75,85,80],
+
+            },
+          ]
+        }
+// 使用刚指定的配置项和数据显示图表。
+        let monthGradechar=this.$echarts.init(document.getElementById("ability"));
+        let monthGradechar_1=this.$echarts.init(document.getElementById("work"));
+        let monthGradechar_2=this.$echarts.init(document.getElementById("attitude"));
+        totalGradeChar.setOption(totalGrade);
+        monthGradechar.setOption(monthGrade)
+        monthGradechar_1.setOption(monthGrade)
+        monthGradechar_2.setOption(monthGrade)
       }
     }
   },
