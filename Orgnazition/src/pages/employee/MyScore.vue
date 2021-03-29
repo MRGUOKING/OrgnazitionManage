@@ -766,7 +766,7 @@ th button{
 .check-right{
   width: 75%;
   height: 100%;
-  background-color: pink;
+  background-color: #ffffff;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -774,7 +774,7 @@ th button{
 .check-right-2{
   width: 75%;
   height: 100%;
-  background-color: pink;
+  background-color: #f5f6f7;
   display: flex;
   justify-content: center;
 }
@@ -816,7 +816,7 @@ th button{
   box-sizing: border-box;
   width: 40%;
   height: 500px;
-  background-color: purple;
+  background-color: #f5f6f7;
   padding: 20px;
 }
 
@@ -848,7 +848,7 @@ th button{
 .comment-error{
   width: 75%;
   height: 100%;
-  background-color: pink;
+  background-color: #ffffff;
   display: flex;
   justify-content: space-between;
   align-items: center;

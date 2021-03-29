@@ -61,7 +61,23 @@
             </template>
             <div style="display: flex;justify-content: flex-end;margin-top: 20px">
             <el-button type="primary">确认</el-button>
-            <el-button type="warning">申诉</el-button>
+            <el-button type="warning" @click="dialogFormVisible=true">申诉</el-button>
+              <el-dialog title="申诉" :visible.sync="dialogFormVisible">
+                <el-form>
+                  <el-form-item label="申诉原因:" >
+                    <el-input
+                      type="textarea"
+                      :rows="4"
+                      placeholder="请输入内容"
+                      v-model="reason">
+                    </el-input>
+                  </el-form-item>
+                </el-form>
+                <div slot="footer" class="dialog-footer">
+                  <el-button @click="dialogFormVisible = false">取 消</el-button>
+                  <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+                </div>
+              </el-dialog>
             </div>
           </div>
         </div>
@@ -76,6 +92,8 @@ export default {
   name: "MyMessage",
   data(){
     return{
+      reason:'',
+      dialogFormVisible:false,
       activeNames:'1',
       textarea:'',
       tableData: [{

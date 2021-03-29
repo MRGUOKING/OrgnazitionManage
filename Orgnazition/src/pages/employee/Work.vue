@@ -16,7 +16,7 @@
   </div>
   <div class="daka">
     <el-button type="primary"  @click="dialogFormVisible = true" style="margin-right: 20px">新增任务</el-button>
-    <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+    <el-dialog title="新增任务" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="任务详情" :label-width="formLabelWidth">
           <el-input v-model="form.name" autocomplete="off"></el-input>

@@ -22,19 +22,19 @@
           <el-menu-item index="3-1">
             工作任务
             <template>
-              <el-input-number v-model="this.$data.num1" @change="handleChange" :min="1" :max="100" label="描述文字" size="mini"></el-input-number>
+              <el-input-number v-model="this.$data.num1" :min="1" :max="100" label="描述文字" size="mini"></el-input-number>
             </template>
           </el-menu-item>
           <el-menu-item index="3-2">
             工作态度
             <template>
-              <el-input-number v-model="this.$data.num2" @change="handleChange" :min="1" :max="100" label="描述文字" size="mini"></el-input-number>
+              <el-input-number v-model="this.$data.num2"  :min="1" :max="100" label="描述文字" size="mini"></el-input-number>
             </template>
           </el-menu-item>
           <el-menu-item index="3-3">
             工作能力
             <template>
-              <el-input-number v-model="this.$data.num3" @change="handleChange" :min="1" :max="100" label="描述文字" size="mini"></el-input-number>
+              <el-input-number v-model="this.$data.num3" :min="1" :max="100" label="描述文字" size="mini"></el-input-number>
             </template>
           </el-menu-item>
         </el-submenu>
@@ -49,7 +49,7 @@
       </div>
     </article>
     <article class="employee-list">
-      <ul class="employee-item" @click="detail" v-for="(item,i) in this.$data.people">
+      <ul class="employee-item" @click="detail" v-for="(item,i) in people">
         <li class="employee-avatar">
           <img :src="item.img" alt="">
         </li>
@@ -89,12 +89,12 @@ export default {
         num2:30,
         num3:30,
         people:[
-          {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江富',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
-          {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
-          {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江富',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
-          {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江富',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
-          {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江富',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
-          {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江富',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
+          {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'赵一',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
+          {img:'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3124319389,728293678&fm=26&gp=0.jpg',name:'赵二',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
+          {img:'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1704485415,89394472&fm=26&gp=0.jpg',name:'孙一',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
+          {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'孙二',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
+          {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'孙三',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
+          {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'魏一',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
         ],
         grades:[
           {
@@ -345,7 +345,10 @@ export default {
   methods:{
     search(){
 
-      this.people = [{img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江富',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'}];
+      this.people = [{img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江富',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
+        {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江富',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
+        {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江富',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
+        {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江富',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},];
       this.grades = [{
         title: {
           text: "综合评分",
@@ -386,7 +389,128 @@ export default {
             data: [90, 80,95,85],
           },
         ],
+      },{
+        title: {
+          text: "综合评分",
+        },
+        grid:{
+          top:"10%",
+          bottom:30,
+          height:"65%"
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "shadow"
+          }
+        },
+        legend: {},
+        xAxis: {
+          data: ["综合评分","工作任务", "工作态度","工作能力"],
+        },
+        yAxis: [
+          {
+            type: 'value',
+            axisLabel: {
+              show: true,
+              interval: 'auto',
+              formatter: '{value} %'
+            },
+            show: true
+          }
+        ],
+
+        series: [
+          {
+            name: "与同岗位员工相比",
+            type: "bar",
+            barWidth:"40",
+            showBackground: true,
+            data: [90, 80,95,85],
+          },
+        ],
+      },{
+        title: {
+          text: "综合评分",
+        },
+        grid:{
+          top:"10%",
+          bottom:30,
+          height:"65%"
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "shadow"
+          }
+        },
+        legend: {},
+        xAxis: {
+          data: ["综合评分","工作任务", "工作态度","工作能力"],
+        },
+        yAxis: [
+          {
+            type: 'value',
+            axisLabel: {
+              show: true,
+              interval: 'auto',
+              formatter: '{value} %'
+            },
+            show: true
+          }
+        ],
+
+        series: [
+          {
+            name: "与同岗位员工相比",
+            type: "bar",
+            barWidth:"40",
+            showBackground: true,
+            data: [90, 80,95,85],
+          },
+        ],
+      },{
+        title: {
+          text: "综合评分",
+        },
+        grid:{
+          top:"10%",
+          bottom:30,
+          height:"65%"
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "shadow"
+          }
+        },
+        legend: {},
+        xAxis: {
+          data: ["综合评分","工作任务", "工作态度","工作能力"],
+        },
+        yAxis: [
+          {
+            type: 'value',
+            axisLabel: {
+              show: true,
+              interval: 'auto',
+              formatter: '{value} %'
+            },
+            show: true
+          }
+        ],
+
+        series: [
+          {
+            name: "与同岗位员工相比",
+            type: "bar",
+            barWidth:"40",
+            showBackground: true,
+            data: [90, 80,95,85],
+          },
+        ],
       }];
+      this.initChar();
     },
     detail(){
       this.$router.push('/detail');
@@ -560,9 +684,6 @@ export default {
       // let gradeChar3 = this.$echarts.init(document.getElementById("test3"));
       // let gradeChar4 = this.$echarts.init(document.getElementById("test4"));
       let Nodes = document.querySelectorAll(".graph");
-      console.log("nodes");
-      console.log(Nodes)
-
       for(let i =0;i< Nodes.length;i++){
         let gradeChar = this.$echarts.init(Nodes[i]);
         gradeChar.setOption(this.grades[i]);
@@ -570,15 +691,23 @@ export default {
       }
 //      给图片渲染数据
 // // 使用刚指定的配置项和数据显示图表。
-      gradeChar1.setOption(grade1);
-      gradeChar2.setOption(grade2);
-      gradeChar3.setOption(grade3);
-      gradeChar4.setOption(grade4);
+//       gradeChar1.setOption(grade1);
+//       gradeChar2.setOption(grade2);
+//       gradeChar3.setOption(grade3);
+//       gradeChar4.setOption(grade4);
 
     },
     handleSelect(key, keyPath) {
-      this.people.splice(0,3);
-      this.grades.splice(0,3);
+      let left =0;
+      let right =5;
+      while( left < right){
+        let temp = this.people[left];
+        this.$set(this.people,left,this.people[right]);
+        this.$set(this.people,right,temp);
+        left++;
+        right--;
+      }
+      this.initChar();
     }
   },
   mounted() {
