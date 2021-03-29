@@ -89,12 +89,12 @@ export default {
         num2:30,
         num3:30,
         people:[
-          {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'赵一',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
-          {img:'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3124319389,728293678&fm=26&gp=0.jpg',name:'赵二',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
-          {img:'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1704485415,89394472&fm=26&gp=0.jpg',name:'孙一',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
-          {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'孙二',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
-          {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'孙三',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
-          {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'魏一',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
+          {img:'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3630447559,1831882919&fm=26&gp=0.jpg',name:'张学恺',sex:'男',age:27,work_age:'五年',education:'本科',school:'中南大学',skill:'JAVA,C++',position:'后端开发'},
+          {img:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1082108252,4285086463&fm=26&gp=0.jpg',name:'赵铭琪',sex:'男',age:29,work_age:'三年',education:'研究生',school:'湖南大学',skill:'JAVA,Python',position:'后端开发'},
+          {img:'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1959427428,848046812&fm=26&gp=0.jpg',name:'马瑭宇',sex:'男',age:26,work_age:'四年',education:'本科',school:'东北大学',skill:'Vue,React',position:'前端开发'},
+          {img:'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2541356622,4269613560&fm=26&gp=0.jpg',name:'孙炫辰',sex:'男',age:29,work_age:'三年',education:'研究生',school:'同济大学',skill:'深度学习',position:'算法工程师'},
+          {img:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.yao51.com%2Fjiankangtuku%2Fhhoppkkgv.jpeg&refer=http%3A%2F%2Fimg.yao51.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1619606429&t=7a6bfb16cce8de2e561617d626cb706c',name:'吴风佑',sex:'男',age:28,work_age:'二年',education:'研究生',school:'浙江大学',skill:'机器学习，NLP',position:'算法工程师'},
+          {img:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg1.lukou.com%2Fstatic%2Fp%2Fblog%2Flarge%2F0010%2F72%2F36%2F85%2F10723685.jpg&refer=http%3A%2F%2Fimg1.lukou.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1619606349&t=80bf13af1dab66afd96326e5768f18c0',name:'魏晓宸',sex:'女',age:25,work_age:'三年',education:'本科',school:'湖南师范大学',skill:'Vue,React',position:'前端开发'},
         ],
         grades:[
           {
