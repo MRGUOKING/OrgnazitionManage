@@ -55,20 +55,20 @@
       <tbody>
       <tr class="list-head">
         <th>本科</th>
-        <th>2019/9</th>
-        <th>2023/6</th>
+        <th>2015/9</th>
+        <th>2019/6</th>
         <!--              <th>99%</th>-->
-        <th>中南大学</th>
+        <th>A大学</th>
         <!--              <th>110%</th>-->
         <th>计算机学院</th>
         <th>软件工程</th>
       </tr>
       <tr class="list-head">
         <th>硕士</th>
-        <th>2023/9</th>
-        <th>2025/6</th>
+        <th>2019/9</th>
+        <th>2023/6</th>
         <!--              <th>99%</th>-->
-        <th>清华大学</th>
+        <th>B大学</th>
         <!--              <th>110%</th>-->
         <th>计算机学院</th>
         <th>软件工程</th>
@@ -356,7 +356,7 @@ th button{
 .check-right{
   width: 75%;
   height: 100%;
-  background-color: pink;
+  background-color: #ffffff;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -364,7 +364,7 @@ th button{
 .check-right-2{
   width: 75%;
   height: 100%;
-  background-color: pink;
+  background-color: #ffffff;
   display: flex;
   justify-content: center;
 }
@@ -406,7 +406,7 @@ th button{
   box-sizing: border-box;
   width: 40%;
   height: 500px;
-  background-color: purple;
+  background-color: #f5f6f7;
   padding: 20px;
 }
 
