@@ -155,7 +155,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="权重给分" :label-width="formLabelWidth">
-          <el-input-number v-model="form.score" :min="1" :max="10" label="描述文字" size="min"></el-input-number>
+          <el-input-number v-model="form.score" :min="1" :max="100" label="描述文字" size="min"></el-input-number>
         </el-form-item>
         <el-switch
           style="margin-left: 50px"

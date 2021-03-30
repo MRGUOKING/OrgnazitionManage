@@ -4,16 +4,16 @@
 <!--    标题-->
     <article class="title-container">
       <div class="title-container-div">
-        <p>今目标</p>
+        <p>代码里找方向</p>
       </div>
     </article>
 <!--    内容-->
     <article class="input-container">
 <!--      登录方式-->
       <section class="login-type-container">
-        <div>扫码登录</div>
+        <div>员工登录</div>
         <div>|</div>
-        <div>账号登录</div>
+        <div>管理员登录</div>
       </section>
       <section class="login-input-container">
         <div>
@@ -22,7 +22,7 @@
         </div>
         <div>
           <p>密码:</p>
-          <input type="text"></div>
+          <input type="password"></div>
       </section>
       <!--    忘记密码-->
       <article class="forget-container">

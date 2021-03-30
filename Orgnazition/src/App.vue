@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-<!--    <EmplyoeeHead/>-->
-<!--    <SystemManage/>-->
-    <Head v-show="$route.meta.noHead == null"/>
+    <EmplyoeeHead/>
+<!--    <SystemMana ge v-show="$route.meta.noHead  == null"/>-->
+<!--    <Head v-show="$route.meta.noHead == null"/>-->
     <router-view/>
   </div>
 </template>

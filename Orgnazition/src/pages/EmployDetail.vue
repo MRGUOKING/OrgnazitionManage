@@ -22,9 +22,9 @@
       </thead>
       <tbody>
       <tr class="list-head">
-        <th>郭江富</th>
+        <th>张学凯</th>
         <th>男</th>
-        <th>GUo123</th>
+        <th>zn123789</th>
         <!--              <th>99%</th>-->
         <th>15055312615</th>
         <!--              <th>110%</th>-->
@@ -82,17 +82,17 @@
     </article>
     <div class="three-types">
       <ul class="types-container">
-        <li class="active">公司1</li>
-        <li>公司2</li>
-        <li>公司3</li>
+        <li :class="company_1 ? 'active' : ''" @click="changeCompany(1)">公司A</li>
+        <li :class="!company_1 ? 'active' : ''" @click="changeCompany(2)">公司B</li>
+        <li>公司C</li>
       </ul>
     </div>
     <div class="check-container">
-<!--      左侧评价栏-->
-      <article class="check-left">
+      <!--      左侧评价栏-->
+      <article class="check-left" v-show="company_1">
         <el-col :span="12" style="width: 100%">
           <el-menu
-            default-active="1-1"
+            default-active="1"
             class="el-menu-vertical-demo"
             background-color="#545c64"
             text-color="#fff"
@@ -100,93 +100,169 @@
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location"></i>
-                <span>今目标</span>
+                <span>公司A</span>
               </template>
-              <el-menu-item index="1-1">工作时效</el-menu-item>
-              <el-menu-item index="1-2">工作态度</el-menu-item>
+              <el-menu-item index="1-1" @click="change('work')">工作任务</el-menu-item>
+              <el-menu-item index="1-2" @click="change('attitude')">工作态度</el-menu-item>
               <el-submenu index="2">
-                <template slot="title" style="width: 300px">工作能力</template>
-                <el-menu-item index="1-4-1">解决问题能力</el-menu-item>
+                <template slot="title" style="width: 300px" @click="changeAbility" >工作能力</template>
+                <el-menu-item index="1-4-1" @click="change('ability')"  >解决问题能力</el-menu-item>
               </el-submenu>
-              <el-menu-item index="1-3">工作评价</el-menu-item>
-              <el-menu-item index="1-4">重大过失</el-menu-item>
+              <el-menu-item index="1-3" @click="change('work_comment')">工作评价</el-menu-item>
+              <el-menu-item index="1-4" @click="change('comment_error')">重大过失</el-menu-item>
             </el-submenu>
           </el-menu>
         </el-col>
       </article>
-<!--      右侧图标-->
-      <article class="check-right" v-show="!comment">
-        <div id="test" style="width: 600px;height: 400px"></div>
+      <!--      公司2的评价栏-->
+      <article class="check-left" v-if = "!company_1">
+        <el-col :span="12" style="width: 100%">
+          <el-menu
+            default-active="1"
+            class="el-menu-vertical-demo"
+            background-color="#545c64"
+            text-color="#fff"
+            active-text-color="#ffd04b">
+            <el-submenu index="1">
+              <template slot="title">
+                <i class="el-icon-location"></i>
+                <span>公司B</span>
+              </template>
+              <el-menu-item index="1-1" @click="change('work')">工作任务</el-menu-item>
+              <el-menu-item index="1-2" @click="change('attitude')">工作态度</el-menu-item>
+              <el-submenu index="2">
+                <template slot="title" style="width: 300px" @click="changeAbility" >工作能力</template>
+                <el-menu-item index="1-4-1" @click="change('ability')"  >个人能力</el-menu-item>
+              </el-submenu>
+              <el-menu-item index="1-3" @click="change('work_comment')">工作评价</el-menu-item>
+              <el-menu-item index="1-4" @click="change('comment_error')">重大过失</el-menu-item>
+            </el-submenu>
+          </el-menu>
+        </el-col>
+      </article>
+      <!--      右侧图标-->
+      <article  class="check-right" v-show="comment">
+
+        <div id="test" style="width: 600px;height: 400px" ></div>
         <div class="conlusion">
-         <div class="conlusion-head"><p>总结</p></div>
+          <div class="conlusion-head"><p>总结</p></div>
           <div class="conlusion-item">
             <li class="conlusion-item-container">
-              <p>工作任务:</p>
-              <p>超过该公司90%的员工</p>
-              <p>超过该岗位93%的员工</p>
+              <p style="color: #00b5ad">工作任务:</p>
+              <p>超过该公司48%的员工</p>
+              <p>超过该岗位56%的员工</p>
             </li>
             <li class="conlusion-item-container">
-              <p>工作任务:</p>
-              <p>超过该公司90%的员工</p>
-              <p>超过该岗位93%的员工</p>
+              <p style="color: #00b5ad">工作态度:</p>
+              <p>超过该公司78%的员工</p>
+              <p>超过该岗位82%的员工</p>
             </li>
             <li class="conlusion-item-container">
-              <p>工作任务:</p>
-              <p>超过该公司90%的员工</p>
-              <p>超过该岗位93%的员工</p>
+              <p style="color: #00b5ad">工作能力:</p>
+              <p>超过该公司84%的员工</p>
+              <p>超过该岗位80%的员工</p>
+            </li>
+          </div>
+        </div>
+      </article >
+      <article  class="check-right" v-show="work">
+        <div id="work" style="width: 600px;height: 400px"></div>
+        <div class="conlusion">
+          <div class="conlusion-head"><p>总结</p></div>
+          <div class="conlusion-item">
+            <li class="conlusion-item-container">
+              <p style="color:#00b5ad;">横向比较:</p>
+              <p>在19年到21年入职的三年中，每月的工作任务得分都在一个中上的水平，比较稳定</p>
+            </li>
+            <li class="conlusion-item-container">
+              <p style="color:#00b5ad;">纵向比较:</p>
+              <p>该员工从19年到21年,工作任务每年的平均得分都在稳定增长，处于中等水平</p>
+            </li>
+            <li class="conlusion-item-container">
+              <p style="color:#00b5ad;">结论:</p>
+              <p>改员工在本公司近三年的工作任务得分都较高且稳定，高于绝大部分员工</p>
             </li>
           </div>
         </div>
       </article>
-      <article class="check-right-2" v-show="comment">
-        <div class="comment-list">
-          <el-input
-            style="margin-bottom: 20px"
-            type="textarea"
-            :rows="2"
-            placeholder="请输入内容"
-            readonly
-            v-model="textarea"
-          >
-          </el-input>
-          <el-input
-            style="margin-bottom: 20px"
-            type="textarea"
-            :rows="2"
-            placeholder="请输入内容"
-            readonly
-            v-model="textarea"
-          >
-          </el-input>
-          <el-input
-            style="margin-bottom: 20px"
-            type="textarea"
-            :rows="2"
-            placeholder="请输入内容"
-            readonly
-            v-model="textarea"
-          >
-          </el-input>
-          <el-input
-            style="margin-bottom: 20px"
-            type="textarea"
-            :rows="2"
-            placeholder="请输入内容"
-            readonly
-            v-model="textarea"
-          >
-          </el-input>
-          <el-input
-            style="margin-bottom: 20px"
-            type="textarea"
-            :rows="2"
-            placeholder="请输入内容"
-            readonly
-            v-model="textarea"
-          >
-          </el-input>
+      <article  class="check-right" v-show="attitude">
+        <div id="attitude" style="width: 600px;height: 400px"></div>
+        <div class="conlusion">
+          <div class="conlusion-head"><p>总结</p></div>
+          <div class="conlusion-item">
+            <li class="conlusion-item-container">
+              <p style="color:#00b5ad;">横向比较:</p>
+              <p>在入职的三年中，每月的工作态度起伏较大，有不小的波动</p>
+            </li>
+            <li class="conlusion-item-container">
+              <p style="color:#00b5ad;">纵向比较:</p>
+              <p>该员工从19年到21年,工作态度得分呈现逐年递减的趋势</p>
+            </li>
+            <li class="conlusion-item-container">
+              <p style="color:#00b5ad;">结论:</p>
+              <p>在该公司的工作态度得分不是很稳定，且有待提高</p>
+            </li>
+          </div>
         </div>
       </article>
+      <article  class="check-right" v-show="ability">
+        <div id="ability" style="width: 600px;height: 400px"></div>
+        <div class="conlusion">
+          <div class="conlusion-head"><p>总结</p></div>
+          <div class="conlusion-item">
+            <li class="conlusion-item-container">
+              <p style="color: #00b5ad">横向比较:</p>
+              <p>在19年到21年入职的三年中，每月的得分都在一个较高的水平，总体得分比较稳定</p>
+            </li>
+            <li class="conlusion-item-container">
+              <p style="color: #00b5ad">纵向比较:</p>
+              <p>该员工从19年到21年,工作任务每年的平均得分都在略有降低，但仍然处于较高水平</p>
+            </li>
+            <li class="conlusion-item-container">
+              <p style="color: #00b5ad">结论:</p>
+              <p>该员工在本公司近三年的工作任务得分都较高且稳定，高于绝大部分员工</p>
+            </li>
+          </div>
+        </div>
+      </article>
+      <article  class="comment-error" v-show="work_comment">
+        <div style="width: 600px;height: 400px;margin-left: 30px;padding: 10px;background-color:#fff;">
+          <el-collapse v-model="activeName" accordion>
+            <el-collapse-item title="2019-2-7" name="1">
+              <div>工作责任心强，工作踏实</div>
+            </el-collapse-item>
+            <el-collapse-item title="2019-8-19" name="2">
+              <div>遵守公司纪律，言出必行</div>
+              <div>工作很刻苦，安排的任务都能够按时按质的完成</div>
+            </el-collapse-item>
+          </el-collapse>
+        </div>
+      </article>
+      <article  class="comment-error" v-show="comment_error">
+        <div style="width: 600px;height: 400px;margin-left: 30px;padding: 10px;background-color:#fff;">
+          <el-collapse v-model="activeName1" accordion>
+            <el-collapse-item title="2019-2-15" name="1">
+              <div style="color: #f56c6c">涉及公司敏感信息，详细内容未公开</div>
+            </el-collapse-item>
+            <el-collapse-item title="2020-8-19" name="2">
+              <div>误将重要资料删除，导致公司受到严重的财产损失</div>
+            </el-collapse-item>
+            <el-collapse-item title="2021-2-7" name="3">
+              <div style="color: #f56c6c">涉及公司敏感信息，详细内容未公开</div>
+            </el-collapse-item>
+          </el-collapse>
+        </div>
+
+        <div class="conlusion">
+          <div class="conlusion-head"><p>总结</p></div>
+          <div class="conlusion-item">
+            <li class="conlusion-item-container">
+              <p>在19年到21年，共犯了三个重大错误，平均每年犯一个错误，高于平均水平</p>
+            </li>
+          </div>
+        </div>
+      </article>
+
     </div>
   </section>
 </div>
@@ -198,10 +274,10 @@ export default {
   methods:{
     initChar(){
       // 基于准备好的dom，初始化echarts实例
-      let myChart = this.$echarts.init(document.getElementById("test"));
+      let totalGradeChar = this.$echarts.init(document.getElementById("test"));
 
 // 指定图表的配置项和数据
-      let option = {
+      let totalGrade = {
         title: {
           text: "评分详情",
         },
@@ -227,17 +303,409 @@ export default {
           {
             name: "相关职位的平均分",
             type: "bar",
-            data: [75, 97,87],
+            data: [92, 97,91],
           },
         ],
       };
+      let monthGrade={
+        title:{
+          text: "每月评分"
+        },
+        legend: {
+          data: ["2019","2020","2021"],
+        },
+        grid:{
+          show:true,
+          backgroundColor :'transparent'
+        },
+        xAxis: {
+          type: "category",
+          data: ["1","2","3","4","5","6","7","8","9","10","11","12"],
+          name:"月份",
+          nameLocation:"end"
+        },
+        yAxis: {
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross'
+          },
+        },
+        dataZoom:[
+          {
+            id: 'dataZoomX',
+            type: 'inside',
+            xAxisIndex: [0],
+            filterMode: 'filter',
+            start:0,
+            end:100
+          },
+          {
+            id: 'dataZoomY',
+            type: 'slider',
+            yAxisIndex: [0],
+            filterMode: 'empty',
+            start:50,
+            end: 100
+          }
+        ],
+        series: [
+          {
+            type: "line",
+            name:"2019",
+            // stack: '总量',
+            data: [90,89,85,91,85,90,87,98,88,95,85,95],
+
+          },
+          {
+            type: "line",
+            name:"2020",
+            // stack: '总量',
+            data: [91,90,85,89,98,95,86,95,91,90,90,90],
+
+          },
+          {
+            type: "line",
+            name:"2021",
+            // stack: '总量',
+            data: [90,91,95,88,86,90,95,90,94,90,89,88],
+
+          },
+        ]
+      };
+      let monthGrade2={
+        title:{
+          text: "每月评分"
+        },
+        legend: {
+          data: ["2019","2020","2021"],
+        },
+        grid:{
+          show:true,
+          backgroundColor :'transparent'
+        },
+        xAxis: {
+          type: "category",
+          data: ["1","2","3","4","5","6","7","8","9","10","11","12"],
+          name:"月份",
+          nameLocation:"end"
+        },
+        yAxis: {
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross'
+          },
+        },
+        dataZoom:[
+          {
+            id: 'dataZoomX',
+            type: 'inside',
+            xAxisIndex: [0],
+            filterMode: 'filter',
+            start:0,
+            end:100
+          },
+          {
+            id: 'dataZoomY',
+            type: 'slider',
+            yAxisIndex: [0],
+            filterMode: 'empty',
+            start:50,
+            end: 100
+          }
+        ],
+        series: [
+          {
+            type: "line",
+            name:"2019",
+            // stack: '总量',
+            data: [90,91,86,86,81,89,93,90,85,95,94,83],
+
+          },
+          {
+            type: "line",
+            name:"2020",
+            // stack: '总量',
+            data: [91,86,90,88,89,89,91,87,80,91,93,90],
+
+          },
+          {
+            type: "line",
+            name:"2021",
+            // stack: '总量',
+            data: [87,95,95,99,100,98,95,90,85,89,91,93],
+
+          },
+        ]
+      };
+      let monthGrade3={
+        title:{
+          text: "每月评分"
+        },
+        legend: {
+          data: ["2019","2020","2021"],
+        },
+        grid:{
+          show:true,
+          backgroundColor :'transparent'
+        },
+        xAxis: {
+          type: "category",
+          data: ["1","2","3","4","5","6","7","8","9","10","11","12"],
+          name:"月份",
+          nameLocation:"end"
+        },
+        yAxis: {
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross'
+          },
+        },
+        dataZoom:[
+          {
+            id: 'dataZoomX',
+            type: 'inside',
+            xAxisIndex: [0],
+            filterMode: 'filter',
+            start:0,
+            end:100
+          },
+          {
+            id: 'dataZoomY',
+            type: 'slider',
+            yAxisIndex: [0],
+            filterMode: 'empty',
+            start:50,
+            end: 100
+          }
+        ],
+        series: [
+          {
+            type: "line",
+            name:"2019",
+            // stack: '总量',
+            data: [90,80,85,70,85,90,87,76,88,95,85,95],
+
+          },
+          {
+            type: "line",
+            name:"2020",
+            // stack: '总量',
+            data: [80,90,85,80,75,95,74,95,80,90,75,90],
+
+          },
+          {
+            type: "line",
+            name:"2021",
+            // stack: '总量',
+            data: [85,75,95,88,70,90,95,90,85,75,85,80],
+
+          },
+        ]
+      };
 // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option);
-    }
+      let monthGradechar=this.$echarts.init(document.getElementById("ability"));
+      let monthGradechar_1=this.$echarts.init(document.getElementById("work"));
+      let monthGradechar_2=this.$echarts.init(document.getElementById("attitude"));
+      totalGradeChar.setOption(totalGrade);
+      monthGradechar.setOption(monthGrade)
+      monthGradechar_1.setOption(monthGrade2)
+      monthGradechar_2.setOption(monthGrade3)
+
+
+    },
+    changeCompany(num){
+      if (num == 1){
+        this.comment_error = false;
+        this.comment = true;
+        this.work_comment = false;
+        this.ability = false;
+        this.attitude = false;
+        this.work = false;
+        this.company_1 = true;
+        this.company_2 = false;
+        this.initChar();
+      }else{
+        this.comment_error = false;
+        this.comment = true;
+        this.work_comment = false;
+        this.ability = false;
+        this.attitude = false;
+        this.work = false;
+        this.company_1 = true;
+        this.company_2 = false;
+        this.company_1 = false;
+        this.company_2 = true;
+        // 基于准备好的dom，初始化echarts实例
+        let totalGradeChar = this.$echarts.init(document.getElementById("test"));
+
+// 指定图表的配置项和数据
+        let totalGrade = {
+          title: {
+            text: "评分详情",
+          },
+          tooltip: {},
+          legend: {
+            data: ["该员工的分数","该公司的平均分","相关职位的平均分"],
+          },
+          xAxis: {
+            data: ["工作任务", "工作态度","工作能力"],
+          },
+          yAxis: {},
+          series: [
+            {
+              name: "该员工的分数",
+              type: "bar",
+              data: [53, 84,96],
+            },
+            {
+              name: "该公司的平均分",
+              type: "bar",
+              data: [75, 67,75],
+            },
+            {
+              name: "相关职位的平均分",
+              type: "bar",
+              data: [98, 56,87],
+            },
+          ],
+        };
+        //每月的数据
+        let monthGrade={
+          title:{
+            text: "每月评分"
+          },
+          legend: {
+            data: ["2020","2021"],
+          },
+          grid:{
+            show:true,
+            backgroundColor :'transparent'
+          },
+          xAxis: {
+            type: "category",
+            data: ["1","2","3","4","5","6","7","8","9","10","11","12"],
+            name:"月份",
+            nameLocation:"end"
+          },
+          yAxis: {
+          },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross'
+            },
+          },
+          dataZoom:[
+            {
+              id: 'dataZoomX',
+              type: 'inside',
+              xAxisIndex: [0],
+              filterMode: 'filter',
+              start:0,
+              end:100
+            },
+            {
+              id: 'dataZoomY',
+              type: 'slider',
+              yAxisIndex: [0],
+              filterMode: 'empty',
+              start:50,
+              end: 100
+            }
+          ],
+          series: [
+            {
+              type: "line",
+              name:"2020",
+              // stack: '总量',
+              data: [89,82,87,96,86,87,91,89,85,88,86,93],
+
+            },
+            {
+              type: "line",
+              name:"2021",
+              // stack: '总量',
+              data: [85,95,95,88,90,90,87,90,85,96,85,92],
+
+            },
+          ]
+        }
+// 使用刚指定的配置项和数据显示图表。
+        let monthGradechar=this.$echarts.init(document.getElementById("ability"));
+        let monthGradechar_1=this.$echarts.init(document.getElementById("work"));
+        let monthGradechar_2=this.$echarts.init(document.getElementById("attitude"));
+        totalGradeChar.setOption(totalGrade);
+        monthGradechar.setOption(monthGrade)
+        monthGradechar_1.setOption(monthGrade)
+        monthGradechar_2.setOption(monthGrade)
+      }
+    },
+    change(type){
+      if(type == 'comment_error'){
+        this.comment_error = true;
+        this.comment = false;
+        this.work_comment = false;
+        this.ability = false;
+        this.attitude = false;
+        this.work = false;
+      }
+      else if(type == 'ability'){
+        this.comment_error = false;
+        this.comment = false;
+        this.work_comment = false;
+        this.ability = true;
+        this.attitude = false;
+        this.work = false;
+      }
+      else if(type == 'attitude'){
+        this.comment_error = false;
+        this.comment = false;
+        this.work_comment = false;
+        this.ability = false;
+        this.attitude = true;
+        this.work = false;
+      }
+      else if(type == 'work'){
+        this.comment_error = false;
+        this.comment = false;
+        this.work_comment = false;
+        this.ability = false;
+        this.attitude = false;
+        this.work = true;
+      }
+      if(type == 'work_comment'){
+        this.comment_error = false;
+        this.comment = false;
+        this.work_comment = true;
+        this.ability = false;
+        this.attitude = false;
+        this.work = false;
+      }
+    },
+    changeAbility(){
+      // this.$echarts.dispose(document.getElementById("test"))
+      this.comment=false
+      this.ability=true
+    },
   },
   data(){
     return{
-      comment: false,
+      company_1:true,
+      company_2:false,
+      activeName: '1',
+      activeName1: '1',
+      comment: true,  //总体
+      ability:false,  //能力
+      attitude: false,  //态度
+      work: false,  //任务
+      work_comment: false, //工作评价
+      comment_error:false,  //重大过失
       textarea:"你好你好你好"
     }
   },
@@ -427,6 +895,14 @@ th button{
   font-weight: 500;
 }
 
+.comment-error{
+  width: 75%;
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .comment-list{
   padding: 20px;
   box-sizing: border-box;

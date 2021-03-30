@@ -95,27 +95,17 @@ export default {
       reason:'',
       dialogFormVisible:false,
       activeNames:'1',
-      textarea:'',
+      textarea:'刚进公司遇到不懂的都可以询问公司的老员工，不要不好意思，大家都会愿意帮助你的。希望在这个大家庭中一起进步，共同成长!',
       tableData: [{
         name: '每月销售量',
-        scope: '工作能力',
+        scope: '工作任务',
         rate: '每月一次',
-        result: 94
-      }, {
-        name: '每月销售量',
-        scope: '工作能力',
+        result: 89
+      },  {
+        name: '遵守纪律情况',
+        scope: '工作态度',
         rate: '每月一次',
-        result: 94
-      }, {
-        name: '每月销售量',
-        scope: '工作能力',
-        rate: '每月一次',
-        result: 94
-      }, {
-        name: '每月销售量',
-        scope: '工作能力',
-        rate: '每月一次',
-        result: 94
+        result: 96
       }]
     }
 

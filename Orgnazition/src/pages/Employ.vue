@@ -44,7 +44,7 @@
 <!--      <div class="head-item">综合评分</div>-->
 <!--      <div class="head-item">筛选</div>-->
       <div class="search">
-        <input type="text" placeholder="搜索...">
+        <input type="text" placeholder="搜索账号或者职位">
         <button class="iconfont" @click="search">&#xe6e6</button>
       </div>
     </article>
@@ -89,12 +89,12 @@ export default {
         num2:30,
         num3:30,
         people:[
-          {img:'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3630447559,1831882919&fm=26&gp=0.jpg',name:'张学恺',sex:'男',age:27,work_age:'五年',education:'本科',school:'中南大学',skill:'JAVA,C++',position:'后端开发'},
-          {img:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1082108252,4285086463&fm=26&gp=0.jpg',name:'赵铭琪',sex:'男',age:29,work_age:'三年',education:'研究生',school:'湖南大学',skill:'JAVA,Python',position:'后端开发'},
-          {img:'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1959427428,848046812&fm=26&gp=0.jpg',name:'马瑭宇',sex:'男',age:26,work_age:'四年',education:'本科',school:'东北大学',skill:'Vue,React',position:'前端开发'},
-          {img:'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2541356622,4269613560&fm=26&gp=0.jpg',name:'孙炫辰',sex:'男',age:29,work_age:'三年',education:'研究生',school:'同济大学',skill:'深度学习',position:'算法工程师'},
-          {img:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.yao51.com%2Fjiankangtuku%2Fhhoppkkgv.jpeg&refer=http%3A%2F%2Fimg.yao51.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1619606429&t=7a6bfb16cce8de2e561617d626cb706c',name:'吴风佑',sex:'男',age:28,work_age:'二年',education:'研究生',school:'浙江大学',skill:'机器学习，NLP',position:'算法工程师'},
-          {img:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg1.lukou.com%2Fstatic%2Fp%2Fblog%2Flarge%2F0010%2F72%2F36%2F85%2F10723685.jpg&refer=http%3A%2F%2Fimg1.lukou.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1619606349&t=80bf13af1dab66afd96326e5768f18c0',name:'魏晓宸',sex:'女',age:25,work_age:'三年',education:'本科',school:'湖南师范大学',skill:'Vue,React',position:'前端开发'},
+          {img:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3338857236,3043842796&fm=26&gp=0.jpg',name:'赵铭琪',sex:'男',age:29,work_age:'三年',education:'研究生',school:'B大学',skill:'JAVA,Python',position:'后端开发'},
+          {img:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3832920949,1919035161&fm=26&gp=0.jpg',name:'马瑭宇',sex:'女',age:26,work_age:'四年',education:'本科',school:'C大学',skill:'Vue,React',position:'前端开发'},
+          {img:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3336722283,2923965493&fm=26&gp=0.jpg',name:'孙炫辰',sex:'女',age:29,work_age:'三年',education:'研究生',school:'D大学',skill:'深度学习',position:'算法工程师'},
+          {img:'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2384409183,565204380&fm=26&gp=0.jpg',name:'张学恺',sex:'男',age:27,work_age:'五年',education:'研究生',school:'A大学',skill:'JAVA,C++',position:'后端开发'},
+          {img:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1704485415,89394472&fm=26&gp=0.jpg',name:'吴风佑',sex:'女',age:28,work_age:'二年',education:'研究生',school:'E大学',skill:'机器学习，NLP',position:'算法工程师'},
+          {img:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3338857236,3043842796&fm=26&gp=0.jpg',name:'魏晓宸',sex:'男',age:25,work_age:'三年',education:'本科',school:'F大学',skill:'Vue,React',position:'前端开发'},
         ],
         grades:[
           {
@@ -134,7 +134,7 @@ export default {
                 type: "bar",
                 barWidth:"40",
                 showBackground: true,
-                data: [90, 80,95,85],
+                data: [92, 94,95,85],
               },
             ],
           },
@@ -174,7 +174,7 @@ export default {
                 type: "bar",
                 barWidth:"40",
                 showBackground: true,
-                data: [95, 88,99,80],
+                data: [91, 79,99,80],
               },
             ],
           },
@@ -214,7 +214,7 @@ export default {
                 type: "bar",
                 barWidth:"40",
                 showBackground: true,
-                data: [92, 85,90,95],
+                data: [89, 85,80,88],
               },
             ],
           },
@@ -254,7 +254,7 @@ export default {
                 type: "bar",
                 barWidth:"40",
                 showBackground: true,
-                data: [82, 83,99,85],
+                data: [83,83,87,91],
               },
             ],
           },
@@ -294,7 +294,7 @@ export default {
                 type: "bar",
                 barWidth:"40",
                 showBackground: true,
-                data: [82, 83,99,85],
+                data: [84, 83,85,93],
               },
             ],
           },
@@ -334,350 +334,357 @@ export default {
                 type: "bar",
                 barWidth:"40",
                 showBackground: true,
-                data: [82, 83,99,85],
+                data: [82, 83,84,95],
               },
             ],
           }
-        ]
+        ],
+        index:0,
 
     }
   },
   methods:{
     search(){
-
-      this.people = [{img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江富',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
-        {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江富',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
-        {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江富',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},
-        {img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=328151449,413750715&fm=26&gp=0.jpg',name:'郭江富',sex:'男',age:25,work_age:'三年',education:'本科',school:'A大学',skill:'后端、分布式',position:'后端开发'},];
-      this.grades = [{
-        title: {
-          text: "综合评分",
-        },
-        grid:{
-          top:"10%",
-          bottom:30,
-          height:"65%"
-        },
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "shadow"
-          }
-        },
-        legend: {},
-        xAxis: {
-          data: ["综合评分","工作任务", "工作态度","工作能力"],
-        },
-        yAxis: [
-          {
-            type: 'value',
-            axisLabel: {
-              show: true,
-              interval: 'auto',
-              formatter: '{value} %'
-            },
-            show: true
-          }
-        ],
-
-        series: [
-          {
-            name: "与同岗位员工相比",
-            type: "bar",
-            barWidth:"40",
-            showBackground: true,
-            data: [90, 80,95,85],
+      if(this.index == 0){
+        this.index++;
+        this.people = [
+          {img:'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1704485415,89394472&fm=26&gp=0.jpg',name:'张五',sex:'男',age:27,work_age:'五年',education:'本科',school:'A大学',skill:'JAVA,C++',position:'后端开发'},
+          {img:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3338857236,3043842796&fm=26&gp=0.jpg',name:'赵铭琪',sex:'男',age:29,work_age:'三年',education:'研究生',school:'B大学',skill:'JAVA,Python',position:'后端开发'}];
+        this.grades = [{
+          title: {
+            text: "综合评分",
           },
-        ],
-      },{
-        title: {
-          text: "综合评分",
-        },
-        grid:{
-          top:"10%",
-          bottom:30,
-          height:"65%"
-        },
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "shadow"
-          }
-        },
-        legend: {},
-        xAxis: {
-          data: ["综合评分","工作任务", "工作态度","工作能力"],
-        },
-        yAxis: [
-          {
-            type: 'value',
-            axisLabel: {
-              show: true,
-              interval: 'auto',
-              formatter: '{value} %'
-            },
-            show: true
-          }
-        ],
-
-        series: [
-          {
-            name: "与同岗位员工相比",
-            type: "bar",
-            barWidth:"40",
-            showBackground: true,
-            data: [90, 80,95,85],
+          grid:{
+            top:"10%",
+            bottom:30,
+            height:"65%"
           },
-        ],
-      },{
-        title: {
-          text: "综合评分",
-        },
-        grid:{
-          top:"10%",
-          bottom:30,
-          height:"65%"
-        },
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "shadow"
-          }
-        },
-        legend: {},
-        xAxis: {
-          data: ["综合评分","工作任务", "工作态度","工作能力"],
-        },
-        yAxis: [
-          {
-            type: 'value',
-            axisLabel: {
-              show: true,
-              interval: 'auto',
-              formatter: '{value} %'
-            },
-            show: true
-          }
-        ],
-
-        series: [
-          {
-            name: "与同岗位员工相比",
-            type: "bar",
-            barWidth:"40",
-            showBackground: true,
-            data: [90, 80,95,85],
+          tooltip: {
+            trigger: "axis",
+            axisPointer: {
+              type: "shadow"
+            }
           },
-        ],
-      },{
-        title: {
-          text: "综合评分",
-        },
-        grid:{
-          top:"10%",
-          bottom:30,
-          height:"65%"
-        },
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "shadow"
-          }
-        },
-        legend: {},
-        xAxis: {
-          data: ["综合评分","工作任务", "工作态度","工作能力"],
-        },
-        yAxis: [
-          {
-            type: 'value',
-            axisLabel: {
-              show: true,
-              interval: 'auto',
-              formatter: '{value} %'
-            },
-            show: true
-          }
-        ],
-
-        series: [
-          {
-            name: "与同岗位员工相比",
-            type: "bar",
-            barWidth:"40",
-            showBackground: true,
-            data: [90, 80,95,85],
+          legend: {},
+          xAxis: {
+            data: ["综合评分","工作任务", "工作态度","工作能力"],
           },
-        ],
-      }];
-      this.initChar();
+          yAxis: [
+            {
+              type: 'value',
+              axisLabel: {
+                show: true,
+                interval: 'auto',
+                formatter: '{value} %'
+              },
+              show: true
+            }
+          ],
+
+          series: [
+            {
+              name: "与同岗位员工相比",
+              type: "bar",
+              barWidth:"40",
+              showBackground: true,
+              data: [92, 96,89,86],
+            },
+          ],
+        },{
+          title: {
+            text: "综合评分",
+          },
+          grid:{
+            top:"10%",
+            bottom:30,
+            height:"65%"
+          },
+          tooltip: {
+            trigger: "axis",
+            axisPointer: {
+              type: "shadow"
+            }
+          },
+          legend: {},
+          xAxis: {
+            data: ["综合评分","工作任务", "工作态度","工作能力"],
+          },
+          yAxis: [
+            {
+              type: 'value',
+              axisLabel: {
+                show: true,
+                interval: 'auto',
+                formatter: '{value} %'
+              },
+              show: true
+            }
+          ],
+
+          series: [
+            {
+              name: "与同岗位员工相比",
+              type: "bar",
+              barWidth:"40",
+              showBackground: true,
+              data: [83, 80,86,84],
+            },
+          ],
+        },{
+          title: {
+            text: "综合评分",
+          },
+          grid:{
+            top:"10%",
+            bottom:30,
+            height:"65%"
+          },
+          tooltip: {
+            trigger: "axis",
+            axisPointer: {
+              type: "shadow"
+            }
+          },
+          legend: {},
+          xAxis: {
+            data: ["综合评分","工作任务", "工作态度","工作能力"],
+          },
+          yAxis: [
+            {
+              type: 'value',
+              axisLabel: {
+                show: true,
+                interval: 'auto',
+                formatter: '{value} %'
+              },
+              show: true
+            }
+          ],
+
+          series: [
+            {
+              name: "与同岗位员工相比",
+              type: "bar",
+              barWidth:"40",
+              showBackground: true,
+              data: [90, 80,95,85],
+            },
+          ],
+        },{
+          title: {
+            text: "综合评分",
+          },
+          grid:{
+            top:"10%",
+            bottom:30,
+            height:"65%"
+          },
+          tooltip: {
+            trigger: "axis",
+            axisPointer: {
+              type: "shadow"
+            }
+          },
+          legend: {},
+          xAxis: {
+            data: ["综合评分","工作任务", "工作态度","工作能力"],
+          },
+          yAxis: [
+            {
+              type: 'value',
+              axisLabel: {
+                show: true,
+                interval: 'auto',
+                formatter: '{value} %'
+              },
+              show: true
+            }
+          ],
+
+          series: [
+            {
+              name: "与同岗位员工相比",
+              type: "bar",
+              barWidth:"40",
+              showBackground: true,
+              data: [90, 80,95,85],
+            },
+          ],
+        }];
+        this.initChar();
+      }else {
+        this.people = [
+          {img:'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2384409183,565204380&fm=26&gp=0.jpg',name:'张学恺',sex:'男',age:27,work_age:'五年',education:'本科',school:'A大学',skill:'JAVA,C++',position:'后端开发'},];
+        this.grades = [{
+          title: {
+            text: "综合评分",
+          },
+          grid:{
+            top:"10%",
+            bottom:30,
+            height:"65%"
+          },
+          tooltip: {
+            trigger: "axis",
+            axisPointer: {
+              type: "shadow"
+            }
+          },
+          legend: {},
+          xAxis: {
+            data: ["综合评分","工作任务", "工作态度","工作能力"],
+          },
+          yAxis: [
+            {
+              type: 'value',
+              axisLabel: {
+                show: true,
+                interval: 'auto',
+                formatter: '{value} %'
+              },
+              show: true
+            }
+          ],
+
+          series: [
+            {
+              name: "与同岗位员工相比",
+              type: "bar",
+              barWidth:"40",
+              showBackground: true,
+              data: [92, 96,89,86],
+            },
+          ],
+        },{
+          title: {
+            text: "综合评分",
+          },
+          grid:{
+            top:"10%",
+            bottom:30,
+            height:"65%"
+          },
+          tooltip: {
+            trigger: "axis",
+            axisPointer: {
+              type: "shadow"
+            }
+          },
+          legend: {},
+          xAxis: {
+            data: ["综合评分","工作任务", "工作态度","工作能力"],
+          },
+          yAxis: [
+            {
+              type: 'value',
+              axisLabel: {
+                show: true,
+                interval: 'auto',
+                formatter: '{value} %'
+              },
+              show: true
+            }
+          ],
+
+          series: [
+            {
+              name: "与同岗位员工相比",
+              type: "bar",
+              barWidth:"40",
+              showBackground: true,
+              data: [83, 80,86,84],
+            },
+          ],
+        },{
+          title: {
+            text: "综合评分",
+          },
+          grid:{
+            top:"10%",
+            bottom:30,
+            height:"65%"
+          },
+          tooltip: {
+            trigger: "axis",
+            axisPointer: {
+              type: "shadow"
+            }
+          },
+          legend: {},
+          xAxis: {
+            data: ["综合评分","工作任务", "工作态度","工作能力"],
+          },
+          yAxis: [
+            {
+              type: 'value',
+              axisLabel: {
+                show: true,
+                interval: 'auto',
+                formatter: '{value} %'
+              },
+              show: true
+            }
+          ],
+
+          series: [
+            {
+              name: "与同岗位员工相比",
+              type: "bar",
+              barWidth:"40",
+              showBackground: true,
+              data: [90, 80,95,85],
+            },
+          ],
+        },{
+          title: {
+            text: "综合评分",
+          },
+          grid:{
+            top:"10%",
+            bottom:30,
+            height:"65%"
+          },
+          tooltip: {
+            trigger: "axis",
+            axisPointer: {
+              type: "shadow"
+            }
+          },
+          legend: {},
+          xAxis: {
+            data: ["综合评分","工作任务", "工作态度","工作能力"],
+          },
+          yAxis: [
+            {
+              type: 'value',
+              axisLabel: {
+                show: true,
+                interval: 'auto',
+                formatter: '{value} %'
+              },
+              show: true
+            }
+          ],
+
+          series: [
+            {
+              name: "与同岗位员工相比",
+              type: "bar",
+              barWidth:"40",
+              showBackground: true,
+              data: [90, 80,95,85],
+            },
+          ],
+        }];
+        this.initChar();
+      }
+
     },
     detail(){
       this.$router.push('/detail');
     },
     initChar(){
       // 指定图表的配置项和数据
-      let grade1 = {
-        title: {
-          text: "综合评分",
-        },
-        grid:{
-          top:"10%",
-          bottom:30,
-          height:"65%"
-        },
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "shadow"
-          }
-        },
-        legend: {},
-        xAxis: {
-          data: ["综合评分","工作任务", "工作态度","工作能力"],
-        },
-        yAxis: [
-          {
-            type: 'value',
-            axisLabel: {
-              show: true,
-              interval: 'auto',
-              formatter: '{value} %'
-            },
-            show: true
-          }
-        ],
-
-        series: [
-          {
-            name: "与同岗位员工相比",
-            type: "bar",
-            barWidth:"40",
-            showBackground: true,
-            data: [90, 80,95,85],
-          },
-        ],
-      };
-      let grade2 = {
-        title: {
-          text: "综合评分",
-        },
-        grid:{
-          top:30,
-          bottom:30,
-          height:"65%"
-        },
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "shadow"
-          }
-        },
-        legend: {},
-        xAxis: {
-          data: ["综合评分","工作任务", "工作态度","工作能力"],
-        },
-        yAxis: [
-          {
-            type: 'value',
-            axisLabel: {
-              show: true,
-              interval: 'auto',
-              formatter: '{value} %'
-            },
-            show: true
-          }
-        ],
-        series: [
-          {
-            name: "与同岗位员工相比",
-            type: "bar",
-            barWidth:"40",
-            showBackground: true,
-            data: [95, 88,99,80],
-          },
-        ],
-      };
-      let grade3 = {
-        title: {
-          text: "综合评分",
-        },
-        grid:{
-          top:30,
-          bottom:30,
-          height:"65%"
-        },
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "shadow"
-          }
-        },
-        legend: {},
-        xAxis: {
-          data: ["综合评分","工作任务", "工作态度","工作能力"],
-        },
-        yAxis: [
-          {
-            type: 'value',
-            axisLabel: {
-              show: true,
-              interval: 'auto',
-              formatter: '{value} %'
-            },
-            show: true
-          }
-        ],
-        series: [
-          {
-            name: "与同岗位员工相比",
-            type: "bar",
-            barWidth:"40",
-            showBackground: true,
-            data: [92, 85,90,95],
-          },
-        ],
-      };
-      let grade4 = {
-        title: {
-          text: "综合评分",
-        },
-        grid:{
-          top:30,
-          bottom:30,
-          height:"65%"
-        },
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "shadow"
-          }
-        },
-        legend: {},
-        xAxis: {
-          data: ["综合评分","工作任务", "工作态度","工作能力"],
-        },
-        yAxis: [
-          {
-            type: 'value',
-            axisLabel: {
-              show: true,
-              interval: 'auto',
-              formatter: '{value} %'
-            },
-            show: true
-          }
-        ],
-        series: [
-          {
-            name: "与同岗位员工相比",
-            type: "bar",
-            barWidth:"40",
-            showBackground: true,
-            data: [82, 83,99,85],
-          },
-        ],
-      };
       // // 基于准备好的dom，初始化echarts实例
       // let gradeChar1 = this.$echarts.init(document.getElementById("test1"));
       // let gradeChar2 = this.$echarts.init(document.getElementById("test2"));

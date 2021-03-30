@@ -9,9 +9,9 @@
     </article>
     <div class="three-types">
       <ul class="types-container">
-        <li :class="company_1 ? 'active' : ''" @click="changeCompany(1)">公司1</li>
-        <li :class="!company_1 ? 'active' : ''" @click="changeCompany(2)">公司2</li>
-        <li>公司3</li>
+        <li :class="company_1 ? 'active' : ''" @click="changeCompany(1)">公司A</li>
+        <li :class="!company_1 ? 'active' : ''" @click="changeCompany(2)">公司B</li>
+        <li>公司C</li>
       </ul>
     </div>
     <div class="check-container">
@@ -27,7 +27,7 @@
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location"></i>
-                <span>代码里找方向</span>
+                <span>公司A</span>
               </template>
               <el-menu-item index="1-1" @click="change('work')">工作任务</el-menu-item>
               <el-menu-item index="1-2" @click="change('attitude')">工作态度</el-menu-item>
@@ -53,7 +53,7 @@
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location"></i>
-                <span>今目标</span>
+                <span>公司B</span>
               </template>
               <el-menu-item index="1-1" @click="change('work')">工作任务</el-menu-item>
               <el-menu-item index="1-2" @click="change('attitude')">工作态度</el-menu-item>
@@ -75,19 +75,19 @@
           <div class="conlusion-head"><p>总结</p></div>
           <div class="conlusion-item">
             <li class="conlusion-item-container">
-              <p>工作任务:</p>
-              <p>超过该公司90%的员工</p>
-              <p>超过该岗位93%的员工</p>
+              <p style="color: #00b5ad">工作任务:</p>
+              <p>超过该公司48%的员工</p>
+              <p>超过该岗位56%的员工</p>
             </li>
             <li class="conlusion-item-container">
-              <p>工作任务:</p>
-              <p>超过该公司90%的员工</p>
-              <p>超过该岗位93%的员工</p>
+              <p style="color: #00b5ad">工作态度:</p>
+              <p>超过该公司78%的员工</p>
+              <p>超过该岗位82%的员工</p>
             </li>
             <li class="conlusion-item-container">
-              <p>工作任务:</p>
-              <p>超过该公司90%的员工</p>
-              <p>超过该岗位93%的员工</p>
+              <p style="color: #00b5ad">工作能力:</p>
+              <p>超过该公司84%的员工</p>
+              <p>超过该岗位80%的员工</p>
             </li>
           </div>
         </div>
@@ -98,15 +98,15 @@
           <div class="conlusion-head"><p>总结</p></div>
           <div class="conlusion-item">
             <li class="conlusion-item-container">
-              <p>横向比较:</p>
-              <p>在19年到21年入职的三年中，每月的工作任务得分都在一个较高的水平，比较稳定</p>
+              <p style="color:#00b5ad;">横向比较:</p>
+              <p>在19年到21年入职的三年中，每月的工作任务得分都在一个中上的水平，比较稳定</p>
             </li>
             <li class="conlusion-item-container">
-              <p>纵向比较:</p>
-              <p>该员工从19年到21年,工作任务每年的平均得分都在稳定增长，处于较高水平</p>
+              <p style="color:#00b5ad;">纵向比较:</p>
+              <p>该员工从19年到21年,工作任务每年的平均得分都在稳定增长，处于中等水平</p>
             </li>
             <li class="conlusion-item-container">
-              <p>结论:</p>
+              <p style="color:#00b5ad;">结论:</p>
               <p>改员工在本公司近三年的工作任务得分都较高且稳定，高于绝大部分员工</p>
             </li>
           </div>
@@ -118,16 +118,16 @@
           <div class="conlusion-head"><p>总结</p></div>
           <div class="conlusion-item">
             <li class="conlusion-item-container">
-              <p>横向比较:</p>
-              <p>在19年到21年入职的三年中，每月的工作任务得分都在一个较高的水平，比较稳定</p>
+              <p style="color:#00b5ad;">横向比较:</p>
+              <p>在入职的三年中，每月的工作态度起伏较大，有不小的波动</p>
             </li>
             <li class="conlusion-item-container">
-              <p>纵向比较:</p>
-              <p>该员工从19年到21年,工作任务每年的平均得分都在稳定增长，处于较高水平</p>
+              <p style="color:#00b5ad;">纵向比较:</p>
+              <p>该员工从19年到21年,工作态度得分呈现逐年递减的趋势</p>
             </li>
             <li class="conlusion-item-container">
-              <p>结论:</p>
-              <p>改员工在本公司近三年的工作任务得分都较高且稳定，高于绝大部分员工</p>
+              <p style="color:#00b5ad;">结论:</p>
+              <p>在该公司的工作态度得分不是很稳定，且有待提高</p>
             </li>
           </div>
         </div>
@@ -138,16 +138,16 @@
           <div class="conlusion-head"><p>总结</p></div>
           <div class="conlusion-item">
             <li class="conlusion-item-container">
-              <p>横向比较:</p>
-              <p>在19年到21年入职的三年中，每月的工作任务得分都在一个较高的水平，比较稳定</p>
+              <p style="color: #00b5ad">横向比较:</p>
+              <p>在19年到21年入职的三年中，每月的得分都在一个较高的水平，总体得分比较稳定</p>
             </li>
             <li class="conlusion-item-container">
-              <p>纵向比较:</p>
-              <p>该员工从19年到21年,工作任务每年的平均得分都在稳定增长，处于较高水平</p>
+              <p style="color: #00b5ad">纵向比较:</p>
+              <p>该员工从19年到21年,工作任务每年的平均得分都在略有降低，但仍然处于较高水平</p>
             </li>
             <li class="conlusion-item-container">
-              <p>结论:</p>
-              <p>改员工在本公司近三年的工作任务得分都较高且稳定，高于绝大部分员工</p>
+              <p style="color: #00b5ad">结论:</p>
+              <p>该员工在本公司近三年的工作任务得分都较高且稳定，高于绝大部分员工</p>
             </li>
           </div>
         </div>
@@ -156,37 +156,23 @@
         <div style="width: 600px;height: 400px;margin-left: 30px;padding: 10px;background-color:#fff;">
           <el-collapse v-model="activeName" accordion>
             <el-collapse-item title="2019-2-7" name="1">
-              <div>好人一生平安；</div>
+              <div>工作责任心强，工作踏实</div>
             </el-collapse-item>
             <el-collapse-item title="2019-8-19" name="2">
-              <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
-              <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
-            </el-collapse-item>
-            <el-collapse-item title="2020-12-7" name="3">
-              <div style="color: #f56c6c">涉及公司敏感信息，详细内容未公开</div>
+              <div>遵守公司纪律，言出必行</div>
+              <div>工作很刻苦，安排的任务都能够按时按质的完成</div>
             </el-collapse-item>
           </el-collapse>
-        </div>
-
-        <div class="conlusion">
-          <div class="conlusion-head"><p>总结</p></div>
-          <div class="conlusion-item">
-            <li class="conlusion-item-container">
-              <p>在19年到21年，共犯了三个重大错误，平均每年犯一个错误，高于平均水平</p>
-            </li>
-          </div>
         </div>
       </article>
       <article  class="comment-error" v-show="comment_error">
         <div style="width: 600px;height: 400px;margin-left: 30px;padding: 10px;background-color:#fff;">
           <el-collapse v-model="activeName" accordion>
-            <el-collapse-item title="2019-2-7" name="1">
-              <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-              <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+            <el-collapse-item title="2018-2-15" name="1">
+              <div style="color: #f56c6c">涉及公司敏感信息，详细内容未公开</div>
             </el-collapse-item>
             <el-collapse-item title="2019-8-19" name="2">
-              <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
-              <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
+              <div>误将重要资料删除，导致公司受到严重的财产损失</div>
             </el-collapse-item>
             <el-collapse-item title="2020-12-7" name="3">
               <div style="color: #f56c6c">涉及公司敏感信息，详细内容未公开</div>
@@ -244,7 +230,7 @@ export default {
           {
             name: "相关职位的平均分",
             type: "bar",
-            data: [75, 97,87],
+            data: [92, 97,91],
           },
         ],
       };
@@ -296,21 +282,21 @@ export default {
             type: "line",
             name:"2019",
             // stack: '总量',
-            data: [90,80,85,70,85,90,87,76,88,95,85,95],
+            data: [90,89,85,91,85,90,87,98,88,95,85,95],
 
           },
           {
             type: "line",
             name:"2020",
             // stack: '总量',
-            data: [80,90,85,80,75,95,74,95,80,90,75,90],
+            data: [91,90,85,89,98,95,86,95,91,90,90,90],
 
           },
           {
             type: "line",
             name:"2021",
             // stack: '总量',
-            data: [85,75,95,88,70,90,95,90,85,75,85,80],
+            data: [90,91,95,88,86,90,95,90,94,90,89,88],
 
           },
         ]
@@ -363,21 +349,21 @@ export default {
             type: "line",
             name:"2019",
             // stack: '总量',
-            data: [90,64,86,86,45,84,93,74,63,95,94,83],
+            data: [90,91,86,86,81,89,93,90,85,95,94,83],
 
           },
           {
             type: "line",
             name:"2020",
             // stack: '总量',
-            data: [76,86,79,69,89,79,70,69,80,79,69,90],
+            data: [91,86,90,88,89,89,91,87,80,91,93,90],
 
           },
           {
             type: "line",
             name:"2021",
             // stack: '总量',
-            data: [85,75,95,88,70,90,95,90,85,75,85,80],
+            data: [87,95,95,99,100,98,95,90,85,89,91,93],
 
           },
         ]
@@ -456,7 +442,7 @@ export default {
       totalGradeChar.setOption(totalGrade);
       monthGradechar.setOption(monthGrade)
       monthGradechar_1.setOption(monthGrade2)
-      monthGradechar_2.setOption(monthGrade)
+      monthGradechar_2.setOption(monthGrade3)
 
 
     },
@@ -464,7 +450,6 @@ export default {
       // this.$echarts.dispose(document.getElementById("test"))
       this.comment=false
       this.ability=true
-
     },
     change(type){
       if(type == 'comment_error'){

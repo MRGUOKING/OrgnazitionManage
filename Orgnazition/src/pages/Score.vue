@@ -13,7 +13,7 @@
 
         <!--      左下-->
         <section class="department-detail">
-          <li class="avatar"><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=544201226,318312874&fm=26&gp=0.jpg" alt=""></li>
+          <li class="avatar"><img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2397447194,3079395390&fm=15&gp=0.jpg" alt=""></li>
           <div class="message-item"><p>姓名:</p> <p>郭江富</p></div>
           <div class="message-item"><p>性别:</p> <p>男</p></div>
           <div class="message-item"><p>职位:</p> <p>技术总监</p></div>
@@ -31,10 +31,10 @@
 <!--                    <div class="button-container">-->
 <!--                      <button>新增员工</button>-->
 <!--                    </div>-->
-          <div class="search">
-            <input type="text" placeholder="搜索...">
-            <button class="iconfont">&#xe6e6</button>
-          </div>
+<!--          <div class="search">-->
+<!--            <input type="text" placeholder="搜索...">-->
+<!--            <button class="iconfont">&#xe6e6</button>-->
+<!--          </div>-->
         </section>
         <!--              右下-->
         <section class="right-bottom">
@@ -57,8 +57,8 @@
             </thead>
             <tbody>
             <tr class="list-head">
-              <th>每月出货量完成度</th>
-              <th>打分/评级</th>
+              <th>代码完成量</th>
+              <th>打分</th>
               <th>每月考核一次</th>
               <th>7</th>
               <th>
@@ -68,7 +68,7 @@
               </th>
             </tr>
             <tr class="list-head">
-              <th>工作态度</th>
+              <th>工作质量</th>
               <th>评级</th>
               <th>每月考核一次</th>
               <th>10</th>
@@ -80,7 +80,7 @@
             </tr>
             <div class="comment-container">
                 <div class="score-button-container">
-                  <button>取消</button>
+                  <button>清空</button>
                   <button @click="hasCommited">提交</button>
                 </div>
             </div>
@@ -133,7 +133,7 @@
                 active-text="公开"
                 inactive-text="不公开">
               </el-switch>
-              <el-button type="info" plain style="height: 50px;margin-top: 40px;margin-left: 15px" @click="textarea_error=''">取消</el-button>
+              <el-button type="info" plain style="height: 50px;margin-top: 40px;margin-left: 15px" @click="textarea_error=''">清空</el-button>
               <el-button type="primary" style="height: 50px;margin-top: 40px;" @click="error">提交</el-button>
             </div>
           </div>
@@ -283,7 +283,7 @@ textarea{
 .right-top{
   width: 100%;
   height: 50px;
-  background-color: pink;
+  background-color: #73767e;
   display: flex;
   justify-content: right;
   align-items: center;

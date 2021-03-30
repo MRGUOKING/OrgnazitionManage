@@ -127,7 +127,7 @@
           <el-select v-model="form.region" placeholder="请选择员工职位">
             <el-option label="架构师" value="shanghai"></el-option>
             <el-option label="前端部员" value="beijing"></el-option>
-            <el-option label="后端部员" value="beijing"></el-option>
+            <el-option label="后端部员" value="back"></el-option>
           </el-select>
         </el-form-item>
       </el-form>

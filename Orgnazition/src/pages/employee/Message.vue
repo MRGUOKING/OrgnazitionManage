@@ -1,7 +1,7 @@
 <template>
 <div class="message-container">
   <div class="avatar-container">
-    <img src="../images/header.jpg" alt="" class="avatar">
+    <img src="https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3124319389,728293678&fm=26&gp=0.jpg" alt="" class="avatar">
     <el-upload
       style="transform: translateY(90px);margin-left: 20px"
       class="upload-demo"
@@ -77,10 +77,10 @@ export default {
   data() {
     return {
       ruleForm: {
-        jianjie:'我是发挥杜甫',
-        name: '郭江富',
+        jianjie:'自我评价：乐观开朗，热爱体育，喜欢编程，乐于学习各种新知识。对java语言有了解；了解MySQL数据库应用技术及基本的增删改查。对前端网页开发也有所了解。掌握PS,PR相关软件，并有过相关作品展示在校级活动中；易于融入集体文化，能与他人建立良好的关系。具有团队合作精神，创新意识，有进取心，对工作负责',
+        name: '张三',
         age:26,
-        sex:'女',
+        sex:'男',
         photo:13144738973,
         email:'4273284237@qq.com',
         date1:'2021-03-09',
